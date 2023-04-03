@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+ {% load static %}
+<head>
+    <title>토마루</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./static/css/com-style.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/board-css.css">
+</head>
+<body>
+<div class = "header">
+        <div class = "header bimg">
+            <div class="header t1">
+                <a href="http://127.0.0.1:8000">
+                    <img style="height: 70%; width : 70%; object-fit: contain "
+                         src="/static/img/to.png">
+                </a></div>
+            <div class="header t2">
+                <div class="topnav">
+                    <h2>
+                        <a href="#">팀원 소개</a>
+                        <a href="#">안내</a>
+                        <a href="#">공지 사항</a>
+                        <a href="http://127.0.0.1:8000/market">직거래</a>
+                        <a href="http://127.0.0.1:8000/freeboard">커뮤니티</a>
+                </h2></div>
+            </div>
+            <ul class="header t3">
+                <li style="display:inline; font-size: 0px">
+                    <a href=" ">
+                        <img src="https://cdn-icons-png.flaticon.com/512/591/591788.png" alt="언어" width="35" height="35">
+                    </a></li>
+                <li style="display:inline; font-size: 20px">&nbsp;&nbsp;</li>
+                <li style="display:inline; font-size: 0px">
+                    <a href="http://127.0.0.1:8000/login">
+                        <img src="https://cdn-icons-png.flaticon.com/512/860/860784.png" alt="로그인/회원가입" width="35" height="35">
+                    </a></li></ul></div></div>
+
+<div style=" z-index: 2; background: #818182">
+    <aside id ="left">
+        <h2 style="background: white">카테고리</h2>
+        <ul style="background: white; list-style: none; margin: 0; padding: 10px;">
+            <li><h2 target="ifame1" href="#">공지사항</h2></li>
+            <li><h2 target="ifame1" href="#">이달의 소식</h2></li>
+            <li><h2 target="ifame1" href="http://127.0.0.1:8000/freeboard">자유게시판</h2></li>
+            <li><h2 target="ifame1" href="#">신문고</h2></li>
+
+        </ul>
+    </aside>
+</div>
+
+<section id="main">
+    <article id="article1">
+        <div class="board_wrap">
+        <div class="board_title">
+            <strong>자유게시판</strong>
+            <p>자유롭게 글작성해보세요.</p>
+        </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title">
+                    글 제목이 들어갑니다.
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>번호</dt>
+                        <dd>5</dd>
+                    </dl>
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>관리자</dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd>2023.03.27</dd>
+                    </dl>
+                    <dl>
+                        <dt>조회</dt>
+                        <dd>67</dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    글 내용이 들어갑니다<br>
+                    테스트 12345<br>
+                    가나다라마바사<br>
+                    123123123<br>
+                    나도몰라<br>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <a href="http://127.0.0.1:8000/freeboard" class="on">목록</a>
+                <a href="edit.html">수정</a>
+            </div>
+        </div>
+    </div>
+    </article>
+</section>
+
+<div class="footer">
+    <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
+    <p>
+        &nbsp;호서 대학교
+        &nbsp;컴퓨터 공학부&nbsp;
+        &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
+        &nbsp;이메일 : 추가@바람.com&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
+    </p>
+</div>
+</body>
+</html>

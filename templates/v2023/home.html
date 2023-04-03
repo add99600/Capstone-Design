@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+ {% load static %}
+<head>
+    <title>토마루</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./static/css/com-style.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/board-style.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/slide-style.css">
+</head>
+<body>
+    <div class = "header">
+        <div class = "header bimg">
+            <div class="header t1">
+                <a href="http://127.0.0.1:8000">
+                    <img style="height: 70%; width : 70%; object-fit: contain "
+                         src="/static/img/to.png">
+                </a></div>
+            <div class="header t2">
+                <div class="topnav">
+                    <h2>
+                        <a href="#">팀원 소개</a>
+                        <a href="#">안내</a>
+                        <a href="#">공지 사항</a>
+                        <a href="http://127.0.0.1:8000/market">직거래</a>
+                        <a href="http://127.0.0.1:8000/freeboard">커뮤니티</a>
+                </h2></div>
+            </div>
+            <ul class="header t3">
+                <li style="display:inline; font-size: 0px">
+                    <a href=" ">
+                        <img src="https://cdn-icons-png.flaticon.com/512/591/591788.png" alt="언어" width="35" height="35">
+                    </a></li>
+                <li style="display:inline; font-size: 20px">&nbsp;&nbsp;</li>
+                <li style="display:inline; font-size: 0px">
+                    <a href="http://127.0.0.1:8000/login">
+                        <img src="https://cdn-icons-png.flaticon.com/512/860/860784.png" alt="로그인/회원가입" width="35" height="35">
+                    </a></li></ul></div></div>
+
+    <div style="position: relative; z-index: 2">
+        <aside id ="right">
+            <h2 style="background: white; text-align: center; " >카테고리</h2>
+            <ul style="background: white; list-style: none; margin: 0; padding: 10px;">
+                <h2 target="ifame1" href="#">[api 평균가]</h2>
+                <h3><form method="GET" action="{% url 'check_price' %}">
+                    <label for="search_date">검색 날짜:</label>
+                    <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
+                    <br>
+                    <label for="item">검색어:</label>
+                    <input type="text" id="item" name="item" placeholder="ex)배추" required>
+                    <br>
+                    <input type="submit" value="검색">
+                </form></h3>
+                <br>
+                <h3>{% if avg_total_price %}
+                    <p>{{ search_date }} 해당 날짜의</p>
+                    <p>{{ item }}의 평균 가격은 </p>
+                    <p>{{ avg_total_price }}원입니다. </p>
+                    <p>{{ runtime }}</p>
+                {% endif %}</h3>
+                <br>
+                <h2 target="ifame1" href="#">[오늘 거래 평균가]</h2>
+                <h3>&nbsp;</h3>
+                <h2 target="ifame1" href="#">[카카오 챗봇]</h2>
+                <h3>&nbsp;</h3>
+            </ul>
+        </aside>
+    </div>
+
+    <div class="row">
+        <div class="top_main contents1">
+            <h2>오늘의 직거래</h2>
+            <div class="box">
+                <div id="tab">
+                    <ul>
+                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://url.kr/q12uy3"></a></li>
+                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://cdn.imweb.me/thumbnail/20220331/a3dea128d7bfc.jpg"></a></li>
+                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://cdn.aflnews.co.kr/news/photo/202108/214931_52827_5750.jpg"></a></li>
+                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://src.hidoc.co.kr/image/lib/2022/12/9/1670553396923_0.png"></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="top_main contents2">
+            <h2>날씨</h2>
+            <div style="z-index: 1">
+                <div style="height: 300px" id="ww_e31c16749bf90" v='1.3' loc='id' a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":["wl7420"],
+                "font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF",
+                "cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+                    Weather for the Following Location: <a href="https://2ua.org/kor/asan/map/" id="ww_e31c16749bf90_u" target="_blank">Asan map, South Korea</a>
+                </div>
+                <script async src="https://app1.weatherwidget.org/js/?id=ww_e31c16749bf90"></script>
+            </div></div></div>
+
+    <div class="row">
+        <div class="down_main contents1">
+            <h2>공지사항</h2>
+            <p> 1Lorem ipsum dolor sit amet, consectetur adipiscing elit..
+                2Lorem ipsum dolor sit amet, consectetur adipiscing elit..
+                3Lorem ipsum dolor sit amet, consectetur adipiscing elit..
+                4Lorem ipsum dolor sit amet, consectetur adipiscing elit..
+            </p>
+        </div>
+        <div class="down_main contents2">
+            <h2>농업 박람회</h2>
+            <div class="wrapper">
+                <div class="container">
+                    <div id="slideShow">
+                        <ul class="slides">
+                            <li><img style="max-width: 70%; height: 70%;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg"></li>
+                            <li><img style="max-width: 70%; height: 70%;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg"></li>
+                            <li><img style="max-width: 70%; height: 70%;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg"></li>
+                        </ul>
+                        <p class="controller">
+                            <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
+                            <span class="prev">&lang;</span>
+                            <span class="next">&rang;</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                let slides = document.querySelector(".slides");
+                let slideImg = document.querySelectorAll(".slides li");
+
+                currentIdx = 0;
+                slideCount = slideImg.length;
+                prev = document.querySelector(".prev");
+                next = document.querySelector(".next");
+                slideWidth = 300;
+                slideMargin = 100;
+
+                makeClone();
+                initfunction();
+
+                function makeClone(){
+                    let cloneSlide_first = slideImg[0].cloneNode(true); //slideImg.firstElementChild.cloneNode(true);
+                    let cloneSlide_last = slides.lastElementChild.cloneNode(true);
+                    slides.append(cloneSlide_first);
+                    slides.insertBefore(cloneSlide_last,slides.firstElementChild);
+                }
+
+                function initfunction(){
+                    slides.style.width = (slideWidth + slideMargin) * (slideCount+2) + "px";
+                    slides.style.left = -(slideWidth + slideMargin) + "px";
+                }
+
+                next.addEventListener('click', function () {
+                    if (currentIdx <= slideCount-1) {
+                        slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
+                        slides.style.transition = `${0.5}s ease-out`;
+                    }if (currentIdx === slideCount-1){
+                        setTimeout(function(){
+                            slides.style.left = -(slideWidth + slideMargin) + "px";
+                            slides.style.transition = `${0}s ease-out`;
+                        },500);
+                        currentIdx = -1;
+                    }
+                    currentIdx+=1;
+                }
+                );
+
+                prev.addEventListener('click', function () {
+                    console.log(currentIdx);
+                    if (currentIdx >= 0) {
+                        slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
+                        slides.style.transition = `${0.5}s ease-out`;
+                    }if (currentIdx === 0){
+                        setTimeout(function(){
+                            slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
+                            slides.style.transition = `${0}s ease-out`;
+                        },500);
+                        currentIdx=slideCount;
+                    }
+                    currentIdx-=1;
+                }
+                );
+            </script>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
+        <p>
+            &nbsp;호서 대학교
+            &nbsp;컴퓨터 공학부&nbsp;
+            &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
+            &nbsp;이메일 : 추가@바람.com&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
+        </p>
+    </div>
+
+</body>
+</html>

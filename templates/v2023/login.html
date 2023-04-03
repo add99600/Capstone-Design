@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>토마루</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./static/css/login-style.css">
+    <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer&amp;id=G-WWJP90QZFQ" async=""></script>
+</head>
+<body>
+    <div class="header">
+            <a href="http://127.0.0.1:8000">
+                <img style="height: 100%; object-fit: contain" src="https://cdn.discordapp.com/attachments/1071025296582639641/1081551347792482384/bf99e6e3f7c1ff7d.PNG">
+            </a> </div>
+
+    <div class="login">
+        <form action="#">
+            <fieldset>
+                <legend>로그인 구역</legend>
+
+                <input type="email" id="signInEmail" placeholder="아이디(E-mail)을 입력해 주세요">
+                <input type="password" id="signInPassword" placeholder="비밀번호를 입력해 주세요">
+                <ul>
+                    <li><a href="#">아이디/비밀번호찾기</a></li>
+                    <li><a href="http://127.0.0.1:8000/jtm">회원가입</a></li>
+                </ul>
+                <div style="text-align: center">
+                    <div style="display: inline-block"><button type="submit" id="signInButton">로그인</button></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+     <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3wyT2_w8eiyLOQiJ-3b_8EEYAhvSCiR8",
+            authDomain: "project-6db52.firebaseapp.com",
+            projectId: "project-6db52",
+            storageBucket: "project-6db52.appspot.com",
+            messagingSenderId: "922145569650",
+            appId: "1:922145569650:web:2d26e3dc054cd44c2e7beb",
+            measurementId: "G-WWJP90QZFQ"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+
+        document.getElementById('signUpButton').addEventListener('click',(event) => {
+            event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
+            const email = document.getElementById('signUpemail').value
+            const password = document.getElementById('signUppassword').value
+            const auth = getAuth();
+            //auth라는 변수를 만들어 getAuth 실행
+            createUserWithEmailAndPassword(auth, email, password) //email과 password 전달
+                .then((userCredential) => {
+                    console.log(userCredential)
+                    // Signed in
+                    const user = userCredential.user;
+                    // ...
+                })
+                .catch((error) => {
+                    console.log('error')
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // ..
+                });
+        })
+
+    </script>
+
+    <div class="footer">
+        <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
+        <p>
+            &nbsp;호서 대학교
+            &nbsp;컴퓨터 공학부&nbsp;
+            &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
+            &nbsp;이메일 : 추가@바람.com&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
+        </p>
+    </div>
+
+</body>
+</html>

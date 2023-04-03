@@ -1,0 +1,91 @@
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+        }
+        body {margin: 0; background-color: white;}
+        li {list-style: none;}
+        a { text-decoration: none;}
+        button{ cursor: pointer;}
+        .header {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            height: 150px;
+        }
+/* login style */
+        .login{
+            width: 780px; height: 600px;
+            margin: 0 auto; /* 블록요소를 부모영역에서 가운데 처리 */
+            background-color: white;
+            border: 1px solid grey;
+        }
+        .login h2{
+            width: 100%; /* 부모영역을 상속 */
+
+            height: 100px; line-height: 100px;
+            text-align: center; font-size: 20px;
+            font-weight: normal;
+        }
+        .login form{
+            width: 100%; height: 450px;
+            background-color: white;
+            padding: 60px; box-sizing: border-box;
+        }
+        .login fieldset{
+            border: none; /* 테두리 제거 */
+        }
+        .login legend{
+            /* 요소를 화면 밖으로 처리 */
+            position: absolute; left: -999em;
+        }
+        .login label{
+            display: block;
+            font-size: 12px; color: #333;
+            margin-bottom: 10px; /* 동위선택자와의 간격 조정 */
+        }
+        .login input{
+            display: block;
+            width: 100%; height: 50px;
+            margin-bottom: 25px; /* 동위선택자와의 간격 조정 */
+            background-color: #ededed;
+            padding: 0 20px; /* 앞상하 뒷좌우 */
+            box-sizing: border-box; /* 패딩수치를 인사이드 처리 */
+            border: 1px solid grey;
+        }
+        .login ul{
+            width: 100%;
+            text-align: right; /* 글자를 오른쪽으로 처리 */
+            margin-bottom: 60px;
+        }
+        .login li{
+            display: inline-block;
+            height: 12px; line-height: 12px;
+        }
+        .login li:last-child{
+            border-left: 1px solid #333;
+            padding-left: 10px; /* 테두리 안쪽 여백 */
+            margin-left: 4px; /* 테두리 바깥쪽 여백 */
+        }
+        .login a{
+            /* 글자관련은 보통 최종태그에 줘야 적용 */
+            color: #333; font-size: 12px;
+
+            /* 현재 위치에서 상대적 이동 */
+            position: relative; top: -2px;
+        }
+        .login button{
+            display: block;
+            width: 220px; height: 50px;
+            margin: 0 auto; /* 블록요소가 부모 영역에서 가운데 오기 */
+            border: none;
+            background-color: #1673ea;
+            color: #fff; font-size: 14px; font-weight: bold;
+        }
+/* footer style */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+        }

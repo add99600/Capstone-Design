@@ -1,0 +1,201 @@
+ * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+        }
+/* header Style */
+        .header {
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            height: 150px;
+        }
+
+/* header 형식 1,2,3 */
+        .header.t1 {
+            float: left;
+            width: 20%;
+        }
+        .header.t2 {
+            float: left;
+            width: 60%;
+        }
+        .header.t3 {
+            margin: 0;
+            float: left;
+            width: 20%;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        @media screen and (max-width: 600px ) {
+            .header.t1, .header.t2, .header.t3{
+                width: 100%;
+            }
+        }
+/* 그냥 빈공간 주는 스타일 */
+        .blank {
+            clear : both;
+            overflow: hidden;
+            background-color: white;
+            width: 100%;
+            height: 200px;
+        }
+/* Style the top navigation bar */
+        .topnav {
+            clear : both;
+            overflow: hidden;
+            background-color: #989898;
+            width: 100%;
+        }
+/* Style the topnav links */
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 16px 18px;
+            text-decoration: none;
+            width: 20%;
+        }
+/* Change color on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        /* 메인 상판 스타일 */
+        .top_main{
+            float: left;
+            padding: 30px;
+        }
+/* 메인 상판 형식 1,2,3 */
+        .top_main.contents1 {
+            width: 60%;
+            margin: 5px;
+        }
+        .top_main.contents2 {
+            width: 30%;
+            margin: 5px;
+        }
+        @media screen and (max-width: 600px ) {
+            .top_main.contents1, .top_main.contents2 {
+                width: 100%;
+            }
+        }
+/* 도구 판매 가로 스크롤 구현 */
+        .box{
+            max-width:100%;
+            width:100%;
+            height: 300px;
+            border:1px solid #ccc;
+            margin:0 auto;
+            scrollbar-width: none;
+        }
+        #tab ul{
+            white-space:nowrap;
+            overflow-x: auto;
+            text-align:center;
+        }
+        #tab ul li{
+            display:inline-block;
+            padding: 10px;
+            background: #ccc;
+            margin-right:10px;
+        }
+
+/* 왼쪽 서브메뉴 구현 */
+        #left{
+            position: fixed;
+            left: 30px;top: 200px;bottom: 0;
+            width: 200px;
+        }
+        #left ul{
+            background: darkolivegreen;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        #left ul li{
+            margin-left: 20px;
+            padding-top: 5px;
+            background-color: white;
+        }
+        #left ul li a{
+            background: darkolivegreen;
+            color: black;
+            text-decoration: none;
+        }
+        #main{
+            padding-top: 20px;
+            left: 250px; top: 200px; bottom: 0;
+            width: 100%;
+            height: 700px;
+        }
+
+/* 오른쪽 서브메뉴 구현 */
+        #right{
+            position: fixed;
+            right: 30px;top: 200px;bottom: 0;
+            width: 200px;
+            height: 350px;
+            background-color: #f5d682;
+            border: 1px solid black;
+        }
+        #right ul{
+            background-color: white;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        #right ul li{
+            margin-left: 20px;
+            padding-top: 5px;
+            background-color: white;
+        }
+        right ul li a{
+            background-color: white;
+            color: black;
+            text-decoration: none;
+        }
+
+/* 메인 하판 스타일 */
+        .down_main {
+            float: left;
+            padding: 30px;
+        }
+
+/* 메인 하판 형식 1 */
+        .down_main.contents1 {
+            width: 30%;
+            margin: 5px;
+        }
+        .down_main.contents2 {
+            width: 30%;
+            margin: 5px;
+        }
+        .down_main.contents3 {
+            width: 30%;
+            margin: 5px;
+        }
+        @media screen and (max-width: 600px) {
+            .down_main.contents1, .down_main.contents2, .down_main.contents3{
+                width: 100%;
+            }
+        }
+/* Clear floats after the main */
+        .row{
+            padding: 5px 100px 10px 100px;
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+/* footer style */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+        }
