@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./static/css/jtm-style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="header">
@@ -18,17 +19,12 @@
             <h2 style="text-align:center; margin: auto; padding-top: 10px;">회원가입</h2>
             <fieldset>
                 <legend>회원가입 구역</legend>
-                <label for="loginid">이름</label>
-                <input type="text" id="loginid" placeholder="이름을 입력해 주세요">
 
                 <label for="loginid">아이디(E-mail)</label>
-                <input type="text" id="loginid" placeholder="아이디를 입력해 주세요">
+                <input type="text" id="signUpemail" placeholder="아이디를 입력해 주세요">
 
                 <label for="loginid">비밀번호</label>
-                <input type="password" id="loginpw" placeholder="비밀번호를 입력해 주세요">
-
-                <label for="loginid">이메일 주소</label>
-                <input type="text" id="loginE-mail" placeholder="이메일을 입력해 주세요">
+                <input type="password" id="signUppassword" placeholder="비밀번호를 입력해 주세요">
 
                 <ul>
                     <li><a href="#">아이디/비밀번호찾기</a></li>
@@ -36,7 +32,7 @@
                 </ul>
 
                 <div style="text-align: center">
-                    <div style="display: inline-block"><button type="submit">가입하기</button></div>
+                    <div style="display: inline-block"><button type="submit" id="signUpButton">가입하기</button></div>
                 </div>
             </fieldset>
         </form>
@@ -53,5 +49,53 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
         </p>
     </div>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+      apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+      authDomain: "wepdo-7bed1.firebaseapp.com",
+      databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+      projectId: "wepdo-7bed1",
+      storageBucket: "wepdo-7bed1.appspot.com",
+      messagingSenderId: "204948006692",
+      appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+      measurementId: "G-7NQSDSFC61"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+
+  document.getElementById('signUpButton').addEventListener('click',(event) => {
+      event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
+      const email = document.getElementById('signUpemail').value
+      const password = document.getElementById('signUppassword').value
+      const auth = getAuth();
+      //auth라는 변수를 만들어 getAuth 실행
+      createUserWithEmailAndPassword(auth, email, password) //email과 password 전달
+        .then((userCredential) => {
+            console.log(userCredential)
+            // Signed in
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            console.log('error')
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+        });
+  })
+</script>
+
 </body>
 </html>
