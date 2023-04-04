@@ -1,6 +1,6 @@
 # Create your views here.
 from django.shortcuts import render
-
+#xpvpvpvp
 def home(request):
     return render(request, '../../real/templates/v2023/home.html')
 
