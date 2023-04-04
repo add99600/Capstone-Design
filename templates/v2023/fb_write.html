@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./static/css/com-style.css">
     <link rel="stylesheet" type="text/css" href="./static/css/board-css.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class = "header">
@@ -62,24 +63,20 @@
                     <div class="title">
                         <dl>
                             <dt>제목</dt>
-                            <dd><input type="text" placeholder="제목 입력"></dd>
+                            <dd><input type="text" placeholder="제목 입력" id="title"></dd>
                         </dl>
                     </div>
                     <div class="info">
                         <dl>
-                            <dt>글쓴이</dt>
-                            <dd><input type="text" placeholder="글쓴이 입력"></dd>
-                        </dl>
-                        <dl>
-                            <dt>비밀번호</dt>
-                            <dd><input type="password" placeholder="비밀번호 입력"></dd>
+                            <dt>가격</dt>
+                            <dd><input type="text" placeholder="가격 입력" id="price"></dd>
                         </dl>
                     </div>
                     <div class="info">
                         <dl>
                             <form>
                                 <dt>사진 선택</dt>
-                                <dd><input type="file" onchange="previewImage(event)"></dd>
+                                <dd><input type="file" id="image" onchange="previewImage(event)"></dd>
                                 <br>
                                 <dl>
                                     <img width="200px" height="100px" id="preview" src="#" alt="이미지 미리보기">
@@ -88,11 +85,11 @@
                         </dl>
                     </div>
                     <div class="cont">
-                        <textarea placeholder="내용 입력"></textarea>
+                        <textarea placeholder="내용 입력" id="content"></textarea>
                     </div>
                 </div>
                 <div class="bt_wrap">
-                    <a href="view" class="on">등록</a>
+                    <button href="http://127.0.0.1:8000/freeboard" class="on" id="send">등록</button>
                     <a href="http://127.0.0.1:8000/freeboard">취소</a>
                 </div>
             </div>
@@ -110,6 +107,12 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
     </p>
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
 <script>
     function previewImage(event) { /*이미지 미리보기?*/
         var preview = document.getElementById('preview');
@@ -135,23 +138,32 @@
 
         var file = document.querySelector('#image').files[0];
         var storageRef = storage.ref();
-        var 저장할경로 = storageRef.child('/image/' + file.name);
-        var 업로드작업 = 저장할경로.put(file)
-    })
+        var 저장할경로 = null;
+        var 업로드작업 = null;
 
-    $('#send').click(function(){
-        var 저장할거 = {
-            제목 : $('#title').val(),
-            가격 : $('#price').val(),
-            내용 : $('#content').val(),
-            날짜 : new Date(),
+        if (file) { // 파일 선택이 있는 경우에만 실행
+            저장할경로 = storageRef.child('/image/' + file.name);
+            업로드작업 = 저장할경로.put(file)
         }
+
+        const timestamp = { seconds: 1680602498, nanoseconds: 740000000 };
+        const date = new Date(timestamp.seconds * 1000);
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        var 저장할거 = {
+          제목: $('#title').val(),
+          가격: $('#price').val(),
+          내용: $('#content').val(),
+          날짜: month + "월 " + day + "일",
+          이미지: file ? '/image/' + file.name : ''
+        };
         db.collection('product').add(저장할거)
             .then((result)=>{
             }).catch((error)=>{
-        })
-    });
-
+            })
+        });
 </script>
+
 </body>
 </html>

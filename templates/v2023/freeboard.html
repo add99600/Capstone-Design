@@ -128,7 +128,7 @@ db.collection('product').get().then((결과)=>{
                            <div class="num">1</div>
                            <div class="title"><a href="http://127.0.0.1:8000/view">${doc.data().제목}</a></div>
                            <div class="writer">ㅎㅇ</div>
-                           <div class="date">날짜</div>
+                           <div class="date">${doc.data().날짜}</div>
                            <div class="count">${doc.data().조회수}</div>
                            </div>`;
         $('.board_list').append(list);
