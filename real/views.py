@@ -1,6 +1,5 @@
-# Create your views here.
 from django.shortcuts import render
-#xpvpvpvp
+
 def home(request):
     return render(request, '../../real/templates/v2023/home.html')
 
@@ -17,8 +16,8 @@ def jtm(request):
     return render(request, '../../real/templates/v2023/jtm.html', {'jtm': 'test2'})
 
 
-def write(request):
-    return render(request, '../../real/templates/v2023/write.html', {'write': 'test2'})
+def fb_write(request):
+    return render(request, '../../real/templates/v2023/fb_write.html', {'fb_write': 'test2'})
 
 
 def market(request):
