@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- {% load static %}
+{% load static %}
 <head>
     <title>토마루</title>
     <meta charset="utf-8">
@@ -10,36 +10,40 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class = "header">
-        <div class = "header bimg">
-            <div class="header t1">
-                <a href="http://127.0.0.1:8000">
-                    <img style="height: 70%; width : 70%; object-fit: contain "
-                         src="/static/img/to.png">
-                </a></div>
-            <div class="header t2">
-                <div class="topnav">
-                    <h2>
-                        <a href="#">팀원 소개</a>
-                        <a href="#">안내</a>
-                        <a href="#">공지 사항</a>
-                        <a href="http://127.0.0.1:8000/market">직거래</a>
-                        <a href="http://127.0.0.1:8000/freeboard">커뮤니티</a>
+<div class="header">
+    <div class="header bimg">
+        <div class="header t1">
+            <a href="http://127.0.0.1:8000">
+                <img style="height: 70%; width : 70%; object-fit: contain "
+                     src="/static/img/to.png">
+            </a></div>
+        <div class="header t2">
+            <div class="topnav">
+                <h2>
+                    <a href="#">팀원 소개</a>
+                    <a href="#">안내</a>
+                    <a href="#">공지 사항</a>
+                    <a href="http://127.0.0.1:8000/market">직거래</a>
+                    <a href="http://127.0.0.1:8000/freeboard">커뮤니티</a>
                 </h2></div>
-            </div>
-            <ul class="header t3">
-                <li style="display:inline; font-size: 0px">
-                    <a href=" ">
-                        <img src="https://cdn-icons-png.flaticon.com/512/591/591788.png" alt="언어" width="35" height="35">
-                    </a></li>
-                <li style="display:inline; font-size: 20px">&nbsp;&nbsp;</li>
-                <li style="display:inline; font-size: 0px">
-                    <a href="http://127.0.0.1:8000/login">
-                        <img src="https://cdn-icons-png.flaticon.com/512/860/860784.png" alt="로그인/회원가입" width="35" height="35">
-                    </a></li></ul></div></div>
+        </div>
+        <ul class="header t3">
+            <li style="display:inline; font-size: 0px">
+                <a href=" ">
+                    <img src="https://cdn-icons-png.flaticon.com/512/591/591788.png" alt="언어" width="35" height="35">
+                </a></li>
+            <li style="display:inline; font-size: 20px">&nbsp;&nbsp;</li>
+            <li style="display:inline; font-size: 0px">
+                <a href="http://127.0.0.1:8000/login">
+                    <img src="https://cdn-icons-png.flaticon.com/512/860/860784.png" alt="로그인/회원가입" width="35"
+                         height="35">
+                </a></li>
+        </ul>
+    </div>
+</div>
 
 <div style=" z-index: 2; background: #818182">
-    <aside id ="left">
+    <aside id="left">
         <h2 style="background: white">깃테스트</h2>
         <ul style="background: white; list-style: none; margin: 0; padding: 10px;">
             <li><h2 target="ifame1" href="#">공지사항</h2></li>
@@ -118,23 +122,24 @@
         var preview = document.getElementById('preview');
         preview.src = URL.createObjectURL(event.target.files[0]);
     }
-     var firebaseConfig = {
-          apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-          authDomain: "wepdo-7bed1.firebaseapp.com",
-          databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-          projectId: "wepdo-7bed1",
-          storageBucket: "wepdo-7bed1.appspot.com",
-          messagingSenderId: "204948006692",
-          appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-          measurementId: "G-7NQSDSFC61"
-      };
-      firebase.initializeApp(firebaseConfig);
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
+    };
+    firebase.initializeApp(firebaseConfig);
 </script>
 <script>
     const db = firebase.firestore(); // db문법 소환
     const storage = firebase.storage(); // 스토리지 문법 소환
 
-    $('#send').click(function (){
+    $('#send').click(function () {
 
         var file = document.querySelector('#image').files[0];
         var storageRef = storage.ref();
@@ -146,23 +151,25 @@
             업로드작업 = 저장할경로.put(file)
         }
 
-        const timestamp = { seconds: 1680602498, nanoseconds: 740000000 };
+        const timestamp = {seconds: 1680602498, nanoseconds: 740000000};
         const date = new Date(timestamp.seconds * 1000);
         const month = date.getMonth() + 1;
         const day = date.getDate();
 
         var 저장할거 = {
-          제목: $('#title').val(),
-          가격: $('#price').val(),
-          내용: $('#content').val(),
-          날짜: month + "월 " + day + "일",
-          이미지: file ? '/image/' + file.name : ''
+            제목: $('#title').val(),
+            가격: $('#price').val(),
+            내용: $('#content').val(),
+            날짜: month + "월 " + day + "일",
+            이미지: file ? '/image/' + file.name : ''
         };
         db.collection('product').add(저장할거)
-            .then((result)=>{
-            }).catch((error)=>{
-            })
-        });
+            .then((result) => {
+                console.log(result)
+            }).catch((error) => {
+            console.log(error)
+        })
+    });
 </script>
 
 </body>

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "django": "^1.0.0",
     "firebase": "^9.19.1"
   }
 }
