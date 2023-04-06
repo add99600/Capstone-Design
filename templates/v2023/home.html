@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./static/css/com-style.css">
     <link rel="stylesheet" type="text/css" href="./static/css/board-style.css">
     <link rel="stylesheet" type="text/css" href="./static/css/slide-style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class = "header">
@@ -72,14 +73,8 @@
         <div class="top_main contents1">
             <h2>오늘의 직거래</h2>
             <div class="box">
-                <div id="tab">
-                    <ul>
-                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://url.kr/q12uy3"></a></li>
-                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://cdn.imweb.me/thumbnail/20220331/a3dea128d7bfc.jpg"></a></li>
-                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://cdn.aflnews.co.kr/news/photo/202108/214931_52827_5750.jpg"></a></li>
-                        <li class=""><a href="#" ><img style="width: 250px; height: 250px" src = "https://src.hidoc.co.kr/image/lib/2022/12/9/1670553396923_0.png"></a></li>
+                <div id="tab" class="tab">
 
-                    </ul>
                 </div>
             </div>
         </div>
@@ -109,9 +104,7 @@
                 <div class="container">
                     <div id="slideShow">
                         <ul class="slides">
-                            <li><img style="max-width: 70%; height: 70%;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg"></li>
-                            <li><img style="max-width: 70%; height: 70%;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg"></li>
-                            <li><img style="max-width: 70%; height: 70%;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg"></li>
+                            `<li class=""><a href="#" ><img style="width: 250px; height: 250px" scr="https://cdn.discordapp.com/attachments/1075011083431055370/1085152670836346951/66932b1ea6927f21.PNG"></a></li>`
                         </ul>
                         <p class="controller">
                             <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
@@ -192,5 +185,40 @@
         </p>
     </div>
 
+
+
+<!-- Firebase SDK 스크립트 태그 -->
+<!-- Firebase SDK 스크립트 태그 -->
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+<script>
+    var firebaseConfig = {
+    apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+    authDomain: "wepdo-7bed1.firebaseapp.com",
+    databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+    projectId: "wepdo-7bed1",
+    storageBucket: "wepdo-7bed1.appspot.com",
+    messagingSenderId: "204948006692",
+    appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+    measurementId: "G-7NQSDSFC61"
+};
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore(); // db문법 소환
+const storage = firebase.storage();
+
+db.collection('product').limit(3).get().then((결과)=> {
+  결과.forEach((doc) => {
+    console.log(doc.data().이미지);
+
+    var list = `<a href="#"><img style="width: 250px; height: 250px;" src="${doc.data().이미지}"></a>`;
+    $('.tab').append(list);
+  });
+});
+
+</script>
 </body>
 </html>

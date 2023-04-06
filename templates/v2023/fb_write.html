@@ -136,40 +136,70 @@
     firebase.initializeApp(firebaseConfig);
 </script>
 <script>
-    const db = firebase.firestore(); // db문법 소환
-    const storage = firebase.storage(); // 스토리지 문법 소환
+const db = firebase.firestore();
+const storage = firebase.storage();
 
-    $('#send').click(function () {
+$('#send').click(function () {
 
-        var file = document.querySelector('#image').files[0];
-        var storageRef = storage.ref();
-        var 저장할경로 = null;
-        var 업로드작업 = null;
+  var file = document.querySelector('#image').files[0];
+  var storageRef = storage.ref();
+  var save_img = null;
+  var upload_img = null;
+  var url = null;
 
-        if (file) { // 파일 선택이 있는 경우에만 실행
-            저장할경로 = storageRef.child('/image/' + file.name);
-            업로드작업 = 저장할경로.put(file)
-        }
-
-        const timestamp = {seconds: 1680602498, nanoseconds: 740000000};
-        const date = new Date(timestamp.seconds * 1000);
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-
-        var 저장할거 = {
-            제목: $('#title').val(),
-            가격: $('#price').val(),
-            내용: $('#content').val(),
-            날짜: month + "월 " + day + "일",
-            이미지: file ? '/image/' + file.name : ''
-        };
-        db.collection('product').add(저장할거)
-            .then((result) => {
-                console.log(result)
-            }).catch((error) => {
+  if (file) {
+    save_img = storageRef.child('/image/' + file.name);
+    upload_img = save_img.put(file)
+    upload_img.on('state_change',
+      null,
+      (error) => {
+        console.error('실패',error);
+      },
+      () => {
+        upload_img.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          url = downloadURL;
+          console.log('업로드된 경로',url)
+          var img = {
+            이미지: url
+          }
+          db.collection('product').add(img)
+          .then((result) => {
+            console.log(result)
+          }).catch((error) => {
             console.log(error)
-        })
-    });
+          })
+          // 이미지가 업로드된 후에 제목, 가격, 내용, 날짜 등을 저장하기 위해 함수를 호출합니다.
+          saveData();
+        });
+      }
+    )
+  } else {
+    // 이미지가 선택되지 않은 경우에도 함수를 호출합니다.
+    saveData();
+  }
+
+  function saveData() {
+    const timestamp = {seconds: 1680602498, nanoseconds: 740000000};
+    const date = new Date(timestamp.seconds * 1000);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    var save_txt = {
+      제목: $('#title').val(),
+      가격: $('#price').val(),
+      내용: $('#content').val(),
+      날짜: month + "월 " + day + "일",
+      이미지: url
+    };
+    db.collection('product').add(save_txt)
+      .then((result) => {
+        console.log(result)
+      }).catch((error) => {
+        console.log(error)
+    })
+  }
+});
+
 </script>
 
 </body>
