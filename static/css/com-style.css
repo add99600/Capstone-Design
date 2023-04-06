@@ -127,7 +127,6 @@
             width: 200px;
             height: 300px;
             background-color: #1d9731;
-            border-radius: 30px;
             border: 1px solid black;
 
         }
@@ -148,7 +147,7 @@
             text-decoration: none;
         }
 /* 오른쪽 서브메뉴 구현 */
-        #right{
+         #right{
             position: fixed;
             right: 30px; top: 300px; bottom: 0;
             width: 200px;
@@ -174,6 +173,7 @@
             color: black;
             text-decoration: none;
         }
+
 
 /* 메인 하판 스타일 */
         .down_main {

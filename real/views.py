@@ -27,6 +27,7 @@ def market(request):
 def view(request):
     return render(request, '../../real/templates/v2023/view.html', {'view': 'test2'})
 
+
 import requests
 import xmltodict
 from datetime import datetime, timedelta
