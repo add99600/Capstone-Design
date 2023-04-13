@@ -1,11 +1,6 @@
+html{font-size: 10px}
 
-html {
-    font-size: 10px;
-}
-
-ul, li {
-    list-style: none;
-}
+ul, li {list-style: none;}
 
 a {
     text-decoration: none;
@@ -15,6 +10,7 @@ a {
 .board_wrap {
     width: 1000px;
     margin:  auto;
+    height: 1000px;
 }
 
 .board_title {
@@ -256,7 +252,8 @@ a {
 
 .board_write .title input[type="text"],
 .board_write .info input[type="text"],
-.board_write .info input[type="password"] {
+.board_write .info input[type="password"],
+.board_write .info input[type="file"]{
     padding: 10px;
     box-sizing: border-box;
 }

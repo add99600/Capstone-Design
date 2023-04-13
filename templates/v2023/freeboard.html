@@ -1,92 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
- {% load static %}
+<html lang="ko">
 <head>
-    <title>토마루</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="./static/css/com-style.css">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#712cf9">
+    <title>농밀</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/newcom-style.css">
     <link rel="stylesheet" type="text/css" href="./static/css/board-css.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class = "header">
-        <div class = "header bimg">
-            <div class="header t1">
-                <a href="http://127.0.0.1:8000">
-                    <img style="height: 70%; width : 70%; object-fit: contain "
-                         src="/static/img/to.png">
-                </a></div>
-            <div class="header t2">
-                <div class="topnav">
-                    <h2>
-                        <a href="#">팀원 소개</a>
-                        <a href="#">안내</a>
-                        <a href="#">공지 사항</a>
-                        <a href="http://127.0.0.1:8000/market">직거래</a>
-                        <a href="http://127.0.0.1:8000/freeboard">커뮤니티</a>
-                </h2></div>
-            </div>
-            <ul class="header t3">
-                <li style="display:inline; font-size: 0px">
-                    <a href=" ">
-                        <img src="https://cdn-icons-png.flaticon.com/512/591/591788.png" alt="언어" width="35" height="35">
-                    </a></li>
-                <li style="display:inline; font-size: 20px">&nbsp;&nbsp;</li>
-                <li style="display:inline; font-size: 0px">
-                    <a href="http://127.0.0.1:8000/login">
-                        <img src="https://cdn-icons-png.flaticon.com/512/860/860784.png" alt="로그인/회원가입" width="35" height="35">
-                    </a></li></ul></div></div>
 
+<main>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
+         style="font-size: 1.4rem; background-image: url('/static/img/san.png'); width : auto; height: 400px">
+        <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
+                <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                        </a>
+
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-white">홈</a></li>
+                            <li><a href="#" class="nav-link px-2 text-white">팀원소개</a></li>
+                            <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
+                            <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+                            <li><a href="freeboard.html" class="nav-link px-2 text-secondary">커뮤니티</a></li>
+                        </ul>
+
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                            <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
+                        </form>
+
+                        <div class="text-end">
+                            <button type="button" class="btn btn-outline-light me-2" onClick="location.href='login.html'">로그인</button>
+                            <button type="button" class="btn btn-warning" onClick="location.href='jtm.html'">회원가입</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        <div class="col-md-5 p-lg-5 mx-auto my-5" style="float: right">
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">따뜻한 공사</h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">합리적인 공사</h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">공사 진행중 입니다</h1>
+            <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
+            <a class="btn btn-outline-secondary" style="text-align: left" href="#">Coming soon</a>
+        </div>
+    </div>
+    <!-- 위는 네비 아래는 큰 이미지 예정-->
 <div style=" z-index: 2; background: #818182">
     <aside id ="left">
-        <h2 style="background: white">카테고리</h2>
+        <h3 style="background: white">카테고리</h3>
         <ul style="background: white; list-style: none; margin: 0; padding: 10px;">
-            <li><h2 target="ifame1" href="#">공지사항</h2></li>
-            <li><h2 target="ifame1" href="#">이달의 소식</h2></li>
-            <li><h2 target="ifame1" href="http://127.0.0.1:8000/freeboard">자유게시판</h2></li>
-            <li><h2 target="ifame1" href="#">신문고</h2></li>
+            <li><h3 target="ifame1" href="#">공지사항</h3></li>
+            <li><h3 target="ifame1" href="#">이달의 소식</h3></li>
+            <li><h3 target="ifame1" href="#">자유게시판</h3></li>
+            <li><h3 target="ifame1" href="#">신문고</h3></li>
 
         </ul>
     </aside>
 </div>
+    <div class="container marketing" style="padding-top: 50px">
 
-    <section id="main">
-        <article id="article1">
-            <div class="board_wrap">
-                <div class="board_title">
-                    <strong>자유게시판</strong>
-                    <p>자유롭게 글작성해보세요.</p>
-                </div>
-                <div class="board_list_wrap">
-                    <div class="board_list">
-                        <div class="top">
-                            <div class="num">번호</div>
-                            <div class="title">제목</div>
-                            <div class="writer">글쓴이</div>
-                            <div class="date">작성일</div>
-                            <div class="count">조회</div>
-                        </div>
-                    </div>
-                    <div class="board_page">
-                        <a href="#" class="bt first">&lt;&lt;</a>
-                        <a href="#" class="bt prev">&lt;</a>
-                        <a href="#" class="num on">1</a>
-                        <a href="#" class="num">2</a>
-                        <a href="#" class="num">3</a>
-                        <a href="#" class="num">4</a>
-                        <a href="#" class="num">5</a>
-                        <a href="#" class="bt next">&gt;</a>
-                        <a href="#" class="bt last">&gt;&gt;</a>
-                    </div>
-                    <div class="bt_wrap">
-                        <a href="http://127.0.0.1:8000/fb_write" class="on">등록</a>
-                        <!--<a href="#">수정</a>-->
-                    </div>
-                </div>
-            </div>
-        </article>
-    </section>
+        <!-- Three columns of text below the carousel -->
+         <div class="row featurette" style="height: auto">
+
+             <section id="main">
+                 <article id="article1">
+                     <div class="board_wrap">
+                         <div class="board_title">
+                             <strong>자유게시판</strong>
+                             <p>자유롭게 글작성해보세요.</p>
+                         </div>
+                         <div class="board_list_wrap">
+                             <div class="board_list">
+                                 <div class="top">
+                                     <div class="num">번호</div>
+                                     <div class="title">제목</div>
+                                     <div class="writer">글쓴이</div>
+                                     <div class="date">작성일</div>
+                                     <div class="count">조회</div>
+                                 </div>
+
+                             </div>
+                             <div class="board_page">
+                                 <a href="#" class="bt first">&lt;&lt;</a>
+                                 <a href="#" class="bt prev">&lt;</a>
+                                 <a href="#" class="num on">1</a>
+                                 <a href="#" class="num">2</a>
+                                 <a href="#" class="num">3</a>
+                                 <a href="#" class="num">4</a>
+                                 <a href="#" class="num">5</a>
+                                 <a href="#" class="bt next">&gt;</a>
+                                 <a href="#" class="bt last">&gt;&gt;</a>
+                             </div>
+                             <div class="bt_wrap">
+                                 <a href="fb_write.html" class="on">등록</a>
+                                 <!--<a href="#">수정</a>-->
+                             </div>
+                         </div>
+                     </div>
+                 </article>
+             </section>
+         </div>
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
+    </div><!-- /.container -->
 
     <div class="footer">
         <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
@@ -98,6 +124,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
         </p>
     </div>
+</main>
 
 
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>

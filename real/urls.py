@@ -21,12 +21,18 @@ from . import views
 app_name = 'v2023'
 urlpatterns = [
     path('', home, name='home'), #홈
-    path('freeboard', freeboard, name='freeboard'), #자유게시판
-    path('login', login, name='login'), #로그인
-    path('jtm', jtm, name='jtm'), #회원가입
-    path('fb_write', fb_write, name='fb_write'), #글쓰기
-    path('market', market, name='market'), #직거래
-    path('view', view, name='view'), #글보기
+
+    path('login.html', login, name='login'), #로그인
+    path('jtm.html', jtm, name='jtm'), #회원가입
+
+    path('freeboard.html', freeboard, name='freeboard'), #자유게시판
+    path('fb_write.html', fb_write, name='fb_write'), #글쓰기
+
+    path('market.html', market, name='market'), #직거래
+    path('m_write.html', m_write, name='m_write'), #글쓰기
+
+    path('view.html', view, name='view'), #글보기
+
     path('check_check', check_price, name='check_price'), #api
     path('check_price', check, name='check')
 ]

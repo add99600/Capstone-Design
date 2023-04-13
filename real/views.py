@@ -24,6 +24,10 @@ def market(request):
     return render(request, '../../real/templates/v2023/market.html', {'market': 'test2'})
 
 
+def m_write(request):
+    return render(request, '../../real/templates/v2023/m_write.html', {'m_write': 'test2'})
+
+
 def view(request):
     return render(request, '../../real/templates/v2023/view.html', {'view': 'test2'})
 

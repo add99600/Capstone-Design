@@ -1,50 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
- {% load static %}
+
+<html lang="ko">
+{% load static %}
 <head>
-    <title>토마루</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="./static/css/com-style.css">
-    <link rel="stylesheet" type="text/css" href="./static/css/board-style.css">
-    <link rel="stylesheet" type="text/css" href="./static/css/slide-style.css">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#712cf9">
+    <title>농밀</title>
+    <link rel="stylesheet" type="text/css" href="static/css/newcom-style.css">
+    <link rel="stylesheet" type="text/css" href="static/css/board-css.css">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class = "header">
-        <div class = "header bimg">
-            <div class="header t1">
-                <a href="http://127.0.0.1:8000">
-                    <img style="height: 70%; width : 70%; object-fit: contain "
-                         src="/static/img/to.png">
-                </a></div>
-            <div class="header t2">
-                <div class="topnav">
-                    <h2>
-                        <a href="#">팀원 소개</a>
-                        <a href="#">안내</a>
-                        <a href="#">공지 사항</a>
-                        <a href="http://127.0.0.1:8000/market">직거래</a>
-                        <a href="http://127.0.0.1:8000/freeboard">커뮤니티</a>
-                </h2></div>
-            </div>
-            <ul class="header t3">
-                <li style="display:inline; font-size: 0px">
-                    <a href=" ">
-                        <img src="https://cdn-icons-png.flaticon.com/512/591/591788.png" alt="언어" width="35" height="35">
-                    </a></li>
-                <li style="display:inline; font-size: 20px">&nbsp;&nbsp;</li>
-                <li style="display:inline; font-size: 0px">
-                    <a href="http://127.0.0.1:8000/login">
-                        <img src="https://cdn-icons-png.flaticon.com/512/860/860784.png" alt="로그인/회원가입" width="35" height="35">
-                    </a></li></ul></div></div>
 
-    <div style="position: relative; z-index: 2">
-        <aside id ="right">
-            <h2 style="background: white; text-align: center; " >카테고리</h2>
-            <ul style="background: white; list-style: none; margin: 0; padding: 10px;">
-                <h2 target="ifame1" href="#">[api 평균가]</h2>
-                <h3><form method="GET" action="{% url 'check_price' %}">
+<main>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
+         style="font-size: 1.4rem; background-image: url('/static/img/san.png'); width : auto; height: 400px">
+        <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
+                    </a>
+
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-secondary">홈</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">팀원소개</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+                        <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
+                    </ul>
+
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
+                    </form>
+
+                    <div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
+                        <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="col-md-5 p-lg-5 mx-auto my-5" style="float: right">
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">따뜻한 공사</h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">합리적인 공사</h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">공사 진행중 입니다</h1>
+            <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
+            <a class="btn btn-outline-secondary" style="text-align: left" href="#">Coming soon</a>
+        </div>
+    </div>
+    <!-- 위는 네비 아래는 큰 이미지 예정-->
+    <div class="container marketing" style="padding-top: 50px" style="font-size: 1.4rem">
+        <div class="row featurette" style="height: 500px">
+            <div class="col-md-5 order-md-1" style="padding: 20px">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" style="font-size: 1.4rem" href="#공지사항" aria-selected="true" role="tab">공지사항</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" style="font-size: 1.4rem" href="#자유게시판" aria-selected="false" role="tab" tabindex="-1">자유게시판</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active show" id="공지사항" role="tabpanel">
+                        <p style="font-size: 1.4rem">공지사항 테스트 예정</p>
+                    </div>
+                    <div class="tab-pane fade" id="자유게시판" role="tabpanel">
+                        <div class="board_wrap" style="width: auto; height: auto">
+                            <div class="board_list_wrap">
+                                <h3> </h3>
+                                <div class="board_list">
+                                    <div class="top">
+                                        <div class="num">번호</div>
+                                        <div class="title">제목</div>
+                                        <div class="writer">글쓴이</div>
+                                        <div class="date">작성일</div>
+                                        <div class="count">조회</div>
+                                    </div>
+                                    <div>
+                                        <div class="num">5</div>
+                                        <div class="title"><a href="view.html">중대장님 기율대 가고 싶습니다.</a></div>
+                                        <div class="writer">임다나</div>
+                                        <div class="date">2023.03.23</div>
+                                        <div class="count">593</div>
+                                    </div>
+                                    <div>
+                                        <div class="num">4</div>
+                                        <div class="title"><a href="view.html">123123</a></div>
+                                        <div class="writer">ㅇㅇ</div>
+                                        <div class="date">2023.03.14</div>
+                                        <div class="count">32</div>
+                                    </div>
+                                    <div>
+                                        <div class="num">3</div>
+                                        <div class="title"><a href="view.html">한따까리 하자</a></div>
+                                        <div class="writer">3소당</div>
+                                        <div class="date">2023.03.10</div>
+                                        <div class="count">423</div>
+                                    </div>
+                                    <div>
+                                        <div class="num">2</div>
+                                        <div class="title"><a href="view.html">피곤해</a></div>
+                                        <div class="writer">심희준</div>
+                                        <div class="date">2023.03.09</div>
+                                        <div class="count">435</div>
+                                    </div>
+                                    <div>
+                                        <div class="num">1</div>
+                                        <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
+                                        <div class="writer">이름</div>
+                                        <div class="date">2023.03.01</div>
+                                        <div class="count">1</div>
+                                    </div>
+                                </div>
+                                <div class="bt_wrap">
+                                    <a href="freeboard.html" class="on">자유게시판 바로가기</a>
+                                    <!--<a href="#">수정</a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 order-md-2" style="padding: 20px">
+                <h3 target="ifame1"  href="#">[api 평균가]</h3>
+                <h4><form method="GET" action="{% url 'check_price' %}">
                     <label for="search_date">검색 날짜:</label>
                     <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
                     <br>
@@ -52,131 +139,147 @@
                     <input type="text" id="item" name="item" placeholder="ex)배추" required>
                     <br>
                     <input type="submit" value="검색">
-                </form></h3>
+                </form></h4>
                 <br>
-                <h3>{% if avg_total_price %}
+                <h4>{% if avg_total_price %}
                     <p>{{ search_date }} 해당 날짜의</p>
                     <p>{{ item }}의 평균 가격은 </p>
                     <p>{{ avg_total_price }}원입니다. </p>
                     <p>{{ runtime }}</p>
-                {% endif %}</h3>
-                <br>
-                <h2 target="ifame1" href="#">[오늘 거래 평균가]</h2>
-                <h3>&nbsp;</h3>
-                <h2 target="ifame1" href="#">[카카오 챗봇]</h2>
-                <h3>&nbsp;</h3>
-            </ul>
-        </aside>
-    </div>
-
-    <div class="row">
-        <div class="top_main contents1">
-            <h2>오늘의 직거래</h2>
-            <div class="box">
-                <div id="tab" class="tab">
-                    <ul>
-                    </ul>
-                </div>
+                {% endif %}</h4>
             </div>
         </div>
-        <div class="top_main contents2">
-            <h2>날씨</h2>
-            <div style="z-index: 1">
-                <div style="height: 300px" id="ww_e31c16749bf90" v='1.3' loc='id' a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":["wl7420"],
-                "font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF",
-                "cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
-                    Weather for the Following Location: <a href="https://2ua.org/kor/asan/map/" id="ww_e31c16749bf90_u" target="_blank">Asan map, South Korea</a>
-                </div>
-                <script async src="https://app1.weatherwidget.org/js/?id=ww_e31c16749bf90"></script>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="down_main contents1">
-            <h2>공지사항</h2>
-            <p> 1Lorem ipsum dolor sit amet, consectetur adipiscing elit..
-                2Lorem ipsum dolor sit amet, consectetur adipiscing elit..
-                3Lorem ipsum dolor sit amet, consectetur adipiscing elit..
-                4Lorem ipsum dolor sit amet, consectetur adipiscing elit..
-            </p>
-        </div>
-        <div class="down_main contents2">
-            <h2>농업 박람회</h2>
-            <div class="wrapper">
-                <div class="container">
-                    <div id="slideShow">
-                        <ul class="slides">
-                            `<li class=""><a href="#" ><img style="width: 250px; height: 250px" scr="https://cdn.discordapp.com/attachments/1075011083431055370/1085152670836346951/66932b1ea6927f21.PNG"></a></li>`
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette" style="height: 500px">
+            <div class="col-md-8" style="padding: 20px">
+                <h3>직거래 미리보기</h3>
+                <button type="button" class="btn btn-primary" onclick="location.href='market.html'">직거래 바로가기</button>
+                <div class="box">
+                    <div id="tab" class="tab">
+                        <ul>
+
+                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://url.kr/q12uy3"></a></li>
+                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://cdn.imweb.me/thumbnail/20220331/a3dea128d7bfc.jpg"></a></li>
+                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://cdn.aflnews.co.kr/news/photo/202108/214931_52827_5750.jpg"></a></li>
+                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://src.hidoc.co.kr/image/lib/2022/12/9/1670553396923_0.png"></a></li>
+
                         </ul>
-                        <p class="controller">
-                            <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
-                            <span class="prev">&lang;</span>
-                            <span class="next">&rang;</span>
-                        </p>
                     </div>
                 </div>
             </div>
-            <script>
-                let slides = document.querySelector(".slides");
-                let slideImg = document.querySelectorAll(".slides li");
+            <div class="col-md-4" style="padding: 20px">
+                <h3>농업 박람회</h3>
+                <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+                    </div>
+                    <div class="carousel-inner" style="height:90%">
+                        <div class="carousel-item active">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
 
-                currentIdx = 0;
-                slideCount = slideImg.length;
-                prev = document.querySelector(".prev");
-                next = document.querySelector(".next");
-                slideWidth = 300;
-                slideMargin = 100;
+                            <div class="container">
+                                <div class="carousel-caption">
+                                    <img style="max-width: 100%; height: 100%;  border-radius: 30px;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
 
-                makeClone();
-                initfunction();
+                            <div class="container">
+                                <div class="carousel-caption">
+                                    <img style="max-width: 100%; height: 100%;  border-radius: 30px;" src="https://agro.seoul.go.kr/files/2022/04/6250f82ff03535.71902381.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
 
-                function makeClone(){
-                    let cloneSlide_first = slideImg[0].cloneNode(true); //slideImg.firstElementChild.cloneNode(true);
-                    let cloneSlide_last = slides.lastElementChild.cloneNode(true);
-                    slides.append(cloneSlide_first);
-                    slides.insertBefore(cloneSlide_last,slides.firstElementChild);
-                }
-
-                function initfunction(){
-                    slides.style.width = (slideWidth + slideMargin) * (slideCount+2) + "px";
-                    slides.style.left = -(slideWidth + slideMargin) + "px";
-                }
-
-                next.addEventListener('click', function () {
-                    if (currentIdx <= slideCount-1) {
-                        slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
-                        slides.style.transition = `${0.5}s ease-out`;
-                    }if (currentIdx === slideCount-1){
-                        setTimeout(function(){
-                            slides.style.left = -(slideWidth + slideMargin) + "px";
-                            slides.style.transition = `${0}s ease-out`;
-                        },500);
-                        currentIdx = -1;
-                    }
-                    currentIdx+=1;
-                }
-                );
-
-                prev.addEventListener('click', function () {
-                    console.log(currentIdx);
-                    if (currentIdx >= 0) {
-                        slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
-                        slides.style.transition = `${0.5}s ease-out`;
-                    }if (currentIdx === 0){
-                        setTimeout(function(){
-                            slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
-                            slides.style.transition = `${0}s ease-out`;
-                        },500);
-                        currentIdx=slideCount;
-                    }
-                    currentIdx-=1;
-                }
-                );
-            </script>
+                            <div class="container">
+                                <div class="carousel-caption">
+                                    <img style="max-width: 100%; height: 100%;  border-radius: 30px;" src="https://www.modunong.or.kr:449/dummy/images/common/introduce_img01.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
         </div>
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
     </div>
+    <script>
+        let slides = document.querySelector(".slides");
+        let slideImg = document.querySelectorAll(".slides li");
 
+        currentIdx = 0;
+        slideCount = slideImg.length;
+        prev = document.querySelector(".prev");
+        next = document.querySelector(".next");
+        slideWidth = 300;
+        slideMargin = 100;
+
+        makeClone();
+        initfunction();
+
+        function makeClone(){
+            let cloneSlide_first = slideImg[0].cloneNode(true); //slideImg.firstElementChild.cloneNode(true);
+            let cloneSlide_last = slides.lastElementChild.cloneNode(true);
+            slides.append(cloneSlide_first);
+            slides.insertBefore(cloneSlide_last,slides.firstElementChild);
+        }
+
+        function initfunction(){
+            slides.style.width = (slideWidth + slideMargin) * (slideCount+2) + "px";
+            slides.style.left = -(slideWidth + slideMargin) + "px";
+        }
+
+        next.addEventListener('click', function () {
+                if (currentIdx <= slideCount-1) {
+                    slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
+                    slides.style.transition = `${0.5}s ease-out`;
+                }if (currentIdx === slideCount-1){
+                    setTimeout(function(){
+                        slides.style.left = -(slideWidth + slideMargin) + "px";
+                        slides.style.transition = `${0}s ease-out`;
+                    },500);
+                    currentIdx = -1;
+                }
+                currentIdx+=1;
+            }
+        );
+
+        prev.addEventListener('click', function () {
+                console.log(currentIdx);
+                if (currentIdx >= 0) {
+                    slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
+                    slides.style.transition = `${0.5}s ease-out`;
+                }if (currentIdx === 0){
+                    setTimeout(function(){
+                        slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
+                        slides.style.transition = `${0}s ease-out`;
+                    },500);
+                    currentIdx=slideCount;
+                }
+                currentIdx-=1;
+            }
+        );
+    </script> <!-- 예전 농업 박람회 slide -->
     <div class="footer">
         <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
         <p>
@@ -187,7 +290,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
         </p>
     </div>
-
+</main>
 
 
 <!-- Firebase SDK 스크립트 태그 -->
@@ -199,30 +302,29 @@
 
 <script>
     var firebaseConfig = {
-    apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-    authDomain: "wepdo-7bed1.firebaseapp.com",
-    databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-    projectId: "wepdo-7bed1",
-    storageBucket: "wepdo-7bed1.appspot.com",
-    messagingSenderId: "204948006692",
-    appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-    measurementId: "G-7NQSDSFC61"
-};
-firebase.initializeApp(firebaseConfig);
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore(); // db문법 소환
-const storage = firebase.storage();
+    const db = firebase.firestore(); // db문법 소환
+    const storage = firebase.storage();
 
-db.collection('product').where("이미지", "!=", null)
-  .limit(10).get().then((결과) => {
-    결과.forEach((doc) => {
-      console.log(doc.data().이미지);
+    db.collection('product').where("이미지", "!=", null)
+        .limit(10).get().then((결과) => {
+        결과.forEach((doc) => {
+            console.log(doc.data().이미지);
 
-      var list = `<li class=""><a href="#"><img style="width: 250px; height: 250px;" src="${doc.data().이미지}"></a></li>`;
-      $('.tab ul').append(list);
+            var list = `<li class=""><a href="#"><img style="width: 250px; height: 250px;" src="${doc.data().이미지}"></a></li>`;
+            $('.tab ul').append(list);
+        });
     });
-  });
-
 
 </script>
 </body>
