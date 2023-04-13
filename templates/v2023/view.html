@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./static/css/com-style.css">
     <link rel="stylesheet" type="text/css" href="./static/css/board-css.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class = "header">
@@ -114,7 +115,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 
 <script>
-var firebaseConfig = {
+    var firebaseConfig = {
     apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
     authDomain: "wepdo-7bed1.firebaseapp.com",
     databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
@@ -126,17 +127,16 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-    const db = firebase.firestore();
-    const storage = firbase.storage();
+const db = firebase.firestore();
+const storage = firebase.storage();
 
-    var 쿼리스트링 = new URLSearchParms(window.location.search)
+var 가져옴 = new URLSearchParms(window.location.search)
 
-    db.collection('product').doc(쿼리스트링.get('id')).get().then((result)=>{
-        console.log(result.data())
-    })
+db.collection('product').doc(가져옴.get('id')).get().then((result)=>{
+    console.log(result.data())
+})
 
 
 </script>
-
 </body>
 </html>
