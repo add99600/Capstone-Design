@@ -1,0 +1,118 @@
+.board_wrap {
+    width: 1000px;
+    margin:  auto;
+    height: 1000px;
+}
+
+.board_title {
+    margin-bottom: 30px;
+}
+.board_title strong {
+    font-size: 3rem;
+}
+
+.board_title p {
+    margin-top: 5px;
+    font-size: 1.4rem;
+}
+
+.board_list {
+    width: 100%;
+    border-top: 2px solid #000;
+}
+.board_list_end {
+    width: 100%;
+    border-top: 1px solid #000;
+}
+.board_page {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.board_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.board_page a.num {
+    padding-top: 9px;
+    font-size: 1.4rem;
+}
+
+.board_page a.num.on {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+}
+
+.board_page a:first-child {
+    border-left: 1px solid #ddd;
+}
+
+.bt_wrap {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.bt_wrap a {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+}
+
+.bt_wrap a:first-child {
+    margin-left: 0;
+}
+
+.bt_wrap a.on {
+    background: #000;
+    color: #fff;
+}
+
+.item{
+	width: 200px;
+    height: 300px;
+    flex-grow: 0;
+    flex-basis: auto;
+    margin: auto;
+}
+
+.item_row{
+    display: flex;
+    flex-direction: row;
+	margin-bottom: 50px;
+	padding-top: 20px;
+}
+
+.item_name{
+	margin-top: 10px;
+	font-weight: 400;
+}
+
+.item_cost{
+	margin-top: 10px;
+	font-weight: 700;
+}
+.item_place{
+	font-weight: 400;
+	font-size: smaller;
+	margin-top: 10px;
+}

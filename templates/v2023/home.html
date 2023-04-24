@@ -20,7 +20,8 @@
 
 <main>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-         style="font-size: 1.4rem; background-image: url('/static/img/san.png'); width : auto; height: 400px">
+         style="font-size: 1.4rem; background-size: cover; background-position: center; background-repeat: no-repeat;
+         background-image: url('static/img/san.png'); width : auto; height: 400px">
         <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -31,9 +32,9 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-secondary">홈</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">팀원소개</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+                        <li><a href="market.html" class="nav-link px-2 text-white">직거래</a></li>
                         <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
                     </ul>
 
@@ -75,7 +76,6 @@
                     <div class="tab-pane fade" id="자유게시판" role="tabpanel">
                         <div class="board_wrap" style="width: auto; height: auto">
                             <div class="board_list_wrap">
-                                <h3> </h3>
                                 <div class="board_list">
                                     <div class="top">
                                         <div class="num">번호</div>
@@ -130,23 +130,24 @@
                 </div>
             </div>
             <div class="col-md-7 order-md-2" style="padding: 20px">
-                <h3 target="ifame1"  href="#">[api 평균가]</h3>
-                <h4><form method="GET" action="{% url 'check_price' %}">
-                    <label for="search_date">검색 날짜:</label>
-                    <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
-                    <br>
-                    <label for="item">검색어:</label>
-                    <input type="text" id="item" name="item" placeholder="ex)배추" required>
-                    <br>
-                    <input type="submit" value="검색">
-                </form></h4>
-                <br>
-                <h4>{% if avg_total_price %}
-                    <p>{{ search_date }} 해당 날짜의</p>
-                    <p>{{ item }}의 평균 가격은 </p>
-                    <p>{{ avg_total_price }}원입니다. </p>
-                    <p>{{ runtime }}</p>
-                {% endif %}</h4>
+                <h3 target="ifame1" href="#"></h3>
+                <h2 style="text-align: center">
+                    <form method="GET" action="{% url 'check_price' %}">
+                        <label for="search_date">검색 날짜:</label>
+                        <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
+                        <label for="item">검색어:</label>
+                        <input type="text" id="item" name="item" placeholder="ex)배추" required>
+                        <input type="submit" value="검색">
+                    </form></h2>
+                <div id="print" style="padding-top: 20px; height: 3vw; width: auto; border: 2px solid red;">
+                    <h3>{% if avg_total_price %}
+                        <p style="text-align: center">해당 {{ search_date }} 날짜의 {{ item }}의 평균 가격은 {{ avg_total_price }}원 입니다.</p>
+                        <p>{{ runtime }}</p>
+                    {% endif %}</h3>
+                </div>
+                <div style=" text-align: center">
+                    <img style="width: 650px; height: 350px" src=" https://hleecaster.com/wp-content/uploads/2019/08/02.png" alt="grape">
+                </div>
             </div>
         </div>
 
@@ -157,23 +158,19 @@
 
         <div class="row featurette" style="height: 500px">
             <div class="col-md-8" style="padding: 20px">
-                <h3>직거래 미리보기</h3>
-                <button type="button" class="btn btn-primary" onclick="location.href='market.html'">직거래 바로가기</button>
+                <div style="padding: 20px; width: auto; text-align: right" >
+                    <button type="button" class="btn btn-primary" style="display: inline-block" onclick="location.href='market.html'">직거래 바로가기</button>
+                </div>
                 <div class="box">
                     <div id="tab" class="tab">
                         <ul>
-
                             <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://url.kr/q12uy3"></a></li>
-                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://cdn.imweb.me/thumbnail/20220331/a3dea128d7bfc.jpg"></a></li>
-                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://cdn.aflnews.co.kr/news/photo/202108/214931_52827_5750.jpg"></a></li>
-                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://src.hidoc.co.kr/image/lib/2022/12/9/1670553396923_0.png"></a></li>
-
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" style="padding: 20px">
-                <h3>농업 박람회</h3>
+                <h2 id="clock" style="color:black; text-align: center">clock</h2>
                 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
@@ -250,36 +247,60 @@
         }
 
         next.addEventListener('click', function () {
-                if (currentIdx <= slideCount-1) {
-                    slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
-                    slides.style.transition = `${0.5}s ease-out`;
-                }if (currentIdx === slideCount-1){
-                    setTimeout(function(){
-                        slides.style.left = -(slideWidth + slideMargin) + "px";
-                        slides.style.transition = `${0}s ease-out`;
-                    },500);
-                    currentIdx = -1;
-                }
-                currentIdx+=1;
+            if (currentIdx <= slideCount-1) {
+                slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
+                slides.style.transition = `${0.5}s ease-out`;
+            }if (currentIdx === slideCount-1){
+                setTimeout(function(){
+                    slides.style.left = -(slideWidth + slideMargin) + "px";
+                    slides.style.transition = `${0}s ease-out`;
+                },500);
+                currentIdx = -1;
+            }
+            currentIdx+=1;
             }
         );
 
         prev.addEventListener('click', function () {
-                console.log(currentIdx);
-                if (currentIdx >= 0) {
-                    slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
-                    slides.style.transition = `${0.5}s ease-out`;
-                }if (currentIdx === 0){
-                    setTimeout(function(){
-                        slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
-                        slides.style.transition = `${0}s ease-out`;
-                    },500);
-                    currentIdx=slideCount;
-                }
-                currentIdx-=1;
+            console.log(currentIdx);
+            if (currentIdx >= 0) {
+                slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
+                slides.style.transition = `${0.5}s ease-out`;
+            }if (currentIdx === 0){
+                setTimeout(function(){
+                    slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
+                    slides.style.transition = `${0}s ease-out`;
+                },500);
+                currentIdx=slideCount;
+            }
+            currentIdx-=1;
             }
         );
     </script> <!-- 예전 농업 박람회 slide -->
+    <script> <!-- 현재 시계 -->
+    var Target = document.getElementById("clock");
+    function clock() {
+        var time = new Date();
+
+        var year = time.getFullYear();
+        var month = time.getMonth();
+        var date = time.getDate();
+        var day = time.getDay();
+        var week = ['일', '월', '화', '수', '목', '금', '토'];
+
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+
+        Target.innerText =
+            `${year}년 ${month + 1}월 ${date}일 ${week[day]}요일 ` +
+            `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+    }
+    clock();
+    setInterval(clock, 1000); // 1초마다 실행
+    </script>
+    </script>
     <div class="footer">
         <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
         <p>

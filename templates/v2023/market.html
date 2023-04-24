@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#712cf9">
     <title>농밀</title>
     <link rel="stylesheet" type="text/css" href="./static/css/newcom-style.css">
-    <link rel="stylesheet" type="text/css" href="./static/css/board-css.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/market.css">
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -28,9 +28,9 @@
 
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-white">홈</a></li>
-                            <li><a href="#" class="nav-link px-2 text-white">팀원소개</a></li>
                             <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
                             <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+                            <li><a href="market.html" class="nav-link px-2 text-secondary">직거래</a></li>
                             <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
                         </ul>
 
@@ -80,49 +80,102 @@
                          </div>
                          <div class="board_list_wrap">
                              <div class="board_list">
-                                 <div class="top">
-                                     <div class="num">번호</div>
-                                     <div class="title">제목</div>
-                                     <div class="writer">글쓴이</div>
-                                     <div class="date">작성일</div>
-                                     <div class="count">조회</div>
-                                 </div>
-                                 <div>
-                                     <div class="num">5</div>
-                                     <div class="title"><a href="view.html">중대장님 기율대 가고 싶습니다.</a></div>
-                                     <div class="writer">임다나</div>
-                                     <div class="date">2023.03.23</div>
-                                     <div class="count">593</div>
-                                 </div>
-                                 <div>
-                                     <div class="num">4</div>
-                                     <div class="title"><a href="view.html">123123</a></div>
-                                     <div class="writer">ㅇㅇ</div>
-                                     <div class="date">2023.03.14</div>
-                                     <div class="count">32</div>
-                                 </div>
-                                 <div>
-                                     <div class="num">3</div>
-                                     <div class="title"><a href="view.html">한따까리 하자</a></div>
-                                     <div class="writer">3소당</div>
-                                     <div class="date">2023.03.10</div>
-                                     <div class="count">423</div>
-                                 </div>
-                                 <div>
-                                     <div class="num">2</div>
-                                     <div class="title"><a href="view.html">피곤해</a></div>
-                                     <div class="writer">심희준</div>
-                                     <div class="date">2023.03.09</div>
-                                     <div class="count">435</div>
-                                 </div>
-                                 <div>
-                                     <div class="num">1</div>
-                                     <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-                                     <div class="writer">이름</div>
-                                     <div class="date">2023.03.01</div>
-                                     <div class="count">1</div>
+                                 <div class="content_4_wrap">
+                                     <div class="item_row">
+                                         <div class="item">
+                                             <img src="https://sistersgarden.org/data/file/1_19.jpg" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">사과 팜</h2>
+                                             <h2 class="item_cost">25,000원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 15</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 48</span>
+                                             </div>
+                                         </div>
+                                         <div class="item">
+                                             <img src="https://steptohealth.co.kr/wp-content/uploads/2018/01/1-eggplant.jpg" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">가지팝니다</h2>
+                                             <h2 class="item_cost">15,900원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 28</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 64</span>
+                                             </div>
+                                         </div>
+                                         <div class="item">
+                                             <img src="https://image8.coupangcdn.com/image/retail/images/2020/03/04/11/0/066392d3-4df9-4304-8794-75cc9f0535a7.jpg" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">오렌지 먹어본지 오렌지</h2>
+                                             <h2 class="item_cost">50,000원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 21</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 28</span>
+                                             </div>
+                                         </div>
+                                         <div class="item">
+                                             <img src="https://blog.kakaocdn.net/dn/Ao2tT/btrOCP4qt19/VkROSDkX2Pte5smyJqpmPk/img.jpg" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">아이폰14pro</h2>
+                                             <h2 class="item_cost">100,000원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 12</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 36</span>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="item_row">
+                                         <div class="item">
+                                             <img src="https://ojsfile.ohmynews.com/STD_IMG_FILE/2017/0703/IE002183737_STD.JPG" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">[오늘 특가]블루베리 팝니다</h2>
+                                             <h2 class="item_cost">9999원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 28</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 20</span>
+                                             </div>
+                                         </div>
+                                         <div class="item">
+                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREyhiowpeV-Gt3X2FXoOKdoxxRKIDBgcwMPA&usqp=CAU" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">수박 팝니다</h2>
+                                             <h2 class="item_cost">44,000원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 31</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 45</span>
+                                             </div>
+                                         </div>
+                                         <div class="item">
+                                             <img src="https://cdn.imweb.me/upload/S201906244564b483f52f7/9009ffed58fef.jpg" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">참한 참외 팝니다.</h2>
+                                             <h2 class="item_cost">50,000원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 12</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 19</span>
+                                             </div>
+                                         </div>
+                                         <div class="item">
+                                             <img src="https://www.ksdaily.co.kr/news/photo/201806/67085_18757_2224.jpg" style="border-radius: 12px; height: 200px; width:200px">
+                                             <h2 class="item_name">올땐 메로나</h2>
+                                             <h2 class="item_cost">4,000원</h2>
+                                             <h1 class="item_place"></h1>
+                                             <div class="like_chating">
+                                                 <span class="like">관심 431</span>
+                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                                                 <span class="chat">채팅 999</span>
+                                             </div>
+                                         </div>
+                                     </div>
                                  </div>
                              </div>
+                             <div class="board_list_end"></div>
                              <div class="board_page">
                                  <a href="#" class="bt first">&lt;&lt;</a>
                                  <a href="#" class="bt prev">&lt;</a>
