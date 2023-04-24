@@ -51,16 +51,13 @@
             <fieldset>
                 <legend>회원가입 구역</legend>
                 <label for="loginid">이름</label>
-                <input type="text" id="loginid" placeholder="이름을 입력해 주세요">
+                <input type="text" id="username" placeholder="이름을 입력해 주세요">
 
                 <label for="loginid">아이디(E-mail)</label>
-                <input type="text" id="loginid" placeholder="아이디를 입력해 주세요">
+                <input type="text" id="signUpemail" placeholder="아이디를 입력해 주세요">
 
                 <label for="loginid">비밀번호</label>
-                <input type="password" id="loginpw" placeholder="비밀번호를 입력해 주세요">
-
-                <label for="loginid">이메일 주소</label>
-                <input type="text" id="loginE-mail" placeholder="이메일을 입력해 주세요">
+                <input type="password" id="signUppassword" placeholder="비밀번호를 입력해 주세요">
 
                 <ul>
                     <li><a href="#">아이디/비밀번호찾기</a></li>
@@ -68,7 +65,7 @@
                 </ul>
 
                 <div style="text-align: center">
-                    <div style="display: inline-block"><button type="submit">가입하기</button></div>
+                    <div style="display: inline-block"><button type="submit" id="signUpButton">가입하기</button></div>
                 </div>
             </fieldset>
         </form>
@@ -113,6 +110,7 @@
 
   document.getElementById('signUpButton').addEventListener('click',(event) => {
       event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
+      const us = document.getElementById('username').value
       const email = document.getElementById('signUpemail').value
       const password = document.getElementById('signUppassword').value
       const auth = getAuth();
@@ -122,12 +120,17 @@
             console.log(userCredential)
             // Signed in
             const user = userCredential.user;
+            user.updateCurrentUser({
+                displayName: us
+            }).then(()=> {
+                console.log("User profile update successfull");
+            }).catch((error) => {
+                console.log("Error updating user profile:", error);
+            })
             // ...
         })
         .catch((error) => {
-            console.log('error')
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.log(error)
             // ..
         });
   })

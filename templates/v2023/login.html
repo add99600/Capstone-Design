@@ -49,8 +49,8 @@
             <fieldset>
                 <legend>로그인 구역</legend>
 
-                <input type="text" id="signInemail" placeholder="아이디(E-mail)을 입력해 주세요">
-                <input type="password" id="signInpassword" placeholder="비밀번호를 입력해 주세요">
+                <input type="text" id="signInEmail" placeholder="아이디(E-mail)을 입력해 주세요">
+                <input type="password" id="signInPassword" placeholder="비밀번호를 입력해 주세요">
                 <ul>
                     <li><a href="#">아이디/비밀번호찾기</a></li>
                     <li><a href="http://127.0.0.1:8001/jtm">회원가입</a></li>
@@ -94,12 +94,11 @@
       appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
       measurementId: "G-7NQSDSFC61"
   };
-
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
   document.getElementById('signInButton').addEventListener('click',(event) => {
       event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
@@ -115,12 +114,17 @@
             // ...
         })
         .catch((error) => {
-            console.log('error')
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.log(error)
             // ..
         });
   })
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user.uid);
+      }
+    });
 </script>
 
 </body>

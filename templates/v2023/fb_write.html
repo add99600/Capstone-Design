@@ -190,7 +190,7 @@
                             가격: $('#price').val(),
                             내용: $('#content').val(),
                             날짜: month + "월 " + day + "일",
-                            이미지: url
+                            이미지: url,
                         }
                         db.collection('product').add(img)
                             .then((result) => {
