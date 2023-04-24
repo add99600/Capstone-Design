@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#712cf9">
     <title>농밀</title>
     <link rel="stylesheet" type="text/css" href="./static/css/newcom-style.css">
-    <link rel="stylesheet" type="text/css" href="./static/css/market.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/market-style.css">
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -83,7 +83,7 @@
                              <div class="board_list">
                                  <div class="content_4_wrap">
                                      <div class="item_row">
-                                         <div class="item1">
+                                         <div class="item">
                                              <img src="https://sistersgarden.org/data/file/1_19.jpg" style="border-radius: 12px; height: 200px; width:200px">
                                              <h2 class="item_name">사과 팜</h2>
                                              <h2 class="item_cost">25,000원</h2>
@@ -92,19 +92,6 @@
                                                  <span class="like">관심 15</span>
                                                  <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
                                                  <span class="chat">채팅 48</span>
-                                             </div>
-                                         </div>
-                                     </div>
-                                     <div class="item_row">
-                                         <div class="item">
-                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREyhiowpeV-Gt3X2FXoOKdoxxRKIDBgcwMPA&usqp=CAU" style="border-radius: 12px; height: 200px; width:200px">
-                                             <h2 class="item_name">수박 팝니다</h2>
-                                             <h2 class="item_cost">44,000원</h2>
-                                             <h1 class="item_place"></h1>
-                                             <div class="like_chating">
-                                                 <span class="like">관심 31</span>
-                                                 <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
-                                                 <span class="chat">채팅 45</span>
                                              </div>
                                          </div>
                                      </div>
@@ -176,16 +163,20 @@ db.collection('product').where("이미지", "!=", null)
             console.log(doc.data());
 
         var list = `
+                    <div class="item">
                       <img src="${doc.data().이미지}" style="border-radius: 12px; height: 200px; width:200px">
                       <h2 class="item_name">${doc.data().제목}</h2>
                       <h2 class="item_cost">${doc.data().가격}원</h2>
                       <h1 class="item_place"></h1>
                       <div class="like_chating">
-                       <span class="like">관심 15</span>
-                       <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
-                       <span class="chat">채팅 48</span>
-                      </div>`;
-        $('.item1').append(list);
+                        <span class="like">관심 15</span>
+                        <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
+                        <span class="chat">채팅 48</span>
+                      </div>
+                    </div>`;
+
+
+        $('.item_row').append(list);
 
     });
 });
