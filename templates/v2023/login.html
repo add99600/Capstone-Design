@@ -78,7 +78,6 @@
 <script>
     function login() {
         alert("로그인 되었습니다.");
-        window.location.href = "http://127.0.0.1:8000/";
     }
     function logout() {
         alert("로그아웃 되었습니다.");
@@ -90,12 +89,14 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
+  // Initialize Firebase
+    const firebaseConfig = {
       apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
       authDomain: "wepdo-7bed1.firebaseapp.com",
       databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
@@ -104,18 +105,18 @@
       messagingSenderId: "204948006692",
       appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
       measurementId: "G-7NQSDSFC61"
-  };
+    };
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
 
-  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
 
   document.getElementById('signInButton').addEventListener('click',(event) => {
       event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
       const email = document.getElementById('signInEmail').value
       const password = document.getElementById('signInPassword').value
-      const auth = getAuth();
       //auth라는 변수를 만들어 getAuth 실행
       signInWithEmailAndPassword(auth, email, password) //email과 password 전달
         .then((userCredential) => {
@@ -129,8 +130,7 @@
             // ..
         });
   })
-
-    document.getElementById('logout').addEventListener('click', (event) => {
+  document.getElementById('logout').addEventListener('click', (event) => {
       console.log('logout test1');
       signOut(auth)
         .then(() => {
@@ -142,12 +142,7 @@
     });
 
 
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user.uid);
-      }
-    });
+
 </script>
 
 </body>
