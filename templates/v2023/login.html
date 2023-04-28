@@ -109,7 +109,7 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
-  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
   document.getElementById('signInButton').addEventListener('click',(event) => {
       event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
@@ -130,17 +130,16 @@
         });
   })
 
-    document.getElementById('logout').addEventListener('click',(event) => {
-        console.log('logout test1');
-        firebase.auth().signOut()
+    document.getElementById('logout').addEventListener('click', (event) => {
+      console.log('logout test1');
+      signOut(auth)
         .then(() => {
-
-            console.log('User signed out successfully');
+          console.log('User signed out successfully');
         })
         .catch((error) => {
-            console.log('Error signing out:', error);
+          console.log('Error signing out:', error);
         });
-    })
+    });
 
 
   const auth = getAuth();

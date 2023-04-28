@@ -157,8 +157,7 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore(); // db문법 소환
 
-db.collection('product').where("이미지", "!=", null)
-    .limit(10).get().then((결과) => {
+db.collection('post').get().then((결과) => {
         결과.forEach((doc)=>{
             console.log(doc.data());
 

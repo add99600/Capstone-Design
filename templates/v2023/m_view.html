@@ -84,7 +84,7 @@
 
                             </div>
                             <div class="bt_wrap">
-                                <a href="market.html" class="on">목록</a>
+                                <a><button href="market.html" class="on" id="send">등록</button></a>
                                 <a href="edit.html">수정</a>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ const storage = firebase.storage();
 
     var 가져옴 = new URLSearchParams(window.location.search)
 
-db.collection('product').doc(가져옴.get('id')).get().then((doc) => {
+db.collection('post').doc(가져옴.get('id')).get().then((doc) => {
   console.log(doc.data())
 
   // 게시글 내용 생성
