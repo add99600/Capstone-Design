@@ -74,55 +74,25 @@
                         <p style="font-size: 1.4rem">공지사항 테스트 예정</p>
                     </div>
                     <div class="tab-pane fade" id="자유게시판" role="tabpanel">
-                        <div class="board_wrap" style="width: auto; height: auto">
-                            <div class="board_list_wrap">
-                                <div class="board_list">
-                                    <div class="top">
-                                        <div class="num">번호</div>
-                                        <div class="title">제목</div>
-                                        <div class="writer">글쓴이</div>
-                                        <div class="date">작성일</div>
-                                        <div class="count">조회</div>
-                                    </div>
-                                    <div>
-                                        <div class="num">5</div>
-                                        <div class="title"><a href="view.html">중대장님 기율대 가고 싶습니다.</a></div>
-                                        <div class="writer">임다나</div>
-                                        <div class="date">2023.03.23</div>
-                                        <div class="count">593</div>
-                                    </div>
-                                    <div>
-                                        <div class="num">4</div>
-                                        <div class="title"><a href="view.html">123123</a></div>
-                                        <div class="writer">ㅇㅇ</div>
-                                        <div class="date">2023.03.14</div>
-                                        <div class="count">32</div>
-                                    </div>
-                                    <div>
-                                        <div class="num">3</div>
-                                        <div class="title"><a href="view.html">한따까리 하자</a></div>
-                                        <div class="writer">3소당</div>
-                                        <div class="date">2023.03.10</div>
-                                        <div class="count">423</div>
-                                    </div>
-                                    <div>
-                                        <div class="num">2</div>
-                                        <div class="title"><a href="view.html">피곤해</a></div>
-                                        <div class="writer">심희준</div>
-                                        <div class="date">2023.03.09</div>
-                                        <div class="count">435</div>
-                                    </div>
-                                    <div>
-                                        <div class="num">1</div>
-                                        <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-                                        <div class="writer">이름</div>
-                                        <div class="date">2023.03.01</div>
-                                        <div class="count">1</div>
-                                    </div>
+                        <div class="miniboard" style="width: auto; height: auto;">
+                            <div class="mb_header">
+                                <h1 class="mb_title">자유 게시판</h1>
+                                <a onclick="location.href='freeboard.html'" class="mb_button">바로가기</a>
+                            </div>
+                            <div class="mb_post">
+                                <h2>게시글 제목</h2>
+                                <p>게시글 내용이 들어갑니다.</p>
+                                <div class="mb_post-footer">
+                                    <div class="mb_post-date">작성일: 2023-04-28</div>
+                                    <div class="mb_post-comments">댓글 3개</div>
                                 </div>
-                                <div class="bt_wrap">
-                                    <a href="freeboard.html" class="on">자유게시판 바로가기</a>
-                                    <!--<a href="#">수정</a>-->
+                            </div>
+                            <div class="mb_post">
+                                <h2>게시글 제목</h2>
+                                <p>게시글 내용이 들어갑니다.</p>
+                                <div class="mb_post-footer">
+                                    <div class="mb_post-date">작성일: 2023-03-02</div>
+                                    <div class="mb_post-comments">댓글 0개</div>
                                 </div>
                             </div>
                         </div>
@@ -219,98 +189,97 @@
         </div>
         <hr class="featurette-divider">
         <!-- /END THE FEATURETTES -->
+        <script>
+            let slides = document.querySelector(".slides");
+            let slideImg = document.querySelectorAll(".slides li");
+
+            currentIdx = 0;
+            slideCount = slideImg.length;
+            prev = document.querySelector(".prev");
+            next = document.querySelector(".next");
+            slideWidth = 300;
+            slideMargin = 100;
+
+            makeClone();
+            initfunction();
+
+            function makeClone(){
+                let cloneSlide_first = slideImg[0].cloneNode(true); //slideImg.firstElementChild.cloneNode(true);
+                let cloneSlide_last = slides.lastElementChild.cloneNode(true);
+                slides.append(cloneSlide_first);
+                slides.insertBefore(cloneSlide_last,slides.firstElementChild);
+            }
+
+            function initfunction(){
+                slides.style.width = (slideWidth + slideMargin) * (slideCount+2) + "px";
+                slides.style.left = -(slideWidth + slideMargin) + "px";
+            }
+
+            next.addEventListener('click', function () {
+                if (currentIdx <= slideCount-1) {
+                    slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
+                    slides.style.transition = `${0.5}s ease-out`;
+                }if (currentIdx === slideCount-1){
+                    setTimeout(function(){
+                        slides.style.left = -(slideWidth + slideMargin) + "px";
+                        slides.style.transition = `${0}s ease-out`;
+                    },500);
+                    currentIdx = -1;
+                }
+                currentIdx+=1;
+            }
+            );
+
+            prev.addEventListener('click', function () {
+                console.log(currentIdx);
+                if (currentIdx >= 0) {
+                    slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
+                    slides.style.transition = `${0.5}s ease-out`;
+                }if (currentIdx === 0){
+                    setTimeout(function(){
+                        slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
+                        slides.style.transition = `${0}s ease-out`;
+                    },500);
+                    currentIdx=slideCount;
+                }
+                currentIdx-=1;
+                }
+            );
+        </script> <!-- 예전 농업 박람회 slide -->
+        <script> <!-- 현재 시계 -->
+        var Target = document.getElementById("clock");
+        function clock() {
+            var time = new Date();
+
+            var year = time.getFullYear();
+            var month = time.getMonth();
+            var date = time.getDate();
+            var day = time.getDay();
+            var week = ['일', '월', '화', '수', '목', '금', '토'];
+
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+
+            Target.innerText =
+                `${year}년 ${month + 1}월 ${date}일 ${week[day]}요일 ` +
+                `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+        }
+        clock();
+        setInterval(clock, 1000); // 1초마다 실행
+        </script>
     </div>
-    <script>
-        let slides = document.querySelector(".slides");
-        let slideImg = document.querySelectorAll(".slides li");
-
-        currentIdx = 0;
-        slideCount = slideImg.length;
-        prev = document.querySelector(".prev");
-        next = document.querySelector(".next");
-        slideWidth = 300;
-        slideMargin = 100;
-
-        makeClone();
-        initfunction();
-
-        function makeClone(){
-            let cloneSlide_first = slideImg[0].cloneNode(true); //slideImg.firstElementChild.cloneNode(true);
-            let cloneSlide_last = slides.lastElementChild.cloneNode(true);
-            slides.append(cloneSlide_first);
-            slides.insertBefore(cloneSlide_last,slides.firstElementChild);
-        }
-
-        function initfunction(){
-            slides.style.width = (slideWidth + slideMargin) * (slideCount+2) + "px";
-            slides.style.left = -(slideWidth + slideMargin) + "px";
-        }
-
-        next.addEventListener('click', function () {
-            if (currentIdx <= slideCount-1) {
-                slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
-                slides.style.transition = `${0.5}s ease-out`;
-            }if (currentIdx === slideCount-1){
-                setTimeout(function(){
-                    slides.style.left = -(slideWidth + slideMargin) + "px";
-                    slides.style.transition = `${0}s ease-out`;
-                },500);
-                currentIdx = -1;
-            }
-            currentIdx+=1;
-            }
-        );
-
-        prev.addEventListener('click', function () {
-            console.log(currentIdx);
-            if (currentIdx >= 0) {
-                slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
-                slides.style.transition = `${0.5}s ease-out`;
-            }if (currentIdx === 0){
-                setTimeout(function(){
-                    slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
-                    slides.style.transition = `${0}s ease-out`;
-                },500);
-                currentIdx=slideCount;
-            }
-            currentIdx-=1;
-            }
-        );
-    </script> <!-- 예전 농업 박람회 slide -->
-    <script> <!-- 현재 시계 -->
-    var Target = document.getElementById("clock");
-    function clock() {
-        var time = new Date();
-
-        var year = time.getFullYear();
-        var month = time.getMonth();
-        var date = time.getDate();
-        var day = time.getDay();
-        var week = ['일', '월', '화', '수', '목', '금', '토'];
-
-        var hours = time.getHours();
-        var minutes = time.getMinutes();
-        var seconds = time.getSeconds();
-
-        Target.innerText =
-            `${year}년 ${month + 1}월 ${date}일 ${week[day]}요일 ` +
-            `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-
-    }
-    clock();
-    setInterval(clock, 1000); // 1초마다 실행
-    </script>
-    </script>
     <div class="footer">
-        <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
-        <p>
-            &nbsp;호서 대학교
-            &nbsp;컴퓨터 공학부&nbsp;
-            &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
-            &nbsp;이메일 : 추가@바람.com&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
-        </p>
-    </div>
+            <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
+            <p>
+                &nbsp;호서 대학교
+                &nbsp;컴퓨터 공학부&nbsp;
+                &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
+                &nbsp;이메일 : 추가@바람.com&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
+            </p>
+        </div>
 </main>
 
 
@@ -350,9 +319,9 @@
 
 
     firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user.uid);
-      }
+        if (user) {
+            console.log(user.uid);
+        }
     });
 </script>
 </body>
