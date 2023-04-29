@@ -168,6 +168,10 @@
         var upload_img = null;
         var url = null;
 
+        const auth = firebase.auth();
+        const user = auth.currentUser;
+
+
         if (file) {
             save_img = storageRef.child('/image/' + file.name);
             upload_img = save_img.put(file)
@@ -190,6 +194,7 @@
                             가격: $('#price').val(),
                             내용: $('#content').val(),
                             날짜: month + "월 " + day + "일",
+                            uid: user.uid,
                             이미지: url,
                         }
                         db.collection('product').add(img)
@@ -216,6 +221,7 @@
                 가격: $('#price').val(),
                 내용: $('#content').val(),
                 날짜: month + "월 " + day + "일",
+                uid: user.uid,
             };
             db.collection('product').add(save_txt)
                 .then((result) => {
