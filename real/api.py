@@ -1,14 +1,15 @@
+from django.shortcuts import render
 import requests
 import xmltodict
 from datetime import datetime, timedelta
-import agri_key
+import time
 
-def check_out(search_date, item):
-    api_key = agri_key.key
+def check(search_date, item):
+    start = time.time()
+    api_key = '399a12818bb184fe2a3f0d3c393c10da8f967c234392c801455bb606d426ce6c'
     tday = datetime.today() - timedelta(1)
     tday = int(tday.strftime("%Y%m%d"))
-    if not search_date.isdigit() or int(search_date) < 20180118 or int(search_date) > tday:
-        return '올바른 검색 날짜를 입력하세요.'
+
     url = f'http://211.237.50.150:7080/openapi/{api_key}/xml/Grid_20141119000000000012_1/1/1000?AUCNG_DE={search_date}&PRDLST_NM={item}'
     content = requests.get(url).content
     dict = xmltodict.parse(content)
@@ -29,8 +30,19 @@ def check_out(search_date, item):
         for row in total_dict['Grid_20141119000000000012_1']['row']:
             total_price.append(int(row['AVRG_AMT']))
 
-    if not total_price:
-        return f"{search_date} {item}의 검색 결과가 없습니다."
     avg_total_price = sum(total_price) // totalCnt
+    end = time.time()
+    runtime = end - start
     return avg_total_price
 
+
+def check_price(request):
+    search_date = request.GET.get('search_date')
+    item = request.GET.get('item')
+    avg_total_price = check(search_date, item)
+    context = {
+        'search_date': search_date,
+        'item': item,
+        'avg_total_price': avg_total_price
+    }
+    return render(request, 'v2023/home.html', context)
