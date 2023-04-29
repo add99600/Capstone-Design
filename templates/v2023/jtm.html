@@ -106,7 +106,7 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
   document.getElementById('signUpButton').addEventListener('click',(event) => {
       event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
@@ -115,24 +115,24 @@
       const password = document.getElementById('signUppassword').value
       const auth = getAuth();
       //auth라는 변수를 만들어 getAuth 실행
-      createUserWithEmailAndPassword(auth, email, password) //email과 password 전달
-        .then((userCredential) => {
-            console.log(userCredential)
-            // Signed in
-            const user = userCredential.user;
-            user.updateCurrentUser({
-                displayName: us
-            }).then(()=> {
-                console.log("User profile update successfull");
-            }).catch((error) => {
-                console.log("Error updating user profile:", error);
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log(userCredential);
+                const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: us
+                })
+                .then(() => {
+                    console.log("User profile update successful");
+                })
+                .catch((error) => {
+                    console.log("Error updating user profile:", error);
+                })
             })
-            // ...
-        })
-        .catch((error) => {
-            console.log(error)
-            // ..
-        });
+            .catch((error) => {
+                console.log(error)
+            });
   })
 </script>
 
