@@ -129,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 order-md-2" style="padding: 20px">
+            <div id="api" class="col-md-7 order-md-2" style="padding: 20px">
                 <h3 target="ifame1" href="#"></h3>
                 <h2 style="text-align: center">
                     <form method="GET" action="{% url 'check_price' %}">
@@ -137,7 +137,7 @@
                         <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
                         <label for="item">검색어:</label>
                         <input type="text" id="item" name="item" placeholder="ex)배추" required>
-                        <input type="submit" value="검색">
+                        <input id="search" type="submit" value="검색">
                     </form></h2>
                 <div id="print" style="padding-top: 20px; height: 3vw; width: auto; border: 2px solid red;">
                     <h3>{% if avg_total_price %}
@@ -149,6 +149,11 @@
                     <img style="width: 650px; height: 350px" src=" https://hleecaster.com/wp-content/uploads/2019/08/02.png" alt="grape">
                 </div>
             </div>
+            <script>
+                $('search').on('click', function () {
+                    $('api').load(window.location.href + 'api');
+                })
+            </script>
         </div>
 
 
