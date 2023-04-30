@@ -311,7 +311,7 @@
     const db = firebase.firestore(); // db문법 소환
     const storage = firebase.storage();
 
-    db.collection('product').where("이미지", "!=", null)
+    db.collection('post').where("이미지", "!=", null)
         .limit(10).get().then((결과) => {
         결과.forEach((doc) => {
             console.log(doc.data().이미지);
