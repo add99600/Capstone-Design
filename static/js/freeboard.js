@@ -12,8 +12,8 @@ firebase.initializeApp(firebaseConfig);
 
 
 const db = firebase.firestore(); // db문법 소환
-startNumber = null;
-db.collection('product').orderBy('date','desc').startAt(startNumber).limit(5).get().then((결과) => {
+
+db.collection('product').orderBy('date','desc').limit(5).get().then((결과) => {
         결과.forEach((doc)=>{
             console.log(doc.data());
 
