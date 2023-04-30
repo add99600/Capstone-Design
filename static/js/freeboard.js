@@ -11,37 +11,44 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-const db = firebase.firestore(); // db문법 소환
-db.collection('product').get().then((결과)=>{
-    결과.forEach((doc)=>{
-        console.log(doc.data());
+const db = firebase.firestore();
+const pageLimit = 10; // 한 페이지에 보여줄 데이터 수
+let lastVisible = null; // 이전 페이지의 마지막 데이터
 
-        var list = `    <div>
-                           <div class="num">1</div>
-                           <div class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
-                           <div class="writer">ㅎㅇ</div>
-                           <div class="date">${doc.data().날짜}</div>
-                           <div class="count">${doc.data().조회수}</div>
-                           </div>`;
+function loadProducts() {
+  let query = db.collection('product').orderBy('date', 'desc').limit(pageLimit); // 날짜 역순으로 정렬
+
+  if (lastVisible) {
+    query = query.startAfter(lastVisible); // 이전 페이지의 마지막 데이터를 기준으로 다음 페이지를 가져옴
+  }
+
+  query.get().then((snapshot) => {
+    if (snapshot.size > 0) {
+      lastVisible = snapshot.docs[snapshot.size - 1]; // 이전 페이지의 마지막 데이터 저장
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const list = `
+          <div>
+            <div class="num">1</div>
+            <div class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${data.제목}</a></div>
+            <div class="writer">작성자</div>
+            <div class="date">${data.date.toDate().toLocaleDateString()}</div>
+            <div class="count">조회수</div>
+          </div>
+        `;
         $('.board_list').append(list);
+      });
+    } else {
+      console.log('No more data');
+    }
+  }).catch((error) => {
+    console.log('Error getting documents:', error);
+  });
+}
 
-        // 아래코드들은 조회수 +1 하고 해당 링크로 이동시키는 코드
-        $('.board_list').on('click', '.title a', function(event) {
-            event.preventDefault(); // 기본 동작 취소
+loadProducts(); // 페이지 로드 시 첫번째 페이지 데이터 로드
 
-            const postId = $(this).closest('div').find('.count'); // 게시글의 count 요소
-
-            // 해당 게시글의 '조회수' 필드를 1 증가시킴
-            db.collection('product').doc(doc.id).update({
-                조회수: firebase.firestore.FieldValue.increment(1)
-            })
-                .then(() => {
-                    postId.text(parseInt(postId.text()) + 1); // count 값을 1 증가시킴
-                    window.location.href = $(this).attr('href');
-                })
-                .catch((error) => {
-                    console.error('Error updating document: ', error);
-                });
-        });
-    });
+$('.bt next').on('click', () => {
+  loadProducts(); // 더보기 버튼 클릭 시 다음 페이지 데이터 로드
 });
+

@@ -196,6 +196,7 @@
                             날짜: month + "월 " + day + "일",
                             uid: user.uid,
                             이미지: url,
+                            date: today
                         }
                         db.collection('product').add(img)
                             .then((result) => {
@@ -222,6 +223,7 @@
                 내용: $('#content').val(),
                 날짜: month + "월 " + day + "일",
                 uid: user.uid,
+                date: today
             };
             db.collection('product').add(save_txt)
                 .then((result) => {
