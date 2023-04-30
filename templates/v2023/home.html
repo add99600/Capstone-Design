@@ -1,4 +1,3 @@
-
 <html lang="ko">
 {% load static %}
 <head>
@@ -45,6 +44,7 @@
                     <div class="text-end">
                         <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
                         <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='mypage.html'">마이페이지</button>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
             </div>
             <script>
                 $('search').on('click', function () {
-                    $('api').load(window.location.href + 'api');
+                    $('api').load(window.location.href = 'home.html'+'api');
                 })
             </script>
         </div>

@@ -12,6 +12,11 @@ def jtm(request):
     return render(request, '../../real/templates/v2023/jtm.html', {'jtm': 'test2'})
 
 
+def mypage(request):
+    return render(request, '../../real/templates/v2023/mypage.html', {'mypage': 'test2'})
+
+
+
 def freeboard(request):
     return render(request, '../../real/templates/v2023/freeboard.html', {'freeboard': 'test2'})
 
