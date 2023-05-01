@@ -31,10 +31,12 @@ urlpatterns = [
     path('freeboard.html', freeboard, name='freeboard'), #자유게시판
     path('fb_write.html', fb_write, name='fb_write'), #글쓰기
     path('fb_view.html', fb_view, name='fb_view'), #글보기
+    path('fb_edit.html', fb_edit, name='fb_edit'), #글수정
 
     path('market.html', market, name='market'), #직거래
     path('m_write.html', m_write, name='m_write'), #글쓰기
     path('m_view.html', m_view, name='m_view'), #글보기
+
 
     path('check_price/', check_price, name='check_price'),
     path('check/', check, name='check'),
