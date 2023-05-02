@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 <head>
     <title>마이페이지</title>
     <meta charset="utf-8">
@@ -17,7 +17,6 @@
 <header class="p-3 text-bg-dark" style="font-size: 1.4rem;">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
             </a>
@@ -42,39 +41,66 @@
         </div>
     </div>
 </header>
-<div class="container marketing" style="padding-top: 50px" style="font-size: 1.4rem">
-    <div class="row featurette" style="height: 500px">
-        <div class="col-md-5 order-md-1" style="padding: 20px">
-            <div class="circle">
-                <img id="circle-img" src="">
+
+
+<div class="face" style="font-size: 1.4rem">
+    <div class="face f1">
+        <div class="circle">
+            <img id="circle-img" src="">
+        </div>
+    </div>
+    <div class="face f2"> </div>
+    <div class="face f3">
+        <a href="#" class="button">채팅방</a>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div class="bone" style="font-size: 1.4rem">
+        <div class="bone b1">
+            <div class="info-box">
+                <h2 style="padding: 10px">- 내가 쓴 글</h2>
+                <form>
+
+                </form>
             </div>
-            <input type="file" accept="image/*" onchange="readURL(this);">
-            <button>저장</button>
         </div>
-        <div class="col-md-7 order-md-2" style="padding: 20px; ">
-            <a href="#" class="button">채팅방</a>
+        <div class="bone b2">
+            <div class="info-box">
+                <h2 style="padding: 10px">- 프로필 사진 설정</h2>
+                <form style="padding: 10px">
+                    <input type="file" accept="image/*" onchange="readURL(this);">
+                    <br>
+                    <button style="margin: 5px;">저장</button>
+                </form>
+            </div>
+            <div class="info-box">
+                <h2 style="padding: 10px">- 나의 정보</h2>
+                <form style="padding: 10px">
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="age">나이:</label>
+                    <input type="text" id="age" name="age"><br><br>
+                    <label for="job">직업:</label>
+                    <input type="text" id="job" name="job"><br><br>
+                    <label for="email">이메일:</label>
+                    <input type="text" id="email" name="email"><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<div class="info">
-    <div class="info-box">
-        <h2>나의 정보</h2>
-        <form>
-            <label for="name">이름:</label>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="age">나이:</label>
-            <input type="text" id="age" name="age"><br><br>
-            <label for="job">직업:</label>
-            <input type="text" id="job" name="job"><br><br>
-            <label for="email">이메일:</label>
-            <input type="text" id="email" name="email"><br><br>
-            <input type="submit" value="Submit">
-        </form>
+<div class="footer">
+        <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
+        <p>
+            &nbsp;호서 대학교
+            &nbsp;컴퓨터 공학부&nbsp;
+            &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
+            &nbsp;이메일 : 추가@바람.com&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
+        </p>
     </div>
-    <div class="info-box">
-        <h2>내가 쓴 글</h2>
-    </div>
-</div>
+
 </body>
 <script>
     function readURL(input) { //이미지

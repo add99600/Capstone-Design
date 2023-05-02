@@ -1,11 +1,41 @@
-        body {
-			background-color: #f2f2f2;
-		}
-		.container {
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 20px;
-		}
+		* {
+            box-sizing: border-box;
+            padding: 0;
+        }
+        body {margin: 0; background-color: white;}
+        li {list-style: none;}
+        a { text-decoration: none;}
+        button{ cursor: pointer;}
+
+		.face {
+            text-align: center;
+			height: 350px;
+			margin: auto;
+			background-color: #f5d682;
+			display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+		.face.f1 {
+			padding : 10px;
+            float: left;
+            width: 50%;
+        }
+        .face.f2 {
+			padding : 10px;
+            float: left;
+            width: 0%;
+        }
+        .face.f3 {
+			padding : 10px;
+            float: left;
+            width: 50%;
+        }
+        @media screen and (max-width: 600px ) {
+            .face.f1, .face.f2, .face.f3{
+                width: 100%;
+            }
+        }
 		.circle {
 			display: inline-block;
 			overflow: hidden;
@@ -15,23 +45,45 @@
 			margin: 0 auto;
 			background-size: cover;
 			background-position: center;
+			vertical-align: middle;
 		}
 		.circle img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
 		}
-		.info {
-			display: flex;
-			justify-content: space-between;
-			margin-top: 20px;
-			border-top: 1px solid #ccc;
+		 .content-wrapper {
+            margin: 0 250px; /* 왼쪽과 오른쪽 마진을 20px로 설정 */
+        }
+		.bone {
+			height: 800px;
+			margin: auto;
+			width: 100%;
 			padding: 20px;
-
-		}
+			justify-content: center;
+        }
+		.bone.b1 {
+			height: 550px;
+			padding : 20px;
+            float: left;
+            width: 70%;
+        }
+        .bone.b2 {
+			height: auto;
+			padding : 20px;
+            float: left;
+            width: 30%;
+        }
+        @media screen and (max-width: 600px) {
+            .bone.b1, .bone.b2{
+                width: 100%;
+            }
+        }
 		.info-box {
+			margin: 20px;
+			width: 100%;
+			height: 100%;
 			flex-basis: 48%;
-            margin: 10px;
 			padding: 20px;
 			background-color: #fff;
 			box-shadow: 0 0 10px rgba(0,0,0,0.3);
@@ -53,7 +105,6 @@
 			font-size: 16px;
 			border-radius: 5px;
 			cursor: pointer;
-			margin-top: 20px;
 			transition: background-color 0.3s ease;
 		}
 		.button:hover {
