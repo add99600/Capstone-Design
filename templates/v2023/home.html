@@ -44,15 +44,15 @@
                     <div class="text-end">
                         <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
                         <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
-                        <button type="button" class="btn btn-primary" onclick="location.href='mypage.html'">마이페이지</button>
+                        <button id="mypage" type="button" class="btn btn-primary">마이페이지</button>
                     </div>
                 </div>
             </div>
         </header>
         <div class="col-md-5 p-lg-5 mx-auto my-5" style="float: right">
-            <h1 class="display-4 fw-normal text-white" style="text-align: left">따뜻한 공사</h1>
-            <h1 class="display-4 fw-normal text-white" style="text-align: left">합리적인 공사</h1>
-            <h1 class="display-4 fw-normal text-white" style="text-align: left">공사 진행중 입니다</h1>
+            <h1 class="display-4 fw-normal text-white" id="username" style="text-align: left"></h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">안전한 거래</h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">쉽고 간편한 거래</h1>
             <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
             <a class="btn btn-outline-secondary" style="text-align: left" href="#">Coming soon</a>
         </div>
@@ -322,12 +322,23 @@
     });
 
 
-
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             console.log(user.uid);
+            console.log(user.email);
+            localStorage.setItem('user', JSON.stringify(user))
         }
     });
+    var getout =localStorage.getItem('user')
+    $('#username').html(JSON.parse(getout).email)
+
+
+var bring_id = new URLSearchParams(window.location.search);
+
+$('#mypage').click(function(){
+    window.location.href = 'http://127.0.0.1:8000/mypage.html?id=' + bring_id.get('id');
+});
+
 </script>
 </body>
 </html>
