@@ -69,7 +69,6 @@
         </aside>
     </div>
     <div class="container marketing" style="padding-top: 50px">
-
         <!-- Three columns of text below the carousel -->
         <div class="row featurette" style="height: auto">
             <section id="main">
@@ -81,20 +80,39 @@
                         </div>
                         <div class="board_view_wrap">
                             <div class="board_view">
-
+                                <div class="title"></div>
+                                  <div class="info">
+                                    <dl>
+                                      <dt>번호</dt>
+                                      <dd>5</dd>
+                                    </dl>
+                                    <dl>
+                                      <dt>가격</dt>
+                                      <dd class="price"></dd>
+                                    </dl>
+                                    <dl>
+                                      <dt>작성일</dt>
+                                      <dd class="date"></dd>
+                                    </dl>
+                                    <dl>
+                                      <dt>조회</dt>
+                                      <dd>67</dd>
+                                    </dl>
+                                  </div>
+                                  <img class="detail-pic" style="padding : 20px; border-radius: 12px; height: 20vw; width:20vw">
+                                <div class="content"></div>
                             </div>
                             <div class="bt_wrap">
                                 <a><button href="market.html" class="on" id="send">등록</button></a>
                                 <button id="ed">수정</button>
                             </div>
                         </div>
+
                     </div>
                 </article>
             </section>
         </div>
     </div>
-
-
     <div class="footer">
         <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
         <p>
@@ -105,9 +123,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
         </p>
     </div>
-
 </main>
-
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -123,43 +139,22 @@
     messagingSenderId: "204948006692",
     appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
     measurementId: "G-7NQSDSFC61"
-};
-firebase.initializeApp(firebaseConfig);
+    };
+    firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
-const storage = firebase.storage();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
-var bring = new URLSearchParams(window.location.search);
+    var bring = new URLSearchParams(window.location.search);
 
-db.collection('post').doc(bring.get('id')).get().then((doc) => {
-  console.log(doc.data())
-  console.log(doc.id())
-
-  // 게시글 내용 생성
-  var list = `<div class="title">${doc.data().제목}</div>
-              <div class="info">
-                <dl>
-                  <dt>번호</dt>
-                  <dd>5</dd>
-                </dl>
-                <dl>
-                  <dt>가격</dt>
-                  <dd>${doc.data().가격}</dd>
-                </dl>
-                <dl>
-                  <dt>작성일</dt>
-                  <dd>${doc.data().날짜}</dd>
-                </dl>
-                <dl>
-                  <dt>조회</dt>
-                  <dd>67</dd>
-                </dl>
-              </div>
-              <img src="${doc.data().이미지}" style="padding : 20px; border-radius: 12px; height: 20vw; width:20vw">
-              <div class="cont">${doc.data().내용}</div>`;
-  // 게시글 내용을 .board_view에 추가
-  $('.board_view').append(list);
-});
+    db.collection('post').doc(bring.get('id')).get().then((result) => {
+      console.log(result.data())
+      console.log(result.id())
+      $('.title').html(result.data().제목)
+      $('.price').html(result.data().가격)
+      $('.date').html(result.data().날짜)
+      $('.content').html(result.data().내용)
+    });
 
     $('#ed').click(function(){
         window.location.href = 'http://127.0.0.1:8000/fb_edit.html?id=' + bring.get('id');
