@@ -135,8 +135,10 @@
     };
     firebase.initializeApp(firebaseConfig);
 
+    const auth = firebase.auth();
     const db = firebase.firestore();
     const storage = firebase.storage();
+    const user = auth.currentUser;
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -144,27 +146,20 @@
         }
     });
 
-    db.collection('product').orderBy('date','desc').limit(3).get().then((결과)=>{
-        결과.forEach((doc)=>{
-            var list = `<div>
-                            <div class="num">1</div>
-                            <div class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
-                            <div class="writer">작성자</div>
-                            <div class="date">${doc.data().날짜}</div>
-                            <div class="count">조회수</div>
-                        </div>`;
-            $('.my_write').append(list);
+    const urlParams = new URLSearchParams(window.location.search);
+    const uid = urlParams.get('id');
+
+    db.collection('product')
+      .where('uid', '==', user)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // do something with the document
         });
-    });
-
-    var bring = new URLSearchParams(window.location.search)
-
-    db.collection('profile').doc(bring.get('id')).get().then((doc) => {
-        console.log(doc.data())
-        var list = `
-        <img src="${doc.data().이미지}" style="padding : 20px; border-radius: 12px; height: 20vw; width:20vw">`;
-        $('.circle').append(list);
-    });
+      })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
 
 
     $('#send').click(function () {
@@ -196,14 +191,11 @@
                         var day = today.getDate();
 
                         var img = {
-                            제목: $('#title').val(),
-                            가격: $('#price').val(),
-                            내용: $('#content').val(),
                             날짜: month + "월 " + day + "일",
                             uid: user.uid,
                             이미지: url,
                         }
-                        db.collection('post').add(img)
+                        db.collection('profile').add(img)
                             .then((result) => {
                                 console.log(result)
                             }).catch((error) => {
@@ -212,29 +204,17 @@
                     });
                 }
             )
-        } else {
-            // 이미지가 선택되지 않은 경우에도 함수를 호출합니다.
-            saveData();
         }
+    });
 
-        function saveData() {
-            var today = new Date();
-            var month = today.getMonth() + 1;
-            var day = today.getDate();
+    var bring = new URLSearchParams(window.location.search)
 
-            var save_txt = {
-                제목: $('#title').val(),
-                가격: $('#price').val(),
-                내용: $('#content').val(),
-                날짜: month + "월 " + day + "일",
-                uid: user.uid
-            };
-            db.collection('post').add(save_txt)
-                .then((result) => {
-                    console.log(result)
-                }).catch((error) => {
-                console.log(error)
-            })
+    db.collection('profile').get().then((doc) => {
+        if (doc.exists) {
+            console.log(doc.data());
+            $('.circle').html(doc.data().이미지);
+        } else {
+            console.log("No such document");
         }
     });
 
