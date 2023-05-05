@@ -36,7 +36,7 @@ urlpatterns = [
     path('market.html', market, name='market'), #직거래
     path('m_write.html', m_write, name='m_write'), #글쓰기
     path('m_view.html', m_view, name='m_view'), #글보기
-
+    path('m_edit.html', m_edit, name='m_edit'), #글수정
 
     path('check_price/', check_price, name='check_price'),
     path('check/', check, name='check'),
