@@ -20,3 +20,6 @@ def m_view(request): return render(request, '../../real/templates/v2023/m_view.h
 def m_edit(request): return render(request, '../../real/templates/v2023/m_edit.html', {'m_edit': 'test2'})
 
 
+def auction(request): return render(request, '../../real/templates/v2023/auction.html', {'auction': 'test2'})
+
+
