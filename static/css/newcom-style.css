@@ -59,34 +59,42 @@
             left: 250px; top: 200px; bottom: 0;
             width: 100%;
             height: 100%;
+         }
+        .sidebar {
+            font-size: 2.0rem;
+            left: 170px; top: 500px; bottom: 0;
+            width: 250px;
+            height: 290px;
+            position: fixed; /* 사이드바를 고정 */
+            border-radius:20px;
+            border: 2px solid black;
+            background-color: snow; /* 사이드바의 배경색 */
         }
-        #left{
-            position: fixed;
-            left: 130px; top: 500px; bottom: 0;
-            width: 200px;
-            height: 300px;
-            background-color: #1d9731;
-            border: 1px solid black;
+        .sidebar ul {
+            list-style: none; /* 메뉴 목록의 마커 제거 */
+            padding: 0; /* 패딩 제거 */
+            margin: 0; /* 마진 제거 */
+        }
 
+        .sidebar li {
+            padding: 10px; /* 메뉴 간의 간격 */
+            border-bottom: 2px solid #ddd; /* 메뉴와 메뉴 사이에 구분선 생성 */
         }
-        #left ul{
-            background-color: white;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        /*
+        .sidebar li:last-child { border-bottom; /* 마지막 메뉴의 구분선 제거 /} */
+
+        .sidebar a {
+            padding-left: 5px;
+            color: #333; /* 링크 색상 */
+            text-decoration: none; /* 밑줄 제거 */
+            display: block; /* 링크를 블록 레벨 요소로 표시하여 메뉴 영역 전체에 링크 적용 */
         }
-        #left ul li{
-            font-size: 1.4rem;
-            margin-left: 20px;
-            padding-top: 5px;
-            background-color: white;
+
+        .sidebar a:hover {
+            background-color: lightgreen; /* 마우스 오버시 배경색 변경 */
+            border-radius:20px;
         }
-        left ul li a{
-            font-size: 1.4rem;
-            background-color: white;
-            color: black;
-            text-decoration: none;
-        }
+
 /* 미니게시판 */
         .miniboard {
 			margin: 0 auto;
