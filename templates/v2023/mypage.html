@@ -149,12 +149,16 @@
     const urlParams = new URLSearchParams(window.location.search);
     const uid = urlParams.get('id');
 
-    db.collection('product')
-      .where('uid', '==', user)
-      .get()
-      .then((querySnapshot) => {
+    db.collection('product').where('uid', '==', user).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // do something with the document
+            var list = `<div>
+                            <div class="num">1</div>
+                            <div class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
+                            <div class="writer">작성자</div>
+                            <div class="date">${doc.data().날짜}</div>
+                            <div class="count">조회수</div>
+                        </div>`;
+            $('.my_write').append(list);
         });
       })
       .catch((error) => {
@@ -163,6 +167,7 @@
 
 
     $('#send').click(function () {
+        event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
 
         var file = document.querySelector('#image').files[0];
         var storageRef = storage.ref();
