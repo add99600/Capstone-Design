@@ -155,6 +155,13 @@
     };
     firebase.initializeApp(firebaseConfig);
 
+    const priceInput = document.querySelector('#price');
+    priceInput.addEventListener('input', function (event) {
+      const value = event.target.value.replace(/,/g, ''); // 기존에 입력된 쉼표 제거
+      const regex = /\B(?=(\d{3})+(?!\d))/g;
+      event.target.value = value.replace(regex, ','); // 3자리마다 쉼표 추가
+    });
+
     const db = firebase.firestore();
     const storage = firebase.storage();
 
@@ -166,6 +173,16 @@
         $('#price').val(result.data().가격)
         $('#content').val(result.data().내용)
     });
+
+
+    $('#send').click(function (){
+        var change = {
+            제목: $('#title').val(),
+            가격: $('#price').val(),
+            내용: $('#content').val(),
+        }
+        db.collection('post').doc(bring_id.get('id')).update(change)
+    })
 
 
 </script>
