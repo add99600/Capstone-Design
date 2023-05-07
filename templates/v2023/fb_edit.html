@@ -160,8 +160,7 @@
 
     var bring_id = new URLSearchParams(window.location.search);
 
-    bring_id.get('id');
-    db.collection('post').doc(bring_id.get('id')).get().then((result) => {
+    db.collection('product').doc(bring_id.get('id')).get().then((result) => {
         console.log(result.data())
     });
 

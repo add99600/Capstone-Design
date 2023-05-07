@@ -84,7 +84,7 @@
                             </div>
                             <div class="bt_wrap">
                                 <a href="freeboard.html" class="on">목록</a>
-                                <a href="fb_edit.html">수정</a>
+                                <a href="fb_edit.html" id="ed">수정</a>
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,11 @@ db.collection('product').doc(가져옴.get('id')).get().then((doc) => {
   $('.board_view').append(list);
 });
 
+    var bring = new URLSearchParams(window.location.search);
 
+    $('#ed').click(function(){
+        window.location.href = 'http://127.0.0.1:8000/fb_edit.html?id=' + bring.get('id');
+    });
 
 
 </script>
