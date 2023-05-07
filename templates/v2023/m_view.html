@@ -151,6 +151,7 @@
       $('.price').html(result.data().가격)
       $('.date').html(result.data().날짜)
       $('.content').html(result.data().내용)
+      $('.detail-pic').attr('src', result.data().이미지);
     });
 
     $('#ed').click(function(){
