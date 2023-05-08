@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+.chat-content {
+  height: 450px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+.chat-content li {
+  margin-top: 10px;
+}
+.text-small {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 0;
+}
+.chat-box {
+  background: #eee;
+  padding: 5px;
+  border-radius: 5px;
+  float: left;
+}
+.mine {
+  float: right;
+}
+</style>
+
+<body>
+
+<div class="container p-4 detail">
+    <div class="row">
+      <div class="col-3 p-0">
+        <ul class="list-group chat-list">
+        </ul>
+      </div>
+      <div class="col-9 p-0">
+        <div class="chat-room">
+          <ul class="list-group chat-content">
+            <li><span class="chat-box">채팅방1 내용</span></li>
+            <li><span class="chat-box">채팅방1 내용</span></li>
+            <li><span class="chat-box mine">채팅방1 내용</span></li>
+          </ul>
+          <div class="input-group">
+            <input class="form-control" id="chat-input">
+            <button class="btn btn-secondary" id="send">전송</button>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+
+    db.collection('chat').where('who','array-contains',my_uid).get().then((result)=>{
+        result.forEach((a)=>{
+            console.log(a.data());
+            var chatroom =`<li class="list-group-item">
+                               <h6>${a.data().post}</h6>
+                               <h6 class="text-small">${a.id}</h6>
+                           </li>`
+            $('.chat-list').append(chatroom)
+            })
+        })
+
+
+</script>
+
+
+</html>
