@@ -104,6 +104,7 @@
                             <div class="bt_wrap">
                                 <a><button href="market.html" class="on" id="send">등록</button></a>
                                 <a><button href="m_edit.html" id="ed">수정</button></a>
+                                <a><button href="m_edit.html" id="chat">채팅</button></a>
                             </div>
                         </div>
                     </div>
@@ -140,12 +141,21 @@
     };
     firebase.initializeApp(firebaseConfig);
 
+    var today = new Date();
+    var month = today.getMonth() + 1;
+    var day = today.getDate();
+
     const db = firebase.firestore();
     const storage = firebase.storage();
 
     var bring = new URLSearchParams(window.location.search);
 
+    var seller_uid
+    var item_name
+
     db.collection('post').doc(bring.get('id')).get().then((result) => {
+      seller_uid = result.data().uid;
+      item_name = result.data().제목;
       console.log(result.data())
       $('.title').html(result.data().제목)
       $('.price').html(result.data().가격)
@@ -154,7 +164,19 @@
       $('.detail-pic').attr('src', result.data().이미지);
     });
 
-    $('#ed').click(function(){
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid
+
+    $('#chat').click(function(){
+        var chat_data = {
+            who : [my_uid, seller_uid], //내 uid, 판매자 uid
+            product : item_name,
+            date: month + "월 " + day + "일",
+        }
+        db.collection('chat').add(chat_data)
+        window.location.href = 'http://127.0.0.1:8000/chat.html';
+    })
+
+    $('#ed').click(function(){ // 수정 게시판으로 가기
         window.location.href = 'http://127.0.0.1:8000/m_edit.html?id=' + bring.get('id');
     });
 </script>
