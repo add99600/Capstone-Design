@@ -6,6 +6,7 @@ def home(request): return render(request, '../../real/templates/v2023/home.html'
 def login(request): return render(request, '../../real/templates/v2023/login.html', {'login': 'test2'})
 def jtm(request): return render(request, '../../real/templates/v2023/jtm.html', {'jtm': 'test2'})
 def mypage(request): return render(request, '../../real/templates/v2023/mypage.html', {'mypage': 'test2'})
+def chat(request): return render(request, '../../real/templates/v2023/chat.html', {'chat': 'test2'})
 
 
 def freeboard(request): return render(request, '../../real/templates/v2023/freeboard.html', {'freeboard': 'test2'})

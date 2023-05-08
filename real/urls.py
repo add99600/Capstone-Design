@@ -27,6 +27,7 @@ urlpatterns = [
     path('login.html', login, name='login'), #로그인
     path('jtm.html', jtm, name='jtm'), #회원가입
     path('mypage.html', mypage, name='mypage'),  # 마이페이지
+    path('chat.html', chat, name='chat'),  # 마이페이지
 
     path('freeboard.html', freeboard, name='freeboard'), #자유게시판
     path('fb_write.html', fb_write, name='fb_write'), #글쓰기
