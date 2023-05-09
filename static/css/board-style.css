@@ -15,6 +15,7 @@ a {
 
 .board_title {
     margin-bottom: 30px;
+
 }
 
 .board_title strong {
@@ -33,6 +34,7 @@ a {
 }
 
 .bt_wrap a {
+    text-decoration-line: none;
     display: inline-block;
     min-width: 80px;
     margin-left: 10px;
@@ -88,6 +90,7 @@ a {
     width: 60%;
     text-align: left;
 }
+
 
 .board_list .top .title {
     text-align: center;
