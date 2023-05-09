@@ -53,12 +53,13 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
-/*오른쪽 카테고리*/
+/*왼쪽 카테고리*/
          #main{
             padding-top: 20px;
             left: 250px; top: 200px; bottom: 0;
             width: 100%;
             height: 100%;
+            overflow: auto;
          }
         .sidebar {
             font-size: 2.0rem;
@@ -69,6 +70,7 @@
             border-radius:20px;
             border: 2px solid black;
             background-color: snow; /* 사이드바의 배경색 */
+            z-index: 3;
         }
         .sidebar ul {
             list-style: none; /* 메뉴 목록의 마커 제거 */
@@ -190,6 +192,8 @@
      background-color: #f1f1f1;
      padding: 10px;
      text-align: center;
+     clear: left;
      bottom: 0;
      width: 100%;
+     z-index: 2;
  }

@@ -150,7 +150,7 @@ db.collection('product').doc(가져옴.get('id')).get().then((doc) => {
                   <dd>67</dd>
                 </dl>
               </div>
-              <div class="cont">${doc.data().내용}</div>`;
+              <div class="content" style="font-size: 1.6rem; line-height: 140%; padding: 10px;">${doc.data().내용}</div>`;
 
   // 게시글 내용을 .board_view에 추가
   $('.board_view').append(list);

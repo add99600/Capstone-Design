@@ -1,4 +1,4 @@
-html{font-size: 10px}
+html{font-size: 10px; font-family: 돋움,arial;}
 
 ul, li {list-style: none;}
 
@@ -146,6 +146,7 @@ a {
 .board_view {
     width: 100%;
     border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
 }
 
 .board_view .title {
@@ -157,7 +158,7 @@ a {
 .board_view .info {
     padding: 15px;
     border-bottom: 1px solid #999;
-    font-size: 0;
+
 }
 
 .board_view .info dl {
@@ -198,6 +199,7 @@ a {
 .board_view .info dl dd {
     margin-left: 10px;
     color: #777;
+    z-index: auto;
 }
 
 .board_view .cont {
@@ -264,6 +266,7 @@ a {
 
 .board_write .cont {
     border-bottom: 1px solid #000;
+    font-size: 1.4rem;
 }
 
 .board_write .cont textarea {
@@ -274,4 +277,5 @@ a {
     box-sizing: border-box;
     border: 0;
     resize: vertical;
+    font-size: 1.4rem;
 }
