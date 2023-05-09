@@ -19,13 +19,14 @@
 			padding : 10px;
             float: left;
             width: 50%;
+			display: flex;
         }
         .face.f2 {
 			padding : 10px;
             float: left;
             width: 0%;
         }
-        .face.f3 {
+		.face.f3 {
 			padding : 10px;
             float: left;
             width: 50%;
@@ -35,6 +36,10 @@
                 width: 100%;
             }
         }
+		.con {
+			display: flex;
+			align-items: center;
+		}
 		.circle {
 			display: inline-block;
 			overflow: hidden;
@@ -57,8 +62,7 @@
 		.bone {
 			height: 1000px;
 			margin: auto;
-			width: 100%;
-			padding: 20px;
+			width: 95% ;
 			justify-content: center;
         }
 		.bone.b1 {
