@@ -172,8 +172,13 @@
             product : item_name,
             date: month + "월 " + day + "일",
         }
-        db.collection('chat').add(chat_data)
-        window.location.href = 'http://127.0.0.1:8000/chat.html';
+        db.collection('chat').add(chat_data).then((docRef) => {
+            console.log("작성자 ID", docRef.id);
+            window.location.href = 'http://127.0.0.1:8000/chat.html'
+        }).catch((error) => {
+            console.error(error)
+        })
+
     })
 
     $('#ed').click(function(){ // 수정 게시판으로 가기

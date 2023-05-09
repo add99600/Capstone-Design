@@ -78,13 +78,13 @@
     var my_uid = JSON.parse(localStorage.getItem('user')).uid;
 
     db.collection('chat').where('who','array-contains',my_uid).get().then((result)=>{
-        result.forEach((a)=>{
-            console.log(a.data());
-            var chatroom =`<li class="list-group-item">
-                               <h6>${a.data().post}</h6>
-                               <h6 class="text-small">${a.id}</h6>
-                           </li>`
-            $('.chat-list').append(chatroom)
+        result.forEach((doc)=>{
+            console.log(doc.data());
+            //var chatroom =`<li class="list-group-item">
+            //                   <h6>${a.data().post}</h6>
+            //                   <h6 class="text-small">${a.id}</h6>
+            //               </li>`
+            //$('.chat-list').append(chatroom)
             })
         })
 
