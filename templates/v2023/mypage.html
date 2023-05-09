@@ -46,7 +46,7 @@
 </header>
 
 
-<div class="face" style="font-size: 1.4rem">
+<div id="face" class="face" style="font-size: 1.4rem; background:none;">
     <div class="face f1">
         <div class="circle">
             <img id="circle-img" src="">
@@ -112,6 +112,34 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+<script type='text/javascript'> //face random background-color
+    var sum = Math.random();
+    var result = sum * 10;
+    var resultUp = Math.ceil(result);
+    var f = document.getElementById('face');
+    switch ( resultUp ) {
+        case 1 : f.style.background = "#FF0000";
+            break;
+        case 2 : f.style.background = "#FFA500";
+            break;
+        case 3 : f.style.background = "#FFFF00";
+            break;
+        case 4 : f.style.background = "#9ACD32";
+            break;
+        case 5 : f.style.background = "#48D1CC";
+            break;
+        case 7 : f.style.background = "#000080";
+            break;
+        case 6 : f.style.background = "#9932CC";
+            break;
+        case 8 : f.style.background = "#FF69B4";
+            break;
+        case 9 : f.style.background = "#C0C0C0";
+            break;
+        default : f.style.background = "#FFD700";
+            break;
+    }
+</script>
 <script>
     function readURL(input) { //이미지
         if (input.files && input.files[0]) {

@@ -102,6 +102,8 @@
 	margin-bottom: 50px;
 	padding-top: 20px;
     justify-content: space-between;
+    overflow: auto;
+    max-height: 500px;
 }
 
 .item_row > div{
