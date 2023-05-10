@@ -1,7 +1,7 @@
 .board_wrap {
     width: 1000px;
     margin:  auto;
-    height: 1000px;
+    height: 1500px;
 }
 
 .board_title {
@@ -102,8 +102,6 @@
 	margin-bottom: 50px;
 	padding-top: 20px;
     justify-content: space-between;
-    overflow: auto;
-    max-height: 500px;
 }
 
 .item_row > div{
@@ -114,13 +112,12 @@
 }
 
 
-
 .item_name{
 	margin-top: 10px;
 	font-weight: 400;
 }
 
-.item_cost{
+.item_cost, .item_fast_cost{
 	margin-top: 10px;
 	font-weight: 700;
 }
@@ -128,4 +125,12 @@
 	font-weight: 400;
 	font-size: smaller;
 	margin-top: 10px;
+}
+.item_container {
+    text-align: right;
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #fff;
 }
