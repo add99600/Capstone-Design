@@ -52,7 +52,7 @@
             <div class="circle">
                 <img id="circle-img" src="">
             </div>
-            <strong style="padding-left: 10px; width: 200px; height: 100px; align-items: center; margin-top: 45px; font-size: 3.5rem">성 이름</strong>
+            <strong id="name" style="padding-left: 10px; width: 200px; height: 100px; align-items: center; margin-top: 45px; font-size: 3.5rem"></strong>
         </div>
     </div>
     <div class="face f2">
@@ -183,7 +183,7 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
     const storage = firebase.storage();
-    const user = auth.currentUser;
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -191,15 +191,13 @@
         }
     });
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const uid = urlParams.get('id');
 
-    db.collection('product').where('uid', '==', user).get().then((querySnapshot) => {
+    db.collection('product').where('uid', '==', my_uid).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             var list = `<div>
                             <div class="num">1</div>
                             <div class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
-                            <div class="writer">작성자</div>
+                            <div class="writer">${doc.data().이름}</div>
                             <div class="date">${doc.data().날짜}</div>
                             <div class="count">조회수</div>
                         </div>`;
@@ -266,6 +264,11 @@
         } else {
             console.log("No such document");
         }
+    });
+
+    // 마이페이지 본인이름 뜨게함
+    db.collection('user').doc(bring.get('id')).get().then((result) => {
+        $('#name').html(result.data().name)
     });
 
 </script>
