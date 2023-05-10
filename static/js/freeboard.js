@@ -11,22 +11,56 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-const db = firebase.firestore(); // db문법 소환
+const db = firebase.firestore();
 
-db.collection('product').orderBy('date','desc').limit(5).get().then((결과) => {
-        결과.forEach((doc)=>{
-            console.log(doc.data());
+// 초기 데이터 로드
+var lastVisible;
 
-            var list = `<div>
-                            <div class="num">1</div>
-                            <div class="title" ><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
-                            <div class="writer">${doc.data().이름}</div>
-                            <div class="date">${doc.data().날짜}</div>
-                            <div class="count">조회수</div>
-                        </div>`;
-            $('.board_list').append(list);
+// 첫 페이지 데이터 로드
+db.collection('product').orderBy('date', 'desc').limit(5).get().then((documentSnapshots) => {
+  documentSnapshots.forEach((doc) => {
+    lastVisible = doc;
+    console.log(doc.data());
+
+    var list = `<div>
+                  <div class="num">1</div>
+                  <div class="title" ><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
+                  <div class="writer">${doc.data().이름}</div>
+                  <div class="date">${doc.data().날짜}</div>
+                  <div class="count">조회수</div>
+                </div>`;
+    $('.board_list').append(list);
+  });
+
+  // "다음" 버튼 클릭 시 실행될 함수
+    $('#next').on('click', function() {
+      if (lastVisible === undefined) {
+        return; // 마지막 페이지인 경우, 다음 페이지를 불러오지 않음
+      }
+
+      $('.board_list').children().not('#top').remove();
+
+      const next = db.collection("product").orderBy('date', 'desc').startAfter(lastVisible).limit(5);
+
+      next.get().then((result) => {
+        result.forEach((doc) => {
+          console.log(doc.data());
+          var list = `<div>
+                        <div class="num">1</div>
+                        <div class="title"><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
+                        <div class="writer">${doc.data().이름}</div>
+                        <div class="date">${doc.data().날짜}</div>
+                        <div class="count">조회수</div>
+                      </div>`;
+          $('#board').append(list);
+          lastVisible = doc;
+        });
+      });
     });
 });
+
+
+
 
 $('.on').click(function(){
     const my_uid = JSON.parse(localStorage.getItem('user')).uid
@@ -38,3 +72,4 @@ $('.on').click(function(){
         window.location.href = 'http://127.0.0.1:8000/login.html';
     }
 });
+
