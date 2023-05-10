@@ -192,7 +192,7 @@
     });
 
 
-    db.collection('product').where('uid', '==', my_uid).get().then((querySnapshot) => {
+    db.collection('product').where('uid', '==', my_uid).orderBy("date", "desc").limit(3).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             var list = `<div>
                             <div class="num">1</div>
@@ -205,7 +205,7 @@
         });
       })
       .catch((error) => {
-        console.log('Error getting documents: ', error);
+        console.log(error);
       });
 
 
