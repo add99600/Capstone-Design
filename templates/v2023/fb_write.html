@@ -159,6 +159,20 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+    var my_name = JSON.parse(localStorage.getItem('user')).displayName;
+    var user_name;
+
+    db.collection('user').where('name', '==', my_name).get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        user_name = doc.data().name;
+        console.log(user_name);
+      });
+    }).catch((error) => {
+      console.log('Error getting documents: ', error);
+    });
+
+
+
     $('#send').click(function () {
 
         var file = document.querySelector('#image').files[0];
@@ -188,11 +202,13 @@
                         var month = today.getMonth() + 1;
                         var day = today.getDate();
 
+
                         var img = {
                             제목: $('#title').val(),
                             가격: $('#price').val(),
                             내용: $('#content').val(),
                             날짜: month + "월 " + day + "일",
+                            이름: user_name,
                             uid: user.uid,
                             이미지: url,
                             date: today
@@ -221,6 +237,7 @@
                 가격: $('#price').val(),
                 내용: $('#content').val(),
                 날짜: month + "월 " + day + "일",
+                이름: user_name,
                 uid: user.uid,
                 date: today
             };
@@ -231,7 +248,6 @@
                 console.log(error)
             })
         }
-
     });
 
 </script>
