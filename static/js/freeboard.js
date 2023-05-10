@@ -20,10 +20,21 @@ db.collection('product').orderBy('date','desc').limit(5).get().then((결과) => 
             var list = `<div>
                             <div class="num">1</div>
                             <div class="title" ><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
-                            <div class="writer">작성자</div>
+                            <div class="writer">${doc.data().이름}</div>
                             <div class="date">${doc.data().날짜}</div>
                             <div class="count">조회수</div>
                         </div>`;
             $('.board_list').append(list);
     });
+});
+
+$('.on').click(function(){
+    const my_uid = JSON.parse(localStorage.getItem('user')).uid
+
+    if (my_uid) {
+        window.location.href = 'http://127.0.0.1:8000/fb_write.html?id=' + my_uid;
+    } else {
+        // 로그인이 되어 있지 않은 경우, 로그인 페이지로 이동하도록 설정할 수 있습니다.
+        window.location.href = 'http://127.0.0.1:8000/login.html';
+    }
 });

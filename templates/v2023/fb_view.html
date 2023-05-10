@@ -139,7 +139,7 @@ db.collection('product').doc(가져옴.get('id')).get().then((doc) => {
                 </dl>
                 <dl>
                   <dt>글쓴이</dt>
-                  <dd>관리자</dd>
+                  <dd>${doc.data().이름}</dd>
                 </dl>
                 <dl>
                   <dt>작성일</dt>
