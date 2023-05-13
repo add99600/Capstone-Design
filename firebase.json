@@ -12,16 +12,11 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/v2023/home.html"
-      }
     ]
   },
   "storage": {
     "rules": "storage.rules"
   }
 }
+
 
