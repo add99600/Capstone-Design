@@ -7,14 +7,21 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "public",
+    "public": "public/v2023",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/v2023/home.html"
+      }
     ]
   },
   "storage": {
     "rules": "storage.rules"
   }
 }
+
