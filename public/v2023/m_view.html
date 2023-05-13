@@ -164,22 +164,34 @@
       $('.detail-pic').attr('src', result.data().이미지);
     });
 
+    //채팅방 생성시 내거 상대거
     var my_uid = JSON.parse(localStorage.getItem('user')).uid
 
     $('#chat').click(function(){
         var chat_data = {
-            who : [my_uid, seller_uid], //내 uid, 판매자 uid
+            who : [my_uid, seller_uid].sort(), //내 uid, 판매자 uid를 정렬한 배열
             product : item_name,
             date: month + "월 " + day + "일",
         }
-        db.collection('chat').add(chat_data).then((docRef) => {
-            console.log("작성자 ID", docRef.id);
-            window.location.href = 'http://127.0.0.1:8000/chat.html'
-        }).catch((error) => {
-            console.error(error)
-        })
 
-    })
+        // who 필드를 정렬한 후 문자열로 변환
+        const chat_id = chat_data.who.join('');
+
+        db.collection('chat').doc(chat_id).get().then((doc) => {
+            if (doc.exists) { // 이미 해당 채팅방이 존재하는 경우
+                window.location.href = 'http://127.0.0.1:8000/chat.html?id=' + chat_id;
+            } else { // 새로운 채팅방을 생성하는 경우
+                db.collection('chat').doc(chat_id).set(chat_data).then(() => {
+                    console.log("채팅방이 생성되었습니다.");
+                    window.location.href = 'http://127.0.0.1:8000/chat.html?id=' + chat_id;
+                }).catch((error) => {
+                    console.error(error)
+                });
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    });
 
     $('#ed').click(function(){ // 수정 게시판으로 가기
         window.location.href = 'http://127.0.0.1:8000/m_edit.html?id=' + bring.get('id');
