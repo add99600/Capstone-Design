@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import *
-from django.urls import include, path
+from django.urls import path
 from .api import check_price, check
 
 app_name = 'v2023'

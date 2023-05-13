@@ -53,7 +53,7 @@ ROOT_URLCONF = 'real.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'public']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -119,8 +119,11 @@ import os
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'static/js'),
+    os.path.join(BASE_DIR, 'static', 'bootstrap'),
+    os.path.join(BASE_DIR, 'static', 'css'),
+    os.path.join(BASE_DIR, 'static', 'img'),
+    os.path.join(BASE_DIR, 'static', 'js'),
+    os.path.join(BASE_DIR, 'public', 'v2023'),
 ]
 
 

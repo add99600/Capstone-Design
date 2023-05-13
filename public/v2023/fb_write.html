@@ -5,48 +5,47 @@
     <meta name="description" content="">
     <meta name="theme-color" content="#712cf9">
     <title>농밀</title>
-    <link rel="stylesheet" type="text/css" href="./static/css/newcom-style.css">
-    <link rel="stylesheet" type="text/css" href="./static/css/board-css.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/newcom-style.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/board-css.css">
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
 
 <main>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-         style="font-size: 1.4rem; background-image: url('/static/img/san.png'); width : auto; height: 400px">
+         style="font-size: 1.4rem; background-image: url('/img/san.png'); width : auto; height: 400px">
         <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
-                <div class="container">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-                            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                        </a>
+                    <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                    </a>
 
-                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-white">홈</a></li>
-                            <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
-                            <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
-                            <li><a href="market.html" class="nav-link px-2 text-white">직거래</a></li>
-                            <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
-                        </ul>
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-white">홈</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+                        <li><a href="market.html" class="nav-link px-2 text-white">직거래</a></li>
+                        <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
+                    </ul>
 
-                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                            <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
-                        </form>
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
+                    </form>
 
-                        <div class="text-end">
-                            <button type="button" class="btn btn-outline-light me-2" onClick="location.href='login.html'">로그인</button>
-                            <button type="button" class="btn btn-warning" onClick="location.href='jtm.html'">회원가입</button>
-                        </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2" onClick="location.href='login.html'">로그인</button>
+                        <button type="button" class="btn btn-warning" onClick="location.href='jtm.html'">회원가입</button>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
         <div class="col-md-5 p-lg-5 mx-auto my-5" style="float: right">
             <h1 class="display-4 fw-normal text-white" style="text-align: left">따뜻한 공사</h1>
             <h1 class="display-4 fw-normal text-white" style="text-align: left">합리적인 공사</h1>
@@ -70,57 +69,57 @@
     <div class="container marketing" style="padding-top: 50px">
 
         <!-- Three columns of text below the carousel -->
-         <div class="row featurette" style="height: 1000px">
+        <div class="row featurette" style="height: auto">
 
-             <section id="main">
-                 <article id="article1">
-                     <div class="board_wrap">
-                         <div class="board_title">
-                             <strong>거래게시판</strong>
-                             <p>자유롭게 거래할 수 있는 게시판 입니다.</p>
-                         </div>
-                         <div class="board_write_wrap">
-                             <div class="board_write">
-                                 <div class="title">
-                                     <dl>
-                                         <dt>제목</dt>
-                                         <dd><input type="text" placeholder="제목 입력" id="title"></dd>
-                                     </dl>
-                                 </div>
-                                 <div class="info">
-                                     <dl>
-                                         <dt>가격</dt>
-                                         <dd><input type="text" placeholder="가격 입력" id="price"></dd>
-                                     </dl>
-                                 </div>
-                                 <div class="info">
-                                     <dl>
-                                         <form>
-                                             <dt>사진 선택</dt>
-                                             <dd>
-                                                 <input class="form-control" style="font-size: 1.4rem" type="file" id="image" onchange="previewImage(event)"></dd>
-                                             <br>
-                                             <dl style="padding-top: 10px">
-                                                 <img width="200px" height="100px" id="preview" src="#" alt="이미지 미리보기">
-                                             </dl>
-                                         </form>
-                                     </dl>
-                                 </div>
-                                 <div class="cont">
-                                     <textarea placeholder="내용 입력" id="content"></textarea>
-                                 </div>
-                             </div>
-                             <div class="bt_wrap">
-                                 <a><button class="on" id="send">등록</button></a>
-                                 <a href="market.html">취소</a>
-                             </div>
-                         </div>
-                     </div>
-                 </article>
-             </section>
-         </div>
+            <section id="main">
+                <article id="article1">
+                    <div class="board_wrap">
+                        <div class="board_title">
+                            <strong>자유게시판</strong>
+                            <p>자유롭게 글작성해보세요.</p>
+                        </div>
+                        <div class="board_write_wrap">
+                            <div class="board_write">
+                                <div class="title">
+                                    <dl>
+                                        <dt>제목</dt>
+                                        <dd><input type="text" placeholder="제목 입력" id="title"></dd>
+                                    </dl>
+                                </div>
+                                <div class="info">
+                                    <dl>
+                                        <dt>가격</dt>
+                                        <dd><input type="text" placeholder="가격 입력" id="price"></dd>
+                                    </dl>
+                                </div>
+                                <div class="info">
+                                    <dl>
+                                        <form>
+                                            <dt>사진 선택</dt>
+                                            <dd>
+                                                <input class="form-control" style="font-size: 1.4rem" type="file" id="image" onchange="previewImage(event)"></dd>
+                                            <br>
+                                            <dl style="padding-top: 10px">
+                                                <img width="200px" height="100px" id="preview" src="#" alt="이미지 미리보기">
+                                            </dl>
+                                        </form>
+                                    </dl>
+                                </div>
+                                <div class="cont">
+                                    <textarea placeholder="내용 입력" id="content"></textarea>
+                                </div>
+                            </div>
+                            <div class="bt_wrap">
+                                <a><button href="freeboard.html" class="on" id="send">등록</button></a>
+                                <a href="freeboard.html">취소</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
     </div>
-     <hr class="featurette-divider">
+    <hr class="featurette-divider">
     <div class="footer">
         <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
         <p>
@@ -144,13 +143,6 @@
         preview.src = URL.createObjectURL(event.target.files[0]);
     }
 
-    const priceInput = document.querySelector('#price');
-    priceInput.addEventListener('input', function (event) {
-      const value = event.target.value.replace(/,/g, ''); // 기존에 입력된 쉼표 제거
-      const regex = /\B(?=(\d{3})+(?!\d))/g;
-      event.target.value = value.replace(regex, ','); // 3자리마다 쉼표 추가
-    });
-
     var firebaseConfig = {
         apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
         authDomain: "wepdo-7bed1.firebaseapp.com",
@@ -162,10 +154,24 @@
         measurementId: "G-7NQSDSFC61"
     };
     firebase.initializeApp(firebaseConfig);
-
-
+</script>
+<script>
     const db = firebase.firestore();
     const storage = firebase.storage();
+
+    var my_name = JSON.parse(localStorage.getItem('user')).displayName;
+    var user_name;
+
+    db.collection('user').where('name', '==', my_name).get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        user_name = doc.data().name;
+        console.log(user_name);
+      });
+    }).catch((error) => {
+      console.log('Error getting documents: ', error);
+    });
+
+
 
     $('#send').click(function () {
 
@@ -177,6 +183,7 @@
 
         const auth = firebase.auth();
         const user = auth.currentUser;
+
 
         if (file) {
             save_img = storageRef.child('/image/' + file.name);
@@ -195,15 +202,18 @@
                         var month = today.getMonth() + 1;
                         var day = today.getDate();
 
+
                         var img = {
                             제목: $('#title').val(),
                             가격: $('#price').val(),
                             내용: $('#content').val(),
                             날짜: month + "월 " + day + "일",
+                            이름: user_name,
                             uid: user.uid,
                             이미지: url,
+                            date: today
                         }
-                        db.collection('post').add(img)
+                        db.collection('product').add(img)
                             .then((result) => {
                                 console.log(result)
                             }).catch((error) => {
@@ -227,16 +237,17 @@
                 가격: $('#price').val(),
                 내용: $('#content').val(),
                 날짜: month + "월 " + day + "일",
-                uid: user.uid
+                이름: user_name,
+                uid: user.uid,
+                date: today
             };
-            db.collection('post').add(save_txt)
+            db.collection('product').add(save_txt)
                 .then((result) => {
                     console.log(result)
                 }).catch((error) => {
                 console.log(error)
             })
         }
-
     });
 
 </script>

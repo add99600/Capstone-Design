@@ -45,4 +45,4 @@ def check_price(request):
         'item': item,
         'avg_total_price': avg_total_price
     }
-    return render(request, 'v2023/home.html', context)
+    return render(request, '../public/v2023/home.html', context)

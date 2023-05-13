@@ -5,26 +5,25 @@
     <meta name="description" content="">
     <meta name="theme-color" content="#712cf9">
     <title>농밀</title>
-    <link rel="stylesheet" type="text/css" href="./static/css/newcom-style.css">
-    <link rel="stylesheet" type="text/css" href="./static/css/board-css.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/css/newcom-style.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/board-css.css">
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
 <main>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-         style="font-size: 1.4rem; background-image: url('/static/img/san.png'); width : auto; height: 400px">
+         style="font-size: 1.4rem; background-image: url('/img/san.png'); width : auto; height: 400px">
         <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                    <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
                         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
                     </a>
 
@@ -57,35 +56,62 @@
     </div>
     <!-- 위는 네비 아래는 큰 이미지 예정-->
     <div style=" z-index: 2; background: #818182">
-        <aside id ="left">
-            <h3 style="background: white">카테고리</h3>
-            <ul style="background: white; list-style: none; margin: 0; padding: 10px;">
-                <li><h3 target="ifame1" href="#">공지사항</h3></li>
-                <li><h3 target="ifame1" href="#">이달의 소식</h3></li>
-                <li><h3 target="ifame1" href="#">자유게시판</h3></li>
-                <li><h3 target="ifame1" href="#">신문고</h3></li>
-
+        <div class="sidebar">
+            <ul>
+                <h2 style="text-align: center; padding : 10px">사이드 메뉴</h2>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="market.html">직거래</a></li>
+                <li><a href="auction.html">경매장</a></li>
+                <li><a href="freeboard.html">자유게시판</a></li>
             </ul>
-        </aside>
+        </div>
     </div>
     <div class="container marketing" style="padding-top: 50px">
 
         <!-- Three columns of text below the carousel -->
         <div class="row featurette" style="height: auto">
+
             <section id="main">
                 <article id="article1">
                     <div class="board_wrap">
                         <div class="board_title">
-                            <strong>자유게시판</strong>
+                            <strong>마켓 게시판 수정</strong>
                             <p>자유롭게 글작성해보세요.</p>
                         </div>
-                        <div class="board_view_wrap">
-                            <div class="board_view">
-
+                        <div class="board_write_wrap">
+                            <div class="board_write">
+                                <div class="title">
+                                    <dl>
+                                        <dt>제목</dt>
+                                        <dd><input type="text" placeholder="제목 입력" id="title"></dd>
+                                    </dl>
+                                </div>
+                                <div class="info">
+                                    <dl>
+                                        <dt>가격</dt>
+                                        <dd><input type="text" placeholder="가격 입력" id="price"></dd>
+                                    </dl>
+                                </div>
+                                <div class="info">
+                                    <dl>
+                                        <form>
+                                            <dt>사진 선택</dt>
+                                            <dd>
+                                                <input class="form-control" style="font-size: 1.4rem" type="file" id="image" onchange="previewImage(event)"></dd>
+                                            <br>
+                                            <dl style="padding-top: 10px">
+                                                <img width="200px" height="100px" id="preview" src="#" alt="이미지 미리보기">
+                                            </dl>
+                                        </form>
+                                    </dl>
+                                </div>
+                                <div class="cont">
+                                    <textarea placeholder="내용 입력" id="content"></textarea>
+                                </div>
                             </div>
                             <div class="bt_wrap">
-                                <a href="freeboard.html" class="on">목록</a>
-                                <a href="edit.html">수정</a>
+                                <a><button href="fb_view.html" class="on" id="send">등록</button></a>
+                                <a href="fb_view.html">취소</a>
                             </div>
                         </div>
                     </div>
@@ -93,8 +119,7 @@
             </section>
         </div>
     </div>
-
-
+    <hr class="featurette-divider">
     <div class="footer">
         <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
         <p>
@@ -105,62 +130,61 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
         </p>
     </div>
+</main>
+
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 
 <script>
+    function previewImage(event) { /*이미지 미리보기?*/
+        var preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(event.target.files[0]);
+    }
+
     var firebaseConfig = {
-    apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-    authDomain: "wepdo-7bed1.firebaseapp.com",
-    databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-    projectId: "wepdo-7bed1",
-    storageBucket: "wepdo-7bed1.appspot.com",
-    messagingSenderId: "204948006692",
-    appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-    measurementId: "G-7NQSDSFC61"
-};
-firebase.initializeApp(firebaseConfig);
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
-const storage = firebase.storage();
+    const priceInput = document.querySelector('#price');
+    priceInput.addEventListener('input', function (event) {
+      const value = event.target.value.replace(/,/g, ''); // 기존에 입력된 쉼표 제거
+      const regex = /\B(?=(\d{3})+(?!\d))/g;
+      event.target.value = value.replace(regex, ','); // 3자리마다 쉼표 추가
+    });
 
-    var 가져옴 = new URLSearchParams(window.location.search)
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
-db.collection('product').doc(가져옴.get('id')).get().then((doc) => {
-  console.log(doc.data())
+    var bring_id = new URLSearchParams(window.location.search);
 
-  // 게시글 내용 생성
-  var list = `<div class="title">${doc.data().제목}</div>
-              <div class="info">
-                <dl>
-                  <dt>번호</dt>
-                  <dd>5</dd>
-                </dl>
-                <dl>
-                  <dt>글쓴이</dt>
-                  <dd>관리자</dd>
-                </dl>
-                <dl>
-                  <dt>작성일</dt>
-                  <dd>${doc.data().날짜}</dd>
-                </dl>
-                <dl>
-                  <dt>조회</dt>
-                  <dd>67</dd>
-                </dl>
-              </div>
-              <div class="cont">${doc.data().내용}</div>`;
-
-  // 게시글 내용을 .board_view에 추가
-  $('.board_view').append(list);
-});
+    db.collection('post').doc(bring_id.get('id')).get().then((result) => {
+        console.log(result.data())
+        $('#title').val(result.data().제목)
+        $('#price').val(result.data().가격)
+        $('#content').val(result.data().내용)
+    });
 
 
+    $('#send').click(function (){
+        var change = {
+            제목: $('#title').val(),
+            가격: $('#price').val(),
+            내용: $('#content').val(),
+        }
+        db.collection('post').doc(bring_id.get('id')).update(change)
+    })
 
 
 </script>
-</main>
 </body>
 </html>

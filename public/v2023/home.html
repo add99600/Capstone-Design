@@ -6,8 +6,8 @@
     <meta name="description" content="">
     <meta name="theme-color" content="#712cf9">
     <title>농밀</title>
-    <link rel="stylesheet" type="text/css" href="static/css/newcom-style.css">
-    <link rel="stylesheet" type="text/css" href="static/css/board-css.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/newcom-style.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/board-css.css">
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                    <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
                         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
                     </a>
 
@@ -203,61 +203,7 @@
         <hr class="featurette-divider">
         <!-- /END THE FEATURETTES -->
         <script>
-            let slides = document.querySelector(".slides");
-            let slideImg = document.querySelectorAll(".slides li");
 
-            currentIdx = 0;
-            slideCount = slideImg.length;
-            prev = document.querySelector(".prev");
-            next = document.querySelector(".next");
-            slideWidth = 300;
-            slideMargin = 100;
-
-            makeClone();
-            initfunction();
-
-            function makeClone(){
-                let cloneSlide_first = slideImg[0].cloneNode(true); //slideImg.firstElementChild.cloneNode(true);
-                let cloneSlide_last = slides.lastElementChild.cloneNode(true);
-                slides.append(cloneSlide_first);
-                slides.insertBefore(cloneSlide_last,slides.firstElementChild);
-            }
-
-            function initfunction(){
-                slides.style.width = (slideWidth + slideMargin) * (slideCount+2) + "px";
-                slides.style.left = -(slideWidth + slideMargin) + "px";
-            }
-
-            next.addEventListener('click', function () {
-                if (currentIdx <= slideCount-1) {
-                    slides.style.left = -(currentIdx+2) * (slideWidth+slideMargin) + "px";
-                    slides.style.transition = `${0.5}s ease-out`;
-                }if (currentIdx === slideCount-1){
-                    setTimeout(function(){
-                        slides.style.left = -(slideWidth + slideMargin) + "px";
-                        slides.style.transition = `${0}s ease-out`;
-                    },500);
-                    currentIdx = -1;
-                }
-                currentIdx+=1;
-            }
-            );
-
-            prev.addEventListener('click', function () {
-                console.log(currentIdx);
-                if (currentIdx >= 0) {
-                    slides.style.left = -(currentIdx) * (slideWidth + slideMargin) + "px";
-                    slides.style.transition = `${0.5}s ease-out`;
-                }if (currentIdx === 0){
-                    setTimeout(function(){
-                        slides.style.left = -(slideCount) * (slideWidth + slideMargin)+ "px";
-                        slides.style.transition = `${0}s ease-out`;
-                    },500);
-                    currentIdx=slideCount;
-                }
-                currentIdx-=1;
-                }
-            );
         </script> <!-- 예전 농업 박람회 slide -->
         <script> <!-- 현재 시계 -->
         var Target = document.getElementById("clock");
