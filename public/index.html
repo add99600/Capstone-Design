@@ -1,89 +1,324 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<html lang="ko">
+{% load static %}
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <meta name="description" content="">
+    <meta name="theme-color" content="#712cf9">
+    <title>농밀</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/newcom-style.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/board-css.css">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/carousel/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.22.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.22.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.22.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<main>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
+         style="font-size: 1.4rem; background-size: cover; background-position: center; background-repeat: no-repeat;
+         background-image: url('static/img/san.png'); width : auto; height: 400px">
+        <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+                    <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
+                    </a>
+
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-secondary">홈</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+                        <li><a href="market.html" class="nav-link px-2 text-white">직거래</a></li>
+                        <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
+                    </ul>
+
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
+                    </form>
+
+                    <div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
+                        <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
+                        <button id="mypage" type="button" class="btn btn-primary">마이페이지</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="col-md-5 p-lg-5 mx-auto my-5" style="float: right">
+            <h1 class="display-4 fw-normal text-white" id="username" style="text-align: left"></h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">안전한 거래</h1>
+            <h1 class="display-4 fw-normal text-white" style="text-align: left">쉽고 간편한 거래</h1>
+            <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
+            <a class="btn btn-outline-secondary" style="text-align: left" href="#">Coming soon</a>
+        </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <!-- 위는 네비 아래는 큰 이미지 예정-->
+    <div class="container marketing" style="padding-top: 50px" style="font-size: 1.4rem">
+        <div class="row featurette" style="height: 500px">
+            <div class="col-md-5 order-md-1" style="padding: 20px">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" style="font-size: 1.4rem" href="#공지사항" aria-selected="true" role="tab">공지사항</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" style="font-size: 1.4rem" href="#자유게시판" aria-selected="false" role="tab" tabindex="-1">자유게시판</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active show" id="공지사항" role="tabpanel">
+                        <p style="font-size: 1.4rem">공지사항 테스트 예정</p>
+                    </div>
+                    <div class="tab-pane fade" id="자유게시판" role="tabpanel">
+                        <div class="miniboard" style="width: auto; height: auto;">
+                            <div class="mb_header">
+                                <h1 class="mb_title">자유 게시판</h1>
+                                <a onclick="location.href='freeboard.html'" class="mb_button">바로가기</a>
+                            </div>
+                            <div class="mb_post">
+                                <h2 id="title"></h2>
+                                <!--<p>게시글 내용이 들어갑니다.</p>-->
+                                <div class="mb_post-footer">
+                                    <div class="mb_post-date">작성일: 2023-04-28</div>
+                                    <div class="mb_post-comments">댓글 3개</div>
+                                </div>
+                            </div>
+                            <div class="mb_post">
+                                <h2 id="title2"></h2>
+                                <!--<p>게시글 내용이 들어갑니다.</p>-->
+                                <div class="mb_post-footer">
+                                    <div class="mb_post-date">작성일: 2023-03-02</div>
+                                    <div class="mb_post-comments">댓글 0개</div>
+                                </div>
+                            </div>
+                            <div class="mb_post">
+                                <h2 id="title3"></h2>
+                                <!--<p>게시글 내용이 들어갑니다.</p>-->
+                                <div class="mb_post-footer">
+                                    <div class="mb_post-date">작성일: 2023-03-02</div>
+                                    <div class="mb_post-comments">댓글 0개</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="api" class="col-md-7 order-md-2" style="padding: 20px">
+                <h3 target="ifame1" href="#"></h3>
+                <h2 style="text-align: center">
+                    <form method="GET" action="{% url 'check_price' %}">
+                        <label for="search_date">검색 날짜:</label>
+                        <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
+                        <label for="item">검색어:</label>
+                        <input type="text" id="item" name="item" placeholder="ex)배추" required>
+                        <input id="search" type="submit" value="검색">
+                    </form></h2>
+                <div id="print" style="padding-top: 20px; height: 3vw; width: auto; border: 2px solid red;">
+                    <h3>{% if avg_total_price %}
+                        <p style="text-align: center">해당 {{ search_date }} 날짜의 {{ item }}의 평균 가격은 {{ avg_total_price }}원 입니다.</p>
+                        <p>{{ runtime }}</p>
+                    {% endif %}</h3>
+                </div>
+                <div style=" text-align: center">
+                    <img style="width: 650px; height: 350px" src=" https://hleecaster.com/wp-content/uploads/2019/08/02.png" alt="grape">
+                </div>
+            </div>
+            <script>
+                $('search').on('click', function () {
+                    $('api').load(window.location.href = 'home.html'+'api');
+                })
+            </script>
+        </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette" style="height: 500px">
+            <div class="col-md-8" style="padding: 20px">
+                <div style="padding: 20px; width: auto; text-align: right" >
+                    <button type="button" class="btn btn-primary" style="display: inline-block" onclick="location.href='market.html'">직거래 바로가기</button>
+                </div>
+                <div class="box">
+                    <div id="tab" class="tab">
+                        <ul>
+                            <li class=""><a href="#" ><img style="width: 250px; height: 250px; border-radius: 30px;" src = "https://url.kr/q12uy3"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" style="padding: 20px">
+                <h2 id="clock" style="color:black; text-align: center">clock</h2>
+                <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+                    </div>
+                    <div class="carousel-inner" style="height:90%">
+                        <div class="carousel-item active">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+
+                            <div class="container">
+                                <div class="carousel-caption">
+                                    <img style="max-width: 100%; height: 100%;  border-radius: 30px;" src="https://file.newswire.co.kr/data/datafile2/thumb_480/2022/10/2009132364_20221004184822_9718927867.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+
+                            <div class="container">
+                                <div class="carousel-caption">
+                                    <img style="max-width: 100%; height: 100%;  border-radius: 30px;" src="https://agro.seoul.go.kr/files/2022/04/6250f82ff03535.71902381.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+
+                            <div class="container">
+                                <div class="carousel-caption">
+                                    <img style="max-width: 100%; height: 100%;  border-radius: 30px;" src="https://www.modunong.or.kr:449/dummy/images/common/introduce_img01.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
+        <script>
+
+        </script> <!-- 예전 농업 박람회 slide -->
+        <script> <!-- 현재 시계 -->
+        var Target = document.getElementById("clock");
+        function clock() {
+            var time = new Date();
+
+            var year = time.getFullYear();
+            var month = time.getMonth();
+            var date = time.getDate();
+            var day = time.getDay();
+            var week = ['일', '월', '화', '수', '목', '금', '토'];
+
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+
+            Target.innerText =
+                `${year}년 ${month + 1}월 ${date}일 ${week[day]}요일 ` +
+                `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
         }
-      });
-    </script>
-  </body>
+        clock();
+        setInterval(clock, 1000); // 1초마다 실행
+        </script> <!-- 현재 시계 -->
+    </div>
+    <div class="footer">
+        <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
+        <p>
+            &nbsp;호서 대학교
+            &nbsp;컴퓨터 공학부&nbsp;
+            &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
+            &nbsp;이메일 : 추가@바람.com&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
+        </p>
+    </div>
+</main>
+
+
+<!-- Firebase SDK 스크립트 태그 -->
+<!-- Firebase SDK 스크립트 태그 -->
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore(); // db문법 소환
+    const storage = firebase.storage();
+
+    db.collection('post').where("이미지", "!=", null)
+        .limit(10).get().then((결과) => {
+        결과.forEach((doc) => {
+            console.log(doc.data().이미지);
+
+            var list = `<li class=""><a href="#"><img style="width: 250px; height: 250px;" src="${doc.data().이미지}"></a></li>`;
+            $('.tab ul').append(list);
+        });
+    });
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            console.log(user.uid);
+            console.log(user.email);
+            localStorage.setItem('user', JSON.stringify(user))
+        }
+    });
+    var getout =localStorage.getItem('user')
+    $('#username').html(JSON.parse(getout).email)
+
+
+
+    $('#mypage').click(function(){
+        const auth = firebase.auth();
+        const user = auth.currentUser;
+
+        if (user) {
+            var uid = user.uid;
+            window.location.href = 'http://127.0.0.1:8000/mypage.html?id=' + uid;
+        } else {
+            // 로그인이 되어 있지 않은 경우, 로그인 페이지로 이동하도록 설정할 수 있습니다.
+            window.location.href = 'http://127.0.0.1:8000/login.html';
+        }
+    });
+
+
+    {#메인페이지 자유 게시판 디비에서 불러오기#}
+    db.collection('product').orderBy('date','desc').limit(1).get().then((result) => {
+        console.log(result.docs[0].data().제목);
+        $('#title').html(result.docs[0].data().제목);
+        {#$('#title').html(result.docs[0].data().날짜);#}
+    });
+
+    db.collection('product').orderBy('date','desc').limit(2).get().then((result) => {
+        $('#title2').html(result.docs[1].data().제목);
+        {#$('#title2').html(result.docs[1].data().날짜);#}
+    });
+
+    db.collection('product').orderBy('date','desc').limit(3).get().then((result) => {
+        $('#title3').html(result.docs[2].data().제목);
+        {#$('#title3').html(result.docs[2].data().날짜);#}
+    });
+
+
+</script>
+</body>
 </html>
