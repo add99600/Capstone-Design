@@ -87,7 +87,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
-  import { getFirestore, collection, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+  import { getFirestore, collection, doc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -110,38 +110,47 @@
   const db = getFirestore(app);
   import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
-  document.getElementById('signUpButton').addEventListener('click',(event) => {
-      event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
-      const us = document.getElementById('username').value
-      const email = document.getElementById('signUpemail').value
-      const password = document.getElementById('signUppassword').value
-      const auth = getAuth();
-      //auth라는 변수를 만들어 getAuth 실행
+document.getElementById('signUpButton').addEventListener('click',(event) => {
+  event.preventDefault(); //어떤 이벤트가 발생하던지 일단 막아줌
+  const us = document.getElementById('username').value;
+  const email = document.getElementById('signUpemail').value;
+  const password = document.getElementById('signUppassword').value;
+  const user = collection(db, "user");
+  const auth = getAuth();
+  //auth라는 변수를 만들어 getAuth 실행
 
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const userDocRef = doc(collection(db, "user"), userCredential.user.uid);
-                setDoc(userDocRef,{
-                  name: us,
-                  email: email,
-                  password: password,
-                });
-                console.log(userCredential);
-                const user = userCredential.user;
-                updateProfile(user, {
-                    displayName: us
-                })
-                .then(() => {
-                    console.log("User profile update successful");
-                })
-                .catch((error) => {
-                    console.log("Error updating user profile:", error);
-                })
-            })
-            .catch((error) => {
-                console.log(error)
+  const nameQuery = query(collection(db, "user"), where("name","==", us));
+
+  const querySnapshot = getDocs(nameQuery)
+
+      querySnapshot.then((doc) => {
+        if(!querySnapshot.empty) {
+          console.log("닉네임이 중복됩니다!");
+          document.getElementById('username').value = "";
+          return;
+        } else {
+          createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+            const userDocRef = doc(collection(db, "user"), userCredential.user.uid);
+            setDoc(userDocRef, {
+              name: us,
+              email: email,
             });
-  })
+            console.log(userCredential);
+            const user = userCredential.user;
+            updateProfile(user, {
+              displayName: us
+            }).then(() => {
+              console.log("User profile update successful");
+            }).catch((error) => {
+              console.log("Error updating user profile:", error);
+            })
+          })
+        }
+      }).catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+    });
+
 </script>
 
 </body>
