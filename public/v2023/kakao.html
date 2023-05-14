@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<img class="detail-pic" style="padding : 20px; border-radius: 12px; height: 20vw; width:20vw">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<a href="javascript:kakaoLogin();"> 카카오톡 </a>
+
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+
+    Kakao.init("5b3c159344fe882ade9bb36e17918583");
+
+    function kakaoLogin() {
+      window.Kakao.Auth.login({
+        success: function(authObj) {
+          window.Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(response) {
+              var email = response.kakao_account.email;
+              var nickname = response.properties.nickname;
+              var profileImageUrl = response.properties.profile_image;
+              console.log(nickname, email);
+
+              var userData = {
+                  email: email,
+                  name: nickname,
+                  img: profileImageUrl
+              };
+
+              firebase.firestore().collection("user").add(userData).then(function (docRef){
+                  console.log(docRef.id)
+              }).catch(function (error) {
+                  console.log(error)
+              })
+            },
+            fail: function(error) {
+              console.log(error);
+            }
+          });
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+      });
+    }
+</script>
+
+</body>
+</html>
