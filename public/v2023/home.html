@@ -43,15 +43,21 @@
                     </form>
 
                     <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
-                        <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
-                        <button id="mypage" type="button" class="btn btn-primary">마이페이지</button>
+                        {% if user %}
+                            <a id="username" style="text-align: left; font-weight: bold; color: white"></a>
+                            <a style="font-weight: bold; color: white">님 환영합니다.</a>
+                            <button id="mypage" type="button" class="btn btn-primary">마이페이지</button>
+                            <button type="button" class="btn btn-warning" onclick="location.href='login.html'">로그아웃</button>
+                        {% else %}
+                            <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
+                            <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </header>
         <div class="col-md-5 p-lg-5 mx-auto my-5" style="float: right">
-            <h1 class="display-4 fw-normal text-white" id="username" style="text-align: left"></h1>
+            <!--<h1 class="display-4 fw-normal text-white" id="username" style="text-align: left"></h1>-->
             <h1 class="display-4 fw-normal text-white" style="text-align: left">안전한 거래</h1>
             <h1 class="display-4 fw-normal text-white" style="text-align: left">쉽고 간편한 거래</h1>
             <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
