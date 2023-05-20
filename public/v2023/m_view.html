@@ -183,11 +183,11 @@
 
         db.collection('chat').doc(chat_id).get().then((doc) => {
             if (doc.exists) { // 이미 해당 채팅방이 존재하는 경우
-                window.location.href = 'chat.html?id=' + chat_id;
+                window.location.href = 'chat.html?id=' + bring.get('id');
             } else { // 새로운 채팅방을 생성하는 경우
                 db.collection('chat').doc(chat_id).set(chat_data).then(() => {
                     console.log("채팅방이 생성되었습니다.");
-                    window.location.href = 'chat.html?id=' + chat_id;
+                    window.location.href = 'chat.html?id=' + bring.get('id');
                 }).catch((error) => {
                     console.error(error)
                 });
