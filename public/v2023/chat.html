@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>농밀</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
 .chat-content {
@@ -40,9 +41,9 @@
       <div class="col-9 p-0">
         <div class="chat-room">
           <ul class="list-group chat-content">
-            <li><span class="chat-box">채팅방1 내용</span></li>
-            <li><span class="chat-box">채팅방1 내용</span></li>
-            <li><span class="chat-box mine">채팅방1 내용</span></li>
+            <li><span class="chat-box">안녕하세요</span></li>
+            <li><span class="chat-box">사과 구매할려구요</span></li>
+            <li><span class="chat-box mine">넵 입금확인되면 배송해드리겠습니다</span></li>
           </ul>
           <div class="input-group">
             <input class="form-control" id="chat-input">
@@ -80,11 +81,11 @@
     db.collection('chat').where('who','array-contains',my_uid).get().then((result)=>{
         result.forEach((doc)=>{
             console.log(doc.data());
-            //var chatroom =`<li class="list-group-item">
-            //                   <h6>${a.data().post}</h6>
-            //                   <h6 class="text-small">${a.id}</h6>
-            //               </li>`
-            //$('.chat-list').append(chatroom)
+            var chatroom =`<li class="list-group-item">
+                               <h6>${doc.data().product}</h6>
+                               <h6 class="text-small">${doc.data().name}</h6>
+                           </li>`
+            $('.chat-list').append(chatroom)
             })
         })
 

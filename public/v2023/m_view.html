@@ -152,10 +152,12 @@
 
     var seller_uid
     var item_name
+    var seller_name
 
     db.collection('post').doc(bring.get('id')).get().then((result) => {
       seller_uid = result.data().uid;
       item_name = result.data().제목;
+      seller_name = result.data().name;
       console.log(result.data())
       $('.title').html(result.data().제목)
       $('.price').html(result.data().가격)
@@ -172,6 +174,8 @@
             who : [my_uid, seller_uid].sort(), //내 uid, 판매자 uid를 정렬한 배열
             product : item_name,
             date: month + "월 " + day + "일",
+            name: seller_name
+
         }
 
         // who 필드를 정렬한 후 문자열로 변환
