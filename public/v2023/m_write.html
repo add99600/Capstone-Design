@@ -167,6 +167,19 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+    var my_name = JSON.parse(localStorage.getItem('user')).displayName;
+    var user_name;
+
+    db.collection('user').where('name', '==', my_name).get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        user_name = doc.data().name;
+        console.log(user_name);
+      });
+    }).catch((error) => {
+      console.log('Error getting documents: ', error);
+    });
+
+
     $('#send').click(function () {
 
         var file = document.querySelector('#image').files[0];
@@ -202,6 +215,7 @@
                             날짜: month + "월 " + day + "일",
                             uid: user.uid,
                             이미지: url,
+                            name: user_name
                         }
                         db.collection('post').add(img)
                             .then((result) => {
@@ -227,7 +241,8 @@
                 가격: $('#price').val(),
                 내용: $('#content').val(),
                 날짜: month + "월 " + day + "일",
-                uid: user.uid
+                uid: user.uid,
+                name: user_name
             };
             db.collection('post').add(save_txt)
                 .then((result) => {
