@@ -1,84 +1,148 @@
  *{
     padding: 0;
-    margin: 0;
     box-sizing: border-box;
+     border-radius: 5px;
 }
 
-a {
-    text-decoration: none;
-    font-size: 1.4rem;
-}
+ .container {
+     float: left;
+     display: flex;
+     justify-content: center;
+     width: auto;
+     height: 560px; /* 화면 전체 높이로 설정 */
+ }
 
-.wrap {
-    padding: 0;
-    background-color: #A8C0D6;
-}
+ .container .left {
+     padding: 0;
+     height: auto;
+       background-color:#3b3e49;
 
-.wrap .header { font-size: 14px; padding: 15px 0; background: saddlebrown; color: white; text-align: center;  }
+     border : 1px solid #000000;
 
-.wrap .chat {
-    display: flex;
-    align-items: flex-start;
-    padding: 30px;
-}
+ }
 
-.wrap .chat .icon {
-    position: relative;
-    overflow: hidden;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #eee;
-}
+ .container .right {
+     padding: 0;
+     width: 650px;
+     height: 560px;
+     background-color: honeydew;
+     border : 1px solid #000000;
+ }
+ .header { font-size: 20px; padding: 15px 0; background: #5e616a ; color: white; text-align: center;  }
 
-.wrap .chat .icon i {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    font-size: 2.5rem;
-    color: #aaa;
-    transform: translateX(-50%);
-}
 
-.wrap .chat .textbox {
-    position: relative;
-    display: inline-block;
-    max-width: calc(100% - 70px);
-    padding: 10px;
-    margin-top: 7px;
-    font-size: 13px;
-    border-radius: 10px;
-}
+ body {
+     background-color:#abd9e9;
+     font-family: Arial, sans-serif;
+ }
+ .chatting-list {
+     width: 350px;
+     height: auto;
+     margin: 0 auto;
+ }
 
-.wrap .chat .textbox::before {
-    position: absolute;
-    display: block;
-    top: 0;
-    font-size: 1.5rem;
-}
+ .chatting-room {
+     width: 100%;
+     height: 100%;
+     background-color: white;
+     display: flex;
+     align-items: center;
+     padding: 10px;
+     border-bottom: 1px solid #DDDDDD;
+ }
 
-.wrap .ch1 .textbox {
-    margin-left: 20px;
-    background-color: #ddd;
-}
+ .chatting-room img {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     margin-right: 10px;
+ }
 
-.wrap .ch1 .textbox::before {
-    left: -15px;
-    content: "◀";
-    color: #ddd;
-}
+ .chatting-room .details {
+     flex: 1;
+ }
 
-.wrap .ch2 {
-    flex-direction: row-reverse;
-}
+ .chatting-room .details .name {
+     font-weight: bold;
+ }
 
-.wrap .ch2 .textbox {
-    margin-right: 20px;
-    background-color: #F9EB54;
-}
+ .chatting-room .details .message {
+     font-size: 14px;
+     color: #888888;
+ }
 
-.wrap .ch2 .textbox::before {
-    right: -15px;
-    content: "▶";
-    color: #F9EB54;
-}
+ .chatting-room .time {
+     font-size: 12px;
+     color: #888888;
+ }
+
+ a {
+     text-decoration: none;
+     font-size: 1.4rem;
+ }
+
+ .chat {
+     display: flex;
+     align-items: flex-start;
+     padding: 30px;
+ }
+
+ .chat .icon {
+     position: relative;
+     overflow: hidden;
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     background-color: #eee;
+ }
+
+ .chat .icon i {
+     position: absolute;
+     top: 10px;
+     left: 50%;
+     font-size: 2.5rem;
+     color: #aaa;
+     transform: translateX(-50%);
+ }
+
+ .chat .textbox {
+     position: relative;
+     display: inline-block;
+     max-width: calc(100% - 70px);
+     padding: 10px;
+     margin-top: 7px;
+     font-size: 13px;
+     border-radius: 10px;
+ }
+
+ .chat .textbox::before {
+     position: absolute;
+     display: block;
+     top: 0;
+     font-size: 1.5rem;
+ }
+
+ .ch1 .textbox {
+     margin-left: 20px;
+    background-color:#58b666;
+ }
+
+ .ch1 .textbox::before {
+     left: -15px;
+     color: #ddd;
+ }
+
+ .ch2 {
+     flex-direction: row-reverse;
+ }
+
+ .ch2 .textbox {
+     margin-right: 20px;
+     background-color:#6fbced;
+ }
+
+ .ch2 .textbox::before {
+     right: -15px;
+     color: #F9EB54;
+ }
+

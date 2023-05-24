@@ -6,32 +6,96 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/chatting-style.css">
 </head>
 <body>
-    <div class="wrap">
-        <div class="header">
-             채팅방
+<div class="container">
+    <div class="left">
+        <div class="header" style="text-align: left; padding-left: 20px">
+            채팅방 목록
         </div>
-        <div class="chat ch1">
-            <div class="icon"><i class="fa-solid fa-user"></i></div>
-            <div class="textbox">나는 판매자</div>
+        <div class="chatting-list">
+
+            <div class="chatting-room">
+                <img src="profile1.jpg" alt="프로필 사진">
+                <div class="details">
+                    <a style="color: black" href="#" class="name" onclick="window.open('chatting.html','name','resizable=no width=400 height=500 background-color: #A8C0D6');return false">채팅방 1</a>
+                    <div class="message">비밀 메세지 입니다.
+                    </div>
+                </div>
+                <div class="time">10:30 AM</div>
+            </div>
+
+            <div class="chatting-room">
+                <img src="profile2.jpg" alt="프로필 사진">
+                <div class="details">
+                    <div class="name">[구매자] 심희준</div>
+                    <div class="message">거 당 얼마</div>
+                </div>
+                <div class="time">Yesterday</div>
+            </div>
+
+            <div class="chatting-room">
+                <img src="profile3.jpg" alt="프로필 사진">
+                <div class="details">
+                    <div class="name">관리자</div>
+                    <div class="message">오류신고 부탁드립니다.</div>
+                </div>
+                <div class="time">2 days ago</div>
+            </div>
+            <div class="chatting-room">
+                <img src="profile3.jpg" alt="프로필 사진">
+                <div class="details">
+                    <div class="name">채팅하는 사람이름</div>
+                    <div class="message">메세지</div>
+                </div>
+                <div class="time">시간?</div>
+            </div>
         </div>
-        <div class="chat ch2">
-            <div class="icon"><i class="fa-solid fa-user"></i></div>
-            <div class="textbox">나는 구매자</div>
+    </div>
+
+    <div class="right">
+        <div class="header" style="padding-left: 20px">
+            채팅방
         </div>
-        <div class="chat ch1">
-            <div class="icon"><i class="fa-solid fa-user"></i></div>
-            <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
+        <div style="height:440px; overflow-x: hidden">
+            <div class="chat ch1">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">나는 판매자</div>
+            </div>
+            <div class="chat ch2">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">나는 구매자</div>
+            </div>
+            <div class="chat ch1">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
+            </div>
+            <div class="chat ch2">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
+            </div>
+            <div class="chat ch1">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
+            </div>
+            <div class="chat ch2">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
+            </div>
+            <div class="chat ch1">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
+            </div>
+            <div class="chat ch2">
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
+            </div>
         </div>
-        <div class="chat ch2">
-            <div class="icon"><i class="fa-solid fa-user"></i></div>
-            <div class="textbox">비밀 메세지 입니다. 로그인 하시면 메세지를 볼 수 있습니다.</div>
-        </div>
-        <div class="input-group" style="width: 100%; height: 200px;">
+        <div class="input-group" style="width: 100%; height: 60px;">
             <div style="text-align: center; bottom: 0;">
                 <input class="form-control" id="chat-input" style="width: 85%; height: 50px;">
                 <button class="btn btn-secondary" id="send" style="width: 10%; height: 50px;">전송</button>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
