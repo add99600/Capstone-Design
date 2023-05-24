@@ -11,7 +11,8 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer&amp;id=G-7NQSDSFC61" async=""></script></head>
+    <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer&amp;id=G-7NQSDSFC61" async=""></script>
+</head>
 <body>
 <header class="p-3 text-bg-dark" style="font-size: 1.4rem;">
     <div class="container">
@@ -66,6 +67,9 @@
 
                 <div style="text-align: center">
                     <div style="display: inline-block"><button type="submit" id="signUpButton">가입하기</button></div>
+                    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+                    <a href="javascript:kakaoLogin();"><img src="https://tistory1.daumcdn.net/tistory/3674348/attach/73c891243e7e474e8d81c200967bb14d" style="width: 100px; height: 100px"></a>
+                    <a href="javascript:kakaoLogin();"> 카카오톡 </a>
                 </div>
             </fieldset>
         </form>
@@ -110,44 +114,107 @@
   const db = getFirestore(app);
   import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
-document.getElementById('signUpButton').addEventListener('click',(event) => {
-    event.preventDefault(); //어떤 이벤트가 발생하던지 일단 막아줌
-    const us = document.getElementById('username').value;
-    const email = document.getElementById('signUpemail').value;
-    const password = document.getElementById('signUppassword').value;
-    const user = collection(db, "user");
-    const auth = getAuth();
-    //auth라는 변수를 만들어 getAuth 실행
+    document.getElementById('signUpButton').addEventListener('click',(event) => {
+        event.preventDefault(); //어떤 이벤트가 발생하던지 일단 막아줌
+        const us = document.getElementById('username').value;
+        const email = document.getElementById('signUpemail').value;
+        const password = document.getElementById('signUppassword').value;
+        const user = collection(db, "user");
+        const auth = getAuth();
+        //auth라는 변수를 만들어 getAuth 실행
 
-    const nameQuery = query(collection(db, "user"), where("name", "==", us));
+        const nameQuery = query(collection(db, "user"), where("name", "==", us));
 
-    getDocs(nameQuery).then((querySnapshot) => {
-        if (!querySnapshot.empty) {
-            console.log("닉네임이 중복됩니다!");
-            document.getElementById('username').value = "";
-            return;
-        } else {
-            createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-                const userDocRef = collection(db, "user", userCredential.user.uid);
-                setDoc(userDocRef, {
-                    name: us,
-                    email: email,
-                });
-                console.log(userCredential);
-                const user = userCredential.user;
-                updateProfile(user, {
-                    displayName: us
-                }).then(() => {
-                    console.log("User profile update successful");
-                }).catch((error) => {
-                    console.log("Error updating user profile:", error);
+        getDocs(nameQuery).then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+                console.log("닉네임이 중복됩니다!");
+                document.getElementById('username').value = "";
+                return;
+            } else {
+                createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+                    const userDocRef = collection(db, "user", userCredential.user.uid);
+                    setDoc(userDocRef, {
+                        name: us,
+                        email: email,
+                    });
+                    console.log(userCredential);
+                    const user = userCredential.user;
+                    updateProfile(user, {
+                        displayName: us
+                    }).then(() => {
+                        console.log("User profile update successful");
+                    }).catch((error) => {
+                        console.log("Error updating user profile:", error);
+                    })
                 })
-            })
-        }
-    }).catch((error) => {
-        console.log("Error getting documents: ", error);
+            }
+        }).catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
     });
-});
+
+
+    Kakao.init("5b3c159344fe882ade9bb36e17918583");
+
+    function kakaoLogin() {
+      window.Kakao.Auth.login({
+        success: function(authObj) {
+          window.Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(response) {
+              var email = response.kakao_account.email;
+              var nickname = response.properties.nickname;
+              var profileImageUrl = response.properties.profile_image;
+              console.log(nickname, email);
+
+              // Firebase 회원 가입
+              firebase.auth().createUserWithEmailAndPassword(email, 'password') // 임의의 비밀번호 사용
+                .then((userCredential) => {
+                  // 회원 가입 성공
+                  var user = userCredential.user;
+
+                  // 사용자 정보 Firestore에 저장
+                  var userRef = firebase.firestore().collection('users').doc(user.uid);
+                  userRef.set({
+                    email: email,
+                    name: nickname,
+                    profileImageUrl: profileImageUrl
+                  }).then(() => {
+                    console.log('사용자 정보 저장 완료');
+                  }).catch((error) => {
+                    console.log('사용자 정보 저장 실패:', error);
+                  });
+
+                  // 디스플레이 이름 업데이트
+                  user.updateProfile({
+                    displayName: nickname
+                  }).then(() => {
+                    console.log('디스플레이 이름 업데이트 완료');
+                  }).catch((error) => {
+                    console.log('디스플레이 이름 업데이트 실패:', error);
+                  });
+
+                  // 기타 작업 수행
+                  // ...
+
+                })
+                .catch((error) => {
+                  console.log('Firebase 회원 가입 실패:', error);
+                });
+
+            },
+            fail: function(error) {
+              console.log('Kakao API 요청 실패:', error);
+            }
+          });
+        },
+        fail: function(error) {
+          console.log('Kakao 로그인 실패:', error);
+        }
+      });
+    }
+
+
 
 
 </script>
