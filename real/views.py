@@ -12,6 +12,7 @@ def mypage(request):
     return render(request, 'v2023/mypage.html', {'mypage': 'test2'})
 def chat(request):
     return render(request, 'v2023/chat.html', {'chat': 'test2'})
+
 def chatting(request):
     return render(request, 'v2023/chatting.html', {'chatting': 'test2'})
 
