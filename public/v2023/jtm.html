@@ -168,7 +168,7 @@
               console.log(nickname, email);
 
               // Firebase 회원 가입
-              firebase.auth().createUserWithEmailAndPassword(email, 'password') // 임의의 비밀번호 사용
+              firebase.auth().createUserWithEmailAndPassword(email, 'password')
                 .then((userCredential) => {
                   // 회원 가입 성공
                   var user = userCredential.user;

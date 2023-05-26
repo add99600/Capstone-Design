@@ -299,5 +299,9 @@
         $('#name').html(result.data().name)
     });
 
+    $('.button').click(function() {
+        window.location.href = 'http://127.0.0.1:8000/chatting.html?id=' + my_uid;
+    });
+
 </script>
 </html>

@@ -153,17 +153,20 @@
     var seller_uid
     var item_name
     var seller_name
+    var img
 
     db.collection('post').doc(bring.get('id')).get().then((result) => {
       seller_uid = result.data().uid;
       item_name = result.data().제목;
       seller_name = result.data().name;
+      img = result.data().이미지;
+
       console.log(result.data())
       $('.title').html(result.data().제목)
       $('.price').html(result.data().가격)
       $('.date').html(result.data().날짜)
       $('.content').html(result.data().내용)
-      $('.detail-pic').attr('src', result.data().이미지);
+      $('.detail-pic').attr('src', img);
     });
 
     //채팅방 생성시 내거 상대거
@@ -174,8 +177,8 @@
             who : [my_uid, seller_uid].sort(), //내 uid, 판매자 uid를 정렬한 배열
             product : item_name,
             date: month + "월 " + day + "일",
-            name: seller_name
-
+            name: seller_name,
+            img: img
         }
 
         // who 필드를 정렬한 후 문자열로 변환
@@ -183,11 +186,11 @@
 
         db.collection('chat').doc(chat_id).get().then((doc) => {
             if (doc.exists) { // 이미 해당 채팅방이 존재하는 경우
-                window.location.href = 'chat.html?id=' + bring.get('id');
+                window.location.href = 'chat.html?id=' + my_uid;
             } else { // 새로운 채팅방을 생성하는 경우
-                db.collection('chat').doc(chat_id).set(chat_data).then(() => {
+                db.collection('chat').add(chat_data).then(() => {
                     console.log("채팅방이 생성되었습니다.");
-                    window.location.href = 'chat.html?id=' + bring.get('id');
+                    window.location.href = 'chat.html?id=' + my_uid;
                 }).catch((error) => {
                     console.error(error)
                 });
