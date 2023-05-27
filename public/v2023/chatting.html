@@ -88,11 +88,11 @@
           chatroom_id = $(this).data('chat-id');
 
           e.stopImmediatePropagation();
-          $('.chat-content').html('');
 
           console.log('Chatroom ID:', chatroom_id);
 
-          db.collection('chat').doc(chatroom_id).collection('message').get().then((result)=>{
+          db.collection('chat').doc(chatroom_id).collection('message').orderBy('data').onSnapshot((result)=>{
+              $('.chat-content').html('');
               result.forEach((a)=>{
                   console.log(a.data())
                   var message = `   <div class="chat ch2">
