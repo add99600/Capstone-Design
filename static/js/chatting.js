@@ -16,42 +16,50 @@
     var chatroom_id
     var bring = new URLSearchParams(window.location.search);
 
-    db.collection('chat').where('who','array-contains',my_uid).get().then((result)=>{
-        result.forEach((doc)=>{
-            console.log(doc.data());
-            var chatroom =`<li class="list-group-item">
-                               <h6>${doc.data().product}</h6>
-                               <h6 class="text-small">${doc.data().name}</h6>
-                           </li>`
-            $('.chat-list').append(chatroom)
+    db.collection('chat').where('who', 'array-contains', bring.get('id')).get().then((result) => {
+        result.forEach((doc) => {
+        console.log(doc.data());
+        var chatroom = `
+                        <div class="chatting-room" data-chat-id="${doc.id}">
+                           <img src="${doc.data().img}">
+                            <div class="details">
+                              <a href="#" class="name">${doc.data().product}</a>
+                              <div class="message">${doc.data().name}</div>
+                           </div>
+                        </div>`;
+        $('.chatting-list').append(chatroom);
+      });
 
-            $('.list-group-item').click(function (){
-                chatroom_id = $(this).children('.small-text').text() // 현재 클릭한 텍스트
+      $('.chatting-room').click(function (e) {
+          chatroom_id = $(this).data('chat-id');
 
-                e.stopImmediatePropagation(); // 이벤트 버블링 막아줌
-                $('.chat-content').html('');
+          e.stopImmediatePropagation();
+          $('.chat-content').html('');
 
-                db.collection('chat').doc(chatroom_id).collection('message').get().then((result)=>{
-                    result.forEach((a)=>{
-                        console.log(a.data())
-                        var temp = `<li><span class="chat-box">${a.data().content}</span></li>`;
-                        $('.chat-content').append(temp);
+          console.log('Chatroom ID:', chatroom_id);
+
+          db.collection('chat').doc(chatroom_id).collection('message').get().then((result)=>{
+              result.forEach((a)=>{
+                  console.log(a.data())
+                  var message = `   <div class="chat ch2">
+                                        <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                        <div class="textbox">${a.data().content}</div>
+                                    </div>`;
+                          $('.chat-content').append(message)
                     })
-                    }
-                )
+                })
+            });
+        });
 
-            })
-            })
-        })
-
-
-
-    $('#send').click(function (){
+    $('#send').click(function () {
+      if (chatroom_id) {
         var chat_data = {
-            content: $('#chat-input').val(),
-            data: new Date(),
-            uid: my_uid,
-        }
-    db.collection('chat').doc(chatroom_id).collection('message').add(chat_data)
-    })
+          content: $('#chat-input').val(),
+          data: new Date(),
+          uid: my_uid,
+        };
+        db.collection('chat').doc(chatroom_id).collection('message').add(chat_data);
+      }
+    });
+
 
