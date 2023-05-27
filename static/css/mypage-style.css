@@ -6,7 +6,7 @@
         li {list-style: none;}
         a { text-decoration: none;}
         button{ cursor: pointer;}
-
+		/* 얼굴 */
 		.face {
             text-align: center;
 			height: 350px;
@@ -41,6 +41,7 @@
 			align-items: center;
 			padding-right: 50px;
 		}
+
 		.circle {
 			display: inline-block;
 			overflow: hidden;
@@ -60,6 +61,25 @@
 		 .content-wrapper {
             margin: 0 250px; /* 왼쪽과 오른쪽 마진을 20px로 설정 */
         }
+		 /* 채팅방 버튼 css */
+		.button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 15px 30px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		.button:hover {
+			background-color: #3e8e41;
+		}
+
+		 /* 상체 */
 		.bone {
 			height: 1000px;
 			margin: auto;
@@ -93,6 +113,34 @@
 			border-radius: 10px;
 			margin-bottom: 40px
 		}
+		/* 내가 쓴 글 css */
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		th, td {
+			padding: 10px;
+			border-bottom: 2px solid #ccc;
+		}
+
+		.num, .count {
+			text-align: center;
+		}
+
+		.title a {
+			text-decoration-line: none;
+			color : black
+		}
+
+		.title a:hover {
+			font-weight: bold;
+		}
+
+		.writer, .date, .count {
+			text-align: center;
+		}
+		/* 나의 정보 css */
 		.form-container {
 			max-width: 400px;
 			margin: 0 auto;
@@ -132,20 +180,4 @@
 			border: none;
 			border-radius: 4px;
 			cursor: pointer;
-		}
-		.button {
-			background-color: #4CAF50;
-			border: none;
-			color: white;
-			padding: 15px 30px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			border-radius: 5px;
-			cursor: pointer;
-			transition: background-color 0.3s ease;
-		}
-		.button:hover {
-			background-color: #3e8e41;
 		}
