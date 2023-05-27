@@ -109,7 +109,7 @@
                 <div class="form-container">
                     <div class="form-group">
                         <label for="name">이름</label>
-                        <div class="value">심희준</div>
+                        <div class="value" >심희준</div>
                         <input type="text" id="name" placeholder="이름을 입력하세요" style="display: none;">
                     </div>
                     <div class="form-group">
@@ -224,7 +224,7 @@
 
         values.forEach(function(value) {
           value.style.display = 'block';
-          value.textContent = input.value;
+          value.textContent = inputs.value;
         });
       }
     }
@@ -270,63 +270,16 @@
         console.log(error);
       });
 
+    //var bring = new URLSearchParams(window.location.search)
 
-    $('#send').click(function () {
-        event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
-
-        var file = document.querySelector('#image').files[0];
-        var storageRef = storage.ref();
-        var save_img = null;
-        var upload_img = null;
-        var url = null;
-
-        const auth = firebase.auth();
-        const user = auth.currentUser;
-
-        if (file) {
-            save_img = storageRef.child('/image/' + file.name);
-            upload_img = save_img.put(file)
-            upload_img.on('state_change',
-                null,
-                (error) => {
-                    console.error('실패',error);
-                },
-                () => {
-                    upload_img.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        url = downloadURL;
-                        console.log('업로드된 경로',url)
-
-                        var today = new Date();
-                        var month = today.getMonth() + 1;
-                        var day = today.getDate();
-
-                        var img = {
-                            날짜: month + "월 " + day + "일",
-                            uid: user.uid,
-                            이미지: url,
-                        }
-                        db.collection('profile').add(img)
-                            .then((result) => {
-                                console.log(result)
-                            }).catch((error) => {
-                            console.log(error)
-                        })
-                    });
-                }
-            )
-        }
-    });
-
-    var bring = new URLSearchParams(window.location.search)
-
-    db.collection('profile').get().then((doc) => {
-        if (doc.exists) {
-            console.log(doc.data());
-            $('.circle').html(doc.data().이미지);
-        } else {
-            console.log("No such document");
-        }
-    });
+    //function toggleEdit() {
+    //    var save_user = {
+    //        name: $('.name').val(),
+    //        age: $('.age').val(),
+    //        job: $('.job').val(),
+    //    };
+    //    db.collection('user').doc(bring.get('id')).update(save_user)
+    //}
 
     // 마이페이지 본인이름 뜨게함
     db.collection('user').doc(bring.get('id')).get().then((result) => {
