@@ -146,3 +146,26 @@
      color: #F9EB54;
  }
 
+ .chat-content {
+    height: 440px;
+    overflow-x: hidden;
+    overflow-y: scroll; /* 세로 스크롤바 활성화 */
+}
+
+.chat-content::-webkit-scrollbar {
+    width: 8px; /* 스크롤바 너비 */
+}
+
+.chat-content::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* 스크롤바 트랙 배경색 */
+}
+
+.chat-content::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤바 색상 */
+    border-radius: 4px; /* 스크롤바 테두리 반경 */
+}
+
+.chat-content::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* 스크롤바 hover 상태일 때 색상 */
+}
+

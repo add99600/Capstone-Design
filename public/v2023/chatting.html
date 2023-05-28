@@ -95,12 +95,24 @@
               $('.chat-content').html('');
               result.forEach((a)=>{
                   console.log(a.data())
-                  var message = `   <div class="chat ch2">
-                                        <div class="icon"><i class="fa-solid fa-user"></i></div>
-                                        <div class="textbox">${a.data().content}</div>
-                                    </div>`;
-                          $('.chat-content').append(message)
+                    var message = '';
+                    if (a.data().uid === my_uid) {
+                        message = `
+                            <div class="chat ch2">
+                                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                <div class="textbox">${a.data().content}</div>
+                            </div>`;
+                    } else {
+                        message = `
+                            <div class="chat ch1">
+                                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                <div class="textbox">${a.data().content}</div>
+                            </div>`;
+                    }
+                $('.chat-content').append(message)
                     })
+                    var chatContent = $('.chat-content');
+                    chatContent.scrollTop(chatContent.prop("scrollHeight"));
                 })
             });
         });
@@ -113,8 +125,9 @@
           uid: my_uid,
         };
         db.collection('chat').doc(chatroom_id).collection('message').add(chat_data);
-      }
 
+        $('#chat-input').val('');
+      }
     });
 
 </script>
