@@ -70,37 +70,27 @@
                 <h2 style="padding: 10px;">내가 쓴 글</h2>
                 <div class="container">
                     <table class="table table-hover">
-                        <tread>
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>글쓴이</th>
-                                <th>날짜</th>
-                                <th>조회수</th>
-                            </tr>
-                        </tread>
-                        <tbody>
+                        <thead>
                         <tr>
-                            <td>1</td>
-                            <td>제목12345678</td>
-                            <td>wpfp</td>
-                            <td>20230504</td>
-                            <td>1</td>
+                            <th class="num">번호</th>
+                            <th class="title">제목</th>
+                            <th class="writer">작성자</th>
+                            <th class="date">날짜</th>
+                            <th class="count">조회수</th>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>제목</td>
-                            <td>글쓴이</td>
-                            <td>날짜</td>
-                            <td>조회수</td>
+                        </thead>
+                        <tbody class="my_write">
+                        <tr><!-- 테스트 예시 -->
+                            <td class="num">0</td>
+                            <td class="title"><a href="#">안녕하세요 테스트입니다.</a></td>
+                            <td class="writer">너의 이름은</td>
+                            <td class="date">3월 6일</td>
+                            <td class="count">알수없음</td>
                         </tr>
+
                         </tbody>
                     </table>
                 </div>
-                <form>
-                    <div class="my_write">
-                    </div>
-                </form>
             </div>
         </div>
         <div class="bone b2">
@@ -256,13 +246,13 @@
 
     db.collection('product').where('uid', '==', my_uid).orderBy("date", "desc").limit(3).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            var list = `<div>
-                            <div class="num">1</div>
-                            <div class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
-                            <div class="writer">${doc.data().이름}</div>
-                            <div class="date">${doc.data().날짜}</div>
-                            <div class="count">조회수</div>
-                        </div>`;
+            var list = `<tr>
+                            <td class="num">1</td>
+                            <td class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></td>
+                            <td class="writer">${doc.data().이름}</td>
+                            <td class="date">${doc.data().날짜}</td>
+                            <td class="count">조회수</td>
+                        </tr>`;
             $('.my_write').append(list);
         });
       })
