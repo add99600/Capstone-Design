@@ -157,61 +157,22 @@
     Kakao.init("5b3c159344fe882ade9bb36e17918583");
 
     function kakaoLogin() {
-      window.Kakao.Auth.login({
-        success: function(authObj) {
-          window.Kakao.API.request({
-            url: '/v2/user/me',
-            success: function(response) {
-              var email = response.kakao_account.email;
-              var nickname = response.properties.nickname;
-              var profileImageUrl = response.properties.profile_image;
-              console.log(nickname, email);
+        window.Kakao.Auth.login({
+            success: function (authObj) {
+                window.Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (response) {
+                        var email = response.kakao_account.email;
+                        var nickname = response.properties.nickname;
+                        var profileImageUrl = response.properties.profile_image;
+                        console.log(nickname, email);
 
-              // Firebase 회원 가입
-              firebase.auth().createUserWithEmailAndPassword(email, 'password')
-                .then((userCredential) => {
-                  // 회원 가입 성공
-                  var user = userCredential.user;
-
-                  // 사용자 정보 Firestore에 저장
-                  var userRef = firebase.firestore().collection('users').doc(user.uid);
-                  userRef.set({
-                    email: email,
-                    name: nickname,
-                    profileImageUrl: profileImageUrl
-                  }).then(() => {
-                    console.log('사용자 정보 저장 완료');
-                  }).catch((error) => {
-                    console.log('사용자 정보 저장 실패:', error);
-                  });
-
-                  // 디스플레이 이름 업데이트
-                  user.updateProfile({
-                    displayName: nickname
-                  }).then(() => {
-                    console.log('디스플레이 이름 업데이트 완료');
-                  }).catch((error) => {
-                    console.log('디스플레이 이름 업데이트 실패:', error);
-                  });
-
-                  // 기타 작업 수행
-                  // ...
-
-                })
-                .catch((error) => {
-                  console.log('Firebase 회원 가입 실패:', error);
+                        document.getElementById('username').value = nickname;
+                        document.getElementById('signUpemail').value = email;
+                    }
                 });
-
-            },
-            fail: function(error) {
-              console.log('Kakao API 요청 실패:', error);
             }
-          });
-        },
-        fail: function(error) {
-          console.log('Kakao 로그인 실패:', error);
-        }
-      });
+        });
     }
 
 
