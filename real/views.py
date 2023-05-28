@@ -39,3 +39,5 @@ def m_edit(request):
 
 def auction(request):
     return render(request, 'v2023/auction.html', {'auction': 'test2'})
+def auction_write(request):
+    return render(request, 'v2023/auction_write.html', {'auction_write': 'test2'})
