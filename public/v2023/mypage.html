@@ -47,18 +47,18 @@
 
 <div id="face" class="face" style="font-size: 1.4rem; background:none;">
     <div class="face f1">
-        <div class="con">
+        <div class="con1">
             <div class="circle">
                 <img id="circle-img" src="">
             </div>
-            <strong id="name" style="padding-left: 10px; width: 400px; height: 100px; align-items: center; margin-top: 45px; font-size: 3.5rem"></strong>
+            <strong id="name" style="padding-left: 30px; width: 400px; height: 100px; text-align: left; align-items: center; margin-top: 45px; font-size: 3.5rem"></strong>
         </div>
     </div>
     <div class="face f2">
 
     </div>
     <div class="face f3">
-        <div class="con">
+        <div class="con2">
             <a href="#" class="button" onclick="location.href('chatting.html','background-color: #A8C0D6')">채팅방</a>
         </div>
     </div>
@@ -66,9 +66,22 @@
 <div class="content-wrapper">
     <div class="bone" style="font-size: 1.4rem">
         <div class="bone b1">
-            <div class="info-box">
+            <div class="info-box" style="height: 500px;">
                 <h2 style="padding: 10px;">내가 쓴 글</h2>
-                <div class="container">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" style="font-size: 1.4rem"href="#직거래" aria-selected="true" role="tab">직거래</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" style="font-size: 1.4rem" href="#자유게시판" aria-selected="false" role="tab" tabindex="-1">자유게시판</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active show" id="직거래" role="tabpanel">
+                        <p style="font-size: 1.4rem; padding-left: 10px">직거래 테스트 예정</p>
+                    </div>
+                    <div class="tab-pane fade" id="자유게시판" role="tabpanel">
+                        <div class="container">
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -91,14 +104,16 @@
                         </tbody>
                     </table>
                 </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="bone b2">
             <div class="content-container">
                 <div class="content-a">
-                    <div class="info-box">
+                    <div class="info-box" style="height: auto;">
+                        <h2 style="padding: 10px">나의 정보</h2>
                         <div class="info-container">
-                            <p>나의 정보</p>
                             <div class="form-group">
                                 <label for="name">이름</label>
                                 <div class="value" id="myname"></div>
@@ -119,9 +134,9 @@
                 </div>
                 <div class="content-c"> </div>
                 <div class="content-b">
-                    <div class="info-box">
+                    <div class="info-box" style="height: auto;">
+                        <h2 style="padding: 10px">수정 모드</h2>
                         <div class="info-container">
-                            <p>나의 정보 수정하기</p>
                             <div class="form-group">
                                 <label for="name">이름</label>
                                 <input type="text" id="username" placeholder="이름을 입력하세요">
@@ -140,6 +155,7 @@
                                 <input type="file" id="upload-image" name="upload-image" onchange="previewImage(event)">
                             </div>
                             <div class="button-container">
+                                <button class="no-button" onclick="hideContentB()">취소하기</button>
                                 <button class="edit-button" id="save">저장하기</button>
                             </div>
                         </div>
