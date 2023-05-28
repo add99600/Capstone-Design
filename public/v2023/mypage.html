@@ -94,43 +94,59 @@
             </div>
         </div>
         <div class="bone b2">
-            <div class="info-box">
-                <h2 style="padding: 10px">나의 정보</h2>
-                <div class="form-container">
-                    <div class="form-group">
-                        <label for="name">이름</label>
-                        <div class="value" >심희준</div>
-                        <input type="text" id="name" placeholder="이름을 입력하세요" style="display: none;">
+            <div class="content-container">
+                <div class="content-a">
+                    <div class="info-box">
+                        <div class="info-container">
+                            <p>나의 정보</p>
+                            <div class="form-group">
+                                <label for="name">이름</label>
+                                <div class="value">ㅅㅎㅈ</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">나이</label>
+                                <div class="value">19</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="jab">직업</label>
+                                <div class="value">학생</div>
+                            </div>
+                            <div class="button-container">
+                                <button class="edit-button" onclick="toggleContentB()">수정하기</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="age">나이</label>
-                        <div class="value">25</div>
-                        <input type="number" id="age" placeholder="나이를 입력하세요" style="display: none;">
-                    </div>
-                    <div class="form-group">
-                        <label for="job">직업</label>
-                        <div class="value">학생</div>
-                        <input type="text" id="job" placeholder="직업을 입력하세요" style="display: none;">
-                    </div>
-                    <div class="form-group">
-                        <label for="upload-image">프로필 사진</label>
-                        <div class="file"></div>
-                        <input type="file" id="upload-image" name="upload-image" style="display: none" onchange="previewImage(event)">
-                    </div>
-                    <div class="button-container">
-                        <button class="edit-button" onclick="toggleEdit()">수정하기</button>
+                </div>
+                <div class="content-c"> </div>
+                <div class="content-b">
+                    <div class="info-box">
+                        <div class="info-container">
+                            <p>나의 정보 수정하기</p>
+                            <div class="form-group">
+                                <label for="name">이름</label>
+                                <input type="text" id="name" placeholder="이름을 입력하세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">나이</label>
+                                <input type="number" id="age" placeholder="나이를 입력하세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="job">직업</label>
+                                <input type="text" id="job" placeholder="직업을 입력하세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="upload-image">프로필 사진</label>
+                                <div class="file"></div>
+                                <input type="file" id="upload-image" name="upload-image" onchange="previewImage(event)">
+                            </div>
+                            <div class="button-container">
+                                <button class="edit-button" onclick="hideContentB()">저장하기</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="info-box">
-                <h2 style="padding: 10px">날씨</h2>
-                <form style="padding: 10px">
-                    <div id="ww_bfdd513f4984c" v='1.3' loc='auto' a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius"
-                    ,"cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
-                        <a href="https://weatherwidget.org/uk/" id="ww_bfdd513f4984c_u" target="_blank">Погодний HTML інформер погоди для сайту</a></div>
-                    <script async src="https://app1.weatherwidget.org/js/?id=ww_bfdd513f4984c"></script>
-                </form>
-            </div>
+
         </div>
     </div>
 </div>
@@ -190,33 +206,29 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    function toggleEdit() { //나의정보 수정하기 클릭시 변경
-      var editButton = document.querySelector('.edit-button');
-      var inputs = document.querySelectorAll('input');
-      var values = document.querySelectorAll('.value');
+    //나의정보 수정하기 클릭시 변경
+    var contentA = document.querySelector('.content-a'); //나의정보
+    var contentB = document.querySelector('.content-b'); //나의정보 수정모드
 
-      if (editButton.textContent === '수정하기') {
-        editButton.textContent = '저장하기';
+    function toggleContentB() { //수정하기 버튼
+        contentA.style.display = 'none';
+        contentB.style.display = 'block';
+        /*if (contentB.style.display === 'none') {
+            contentB.style.display = 'block';
+            contentA.style.display = 'none';
+        } else {
+            contentB.style.display = 'none';
+            contentA.style.display = 'block';
+        }*/
+        contentA.style.width = '0';
+        contentB.style.width = '100%';
+    }
 
-        inputs.forEach(function(input) {
-          input.style.display = 'block';
-        });
-
-        values.forEach(function(value) {
-          value.style.display = 'none';
-        });
-      } else {
-        editButton.textContent = '수정하기';
-
-        inputs.forEach(function(input) {
-          input.style.display = 'none';
-        });
-
-        values.forEach(function(value) {
-          value.style.display = 'block';
-          value.textContent = inputs.value;
-        });
-      }
+    function hideContentB() {
+        contentA.style.display = 'block';
+        contentB.style.display = 'none';
+        contentA.style.width = '100%';
+        contentB.style.width = '0';
     }
 
 
