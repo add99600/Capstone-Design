@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="kr">
+<html>
+<head>
+    <title>정보 수정 테스트</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .content-container{
+            width:80%;
+            display: flex;
+            align-items: center;
+        }
+        .info-box {
+            padding:10px;
+            width:auto;
+            height: 500px;
+            flex-basis: 48%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            margin-bottom: 40px
+        }
+        .info-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button {
+            margin-left: 10px;
+        }
+
+        .content-a {
+            width:48%;
+            height:auto;
+            padding: 10px;
+        }
+        .content-c {
+            width:4%;
+            height:auto;
+            display: none;
+            padding: 10px;
+        }
+        .content-b {
+            width:48%;
+            height:auto;
+            display: none;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="content-container">
+    <div class="content-a">
+        <div class="info-box">
+            <div class="info-container">
+                <p>나의 정보</p>
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <div class="value">ㅅㅎㅈ</div>
+                </div>
+                <div class="form-group">
+                    <label for="age">나이</label>
+                    <div class="value">19</div>
+                </div>
+                <div class="form-group">
+                    <label for="jab">직업</label>
+                    <div class="value">학생</div>
+                </div>
+                <div class="button-container">
+                    <button class="button" onclick="toggleContentB()">수정하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-c"> </div>
+    <div class="content-b">
+        <div class="info-box">
+            <div class="info-container">
+                <p>나의 정보 수정하기</p>
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" placeholder="이름을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="age">나이</label>
+                    <input type="number" id="age" placeholder="나이를 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="job">직업</label>
+                    <input type="text" id="job" placeholder="직업을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="upload-image">프로필 사진</label>
+                    <div class="file"></div>
+                    <input type="file" id="upload-image" name="upload-image" onchange="previewImage(event)">
+                </div>
+                <div class="button-container">
+                    <button onclick="hideContentB()">저장하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var contentB = document.querySelector('.content-b');
+
+    function toggleContentB() {
+        if (contentB.style.display === 'none') {
+            contentB.style.display = 'block';
+        } else {
+            contentB.style.display = 'none';
+        }
+    }
+
+    function hideContentB() {
+        contentB.style.display = 'none';
+    }
+</script>
+</body>
+</html>
