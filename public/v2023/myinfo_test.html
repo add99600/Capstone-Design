@@ -4,6 +4,7 @@
 <head>
     <title>정보 수정 테스트</title>
     <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         .content-container{
@@ -87,15 +88,15 @@
                 <p>나의 정보</p>
                 <div class="form-group">
                     <label for="name">이름</label>
-                    <div class="value">ㅅㅎㅈ</div>
+                    <div class="value" id="name">ㅅㅎㅈ</div>
                 </div>
                 <div class="form-group">
                     <label for="age">나이</label>
-                    <div class="value">19</div>
+                    <div class="value" id="age">19</div>
                 </div>
                 <div class="form-group">
                     <label for="jab">직업</label>
-                    <div class="value">학생</div>
+                    <div class="value" id="job">학생</div>
                 </div>
                 <div class="button-container">
                     <button class="button" onclick="toggleContentB()">수정하기</button>
@@ -126,12 +127,17 @@
                     <input type="file" id="upload-image" name="upload-image" onchange="previewImage(event)">
                 </div>
                 <div class="button-container">
-                    <button onclick="hideContentB()">저장하기</button>
+                    <button onclick="hideContentB()" id="send">저장하기</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 
 <script>
     var contentB = document.querySelector('.content-b');
@@ -147,6 +153,104 @@
     function hideContentB() {
         contentB.style.display = 'none';
     }
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    var bring = new URLSearchParams(window.location.search);
+
+    // 클릭시 개인정보 변경
+    $('#send').click(function () {
+
+        var file = document.querySelector('#upload-image').files[0];
+        var storageRef = storage.ref();
+        var save_img = null;
+        var upload_img = null;
+        var url = null;
+
+        const auth = firebase.auth();
+        const user = auth.currentUser;
+
+        if (file) {
+            save_img = storageRef.child('/image/' + file.name);
+            upload_img = save_img.put(file)
+            upload_img.on('state_change',
+                null,
+                (error) => {
+                    console.error('실패',error);
+                },
+                () => {
+                    upload_img.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        url = downloadURL;
+                        console.log('업로드된 경로',url)
+
+                        var today = new Date();
+                        var month = today.getMonth() + 1;
+                        var day = today.getDate();
+
+                        var img = {
+                            name: $('#name').val(),
+                            age: $('#age').val(),
+                            job: $('#job').val(),
+                            날짜: month + "월 " + day + "일",
+                            이미지: url,
+                        }
+                        db.collection('user').doc(bring.get('id')).update(img)
+                            .then((result) => {
+                                console.log(result);
+                                location.replace(location.href);
+                            }).catch((error) => {
+                            console.log(error)
+                        })
+                    });
+                }
+            )
+        } else {
+            // 이미지가 선택되지 않은 경우에도 함수를 호출합니다.
+            saveData();
+        }
+
+        function saveData() {
+            var today = new Date();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+
+            var save_txt = {
+                name: $('#name').val(),
+                age: $('#age').val(),
+                job: $('#job').val(),
+                날짜: month + "월 " + day + "일",
+            };
+            db.collection('user').doc(bring.get('id')).update(save_txt)
+                .then((result) => {
+                    console.log(result);
+                    location.replace(location.href);
+                }).catch((error) => {
+                console.log(error)
+            })
+        }location.replace(location.href);
+    });
+
+    //변경된 나의 정보
+    db.collection('user').doc(bring.get('id')).get().then((result) => {
+        $('#name').html(result.data().name);
+        $('#age').html(result.data().age);
+        $('#job').html(result.data().job);
+        $('#circle-img').attr('src', img);
+    });
+
 </script>
 </body>
 </html>
