@@ -276,7 +276,7 @@
 
     // 마이페이지 본인이름 뜨게함
     db.collection('user').doc(bring.get('id')).get().then((result) => {
-        $('#name').html(result.data().name)
+        $('#name').html(result.data().nickname)
     });
 
     $('.button').click(function() {
@@ -310,7 +310,7 @@
                         var day = today.getDate();
 
                         var img = {
-                            name: $('#username').val(),
+                            nickname: $('#username').val(),
                             age: $('#age').val(),
                             job: $('#job').val(),
                             수정날짜: month + "월 " + day + "일",
@@ -336,7 +336,7 @@
             var day = today.getDate();
 
             var save_txt = {
-                name: $('#username').val(),
+                nickname: $('#username').val(),
                 age: $('#age').val(),
                 job: $('#job').val(),
                 수정날짜: month + "월 " + day + "일",
@@ -353,7 +353,7 @@
 
     //변경된 나의 정보
     db.collection('user').doc(my_uid).get().then((result) => {
-        $('#myname').html(result.data().name);
+        $('#myname').html(result.data().nickname);
         $('#myage').html(result.data().age);
         $('#myjob').html(result.data().job);
         $('#circle-img').attr('src', result.data().이미지);
