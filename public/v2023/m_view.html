@@ -148,6 +148,10 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid
+
+    var my_name = JSON.parse(localStorage.getItem('user')).displayName
+
     var bring = new URLSearchParams(window.location.search);
 
     var seller_uid
@@ -167,10 +171,15 @@
       $('.date').html(result.data().날짜)
       $('.content').html(result.data().내용)
       $('.detail-pic').attr('src', img);
+
+      if (my_name == seller_name){
+          $('#chat').hide();
+      }
     });
 
-    //채팅방 생성시 내거 상대거
-var my_uid = JSON.parse(localStorage.getItem('user')).uid
+
+
+
 
 $('#chat').click(function(){
     var chat_data = {
@@ -185,14 +194,13 @@ $('#chat').click(function(){
     var chat_id = chat_data.who.join('') + chat_data.product;
 
     // 중복 채팅방 확인
-    db.collection('chat')
-        .where(firebase.firestore.FieldPath.documentId(), '==', chat_id)
-        .get()
-        .then((querySnapshot) => {
+    db.collection('chat').where(firebase.firestore.FieldPath.documentId(), '==', chat_id)
+        .get().then((querySnapshot) => {
             if (!querySnapshot.empty) {
                 // 이미 채팅방이 존재하는 경우
                 window.location.href = 'chatting.html?id=' + my_uid;
-            } else {
+            }
+            else {
                 // 중복 체크를 위해 해당 채팅방 ID를 저장해둠
                 localStorage.setItem('currentChatId', chat_id);
 
