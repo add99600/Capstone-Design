@@ -197,7 +197,7 @@ $('#chat').click(function(){
                 localStorage.setItem('currentChatId', chat_id);
 
                 // 새로운 채팅방 생성
-                db.collection('chat').doc(chat_id).set(chat_data)
+                db.collection('chat').doc().set(chat_data)
                     .then(() => {
                         console.log("채팅방이 생성되었습니다.");
                         window.location.href = 'chatting.html?id=' + my_uid;
