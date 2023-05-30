@@ -73,15 +73,21 @@
                         <a class="nav-link active" data-bs-toggle="tab" style="font-size: 1.4rem"href="#직거래" aria-selected="true" role="tab">직거래</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" style="font-size: 1.4rem" href="#자유게시판" aria-selected="false" role="tab" tabindex="-1">자유게시판</a>
+                        <a class="nav-link" data-bs-toggle="tab" style="font-size: 1.4rem" href="#경매장" aria-selected="false" role="tab" tabindex="-1">경매장</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" style="font-size: 1.4rem" href="#자유게시판" aria-selected="false" role="tab" tabindex="-2">자유게시판</a>
                     </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active show" id="직거래" role="tabpanel">
-                        <p style="font-size: 1.4rem; padding-left: 10px">직거래 테스트 예정</p>
+                        <p style="font-size: 1.4rem; padding: 10px">직거래 테스트 예정</p>
+                    </div>
+                    <div class="tab-pane fade" id="경매장" role="tabpanel">
+                        <p style="font-size: 1.4rem; padding: 10px">경매장 불려올 예정</p>
                     </div>
                     <div class="tab-pane fade" id="자유게시판" role="tabpanel">
-                        <div class="container">
+                        <div class="container" style="padding: 10px;">
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -126,6 +132,14 @@
                                 <label for="jab">직업</label>
                                 <div class="value" id="myjob"></div>
                             </div>
+                            <div class="form-group">
+                                <label for="baN">계좌 번호</label>
+                                <div class="value" id="mybaN"></div> <!-- mybaN : my bank account number -->
+                            </div>
+                            <div class="form-group">
+                                <label for="hmA">집 주소</label>
+                                <div class="value" id="myhmA"></div> <!-- myhmA : my Home address -->
+                            </div>
                             <div class="button-container">
                                 <button class="edit-button" onclick="toggleContentB()">수정하기</button>
                             </div>
@@ -153,6 +167,14 @@
                                 <label for="upload-image">프로필 사진</label>
                                 <div class="file"></div>
                                 <input type="file" id="upload-image" name="upload-image" onchange="previewImage(event)">
+                            </div>
+                            <div class="form-group">
+                                <label for="baN">계좌 번호</label>
+                                <input type="text" id="baN" placeholder="계좌 번호를 입력하세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="hmA">집 주소</label>
+                                <input type="text" id="hmA" placeholder="집 주소를 입력하세요">
                             </div>
                             <div class="button-container">
                                 <button class="no-button" onclick="hideContentB()">취소하기</button>
