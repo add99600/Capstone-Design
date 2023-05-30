@@ -184,7 +184,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -351,6 +350,8 @@
                             nickname: $('#username').val(),
                             age: $('#age').val(),
                             job: $('#job').val(),
+                            ban: $('#baN').val(),
+                            hma: $('#hmA').val(),
                             수정날짜: month + "월 " + day + "일",
                             이미지: url,
                         }
@@ -377,6 +378,8 @@
                 nickname: $('#username').val(),
                 age: $('#age').val(),
                 job: $('#job').val(),
+                ban: $('#baN').val(),
+                hma: $('#hmA').val(),
                 수정날짜: month + "월 " + day + "일",
             };
             db.collection('user').doc(my_uid).update(save_txt)
@@ -394,7 +397,15 @@
         $('#myname').html(result.data().nickname);
         $('#myage').html(result.data().age);
         $('#myjob').html(result.data().job);
+        $('#mybaN').html(result.data().ban);
+        $('#myhmA').html(result.data().hma);
         $('#circle-img').attr('src', result.data().이미지);
+
+        $('#username').val(result.data().nickname);
+        $('#age').val(result.data().age);
+        $('#job').val(result.data().job);
+        $('#baN').val(result.data().ban);
+        $('#hmA').val(result.data().hma);
     });
 
 </script>
