@@ -25,11 +25,11 @@ db.collection('product').orderBy('num', 'desc').limit(5).get().then((documentSna
   docs.forEach((doc) => {
     console.log(doc.data());
     var list = `<div>
-                  <div class="num">1</div>
+                  <div class="num">${doc.data().num}</div>
                   <div class="title"><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
                   <div class="writer">${doc.data().이름}</div>
                   <div class="date">${doc.data().날짜}</div>
-                  <div class="count">조회수</div>
+                  <div class="count">13</div>
                 </div>`;
     $('.board_list').append(list);
   });
@@ -53,11 +53,11 @@ db.collection('product').orderBy('num', 'desc').limit(5).get().then((documentSna
         nextDocs.forEach((doc) => {
           console.log(doc.data());
           var list = `<div>
-                        <div class="num">1</div>
+                        <div class="num">${doc.data().num}</div>
                         <div class="title"><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
                         <div class="writer">${doc.data().이름}</div>
                         <div class="date">${doc.data().날짜}</div>
-                        <div class="count">조회수</div>
+                        <div class="count">11</div>
                       </div>`;
           $('.board_list').append(list);
         });
@@ -84,11 +84,11 @@ db.collection('product').orderBy('num', 'desc').limit(5).get().then((documentSna
         prevDocs.forEach((doc) => {
           console.log(doc.data());
           var list = `<div>
-                        <div class="num">1</div>
+                        <div class="num">${doc.data().num}</div>
                         <div class="title"><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></div>
                         <div class="writer">${doc.data().이름}</div>
                         <div class="date">${doc.data().날짜}</div>
-                        <div class="count">조회수</div>
+                        <div class="count">10</div>
                       </div>`;
           $('.board_list').append(list);
         });

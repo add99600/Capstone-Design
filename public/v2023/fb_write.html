@@ -220,7 +220,7 @@
                             uid: user.uid,
                             이미지: url,
                             date: today,
-                            num: count + 1
+                            num: (count + 1).toString()
                         }
                         db.collection('product').add(img)
                             .then((result) => {
@@ -249,7 +249,7 @@
                 이름: user_name,
                 uid: user.uid,
                 date: today,
-                num: count + 1
+                num: (count + 1).toString()
             };
             db.collection('product').add(save_txt)
                 .then((result) => {
