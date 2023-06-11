@@ -130,7 +130,7 @@
                         <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
                         <label for="item">검색어:</label>
                         <input type="text" id="item" name="item" placeholder="ex)배추" required>
-                        <input id="search" type="submit" value="검색">
+                        <button id="search" type="submit" value="검색" class="btn btn-outline-success" style="height: 35px">검색</button>
                     </form></h2>
                 <div id="print" style="height: 60px; width: auto; background-color: #f5f5f5; padding: 10px; border-radius: 10px;">
                     <h3 style="text-align: center; margin-top: 7px;">{% if avg_total_price %} {{ search_date }}의 {{ item }}의 평균 가격은 {{ avg_total_price }}원 입니다.</p>
