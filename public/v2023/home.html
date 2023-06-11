@@ -126,41 +126,31 @@
                 <h3 target="ifame1" href="#"></h3>
                     <h2 style="text-align: center">
                         <form method="GET" action="{% url 'check_price' %}">
-                        <label for="search_date">검색 날짜:</label>
-                        <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
-                        <label for="item">검색어:</label>
-                        <input type="text" id="item" name="item" placeholder="ex)배추" required>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <input id="searche" type="submit" value="검색">
-                      </form>
+                            <label for="search_date">검색 날짜:</label>
+                            <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
+                            <label for="item">검색어:</label>
+                            <input type="text" id="item" name="item" placeholder="ex)배추" required>
+                            <button id="search" type="submit" value="검색" class="btn btn-outline-success" style="height: 35px">검색</button>
+                        </form>
                     </h2>
-                    <div id="print" style="height: 60px; width: auto; background-color: #f5f5f5; padding: 10px; border-radius: 10px;">
-                        <h3 style="text-align: center; margin-top: 7px;">
-                        {% if avg_total_price %}
-                          {{ search_date }}의 {{ item }}의 평균 가격은 {{ avg_total_price }}원 입니다.
-                        {% else %}
-                          거래량이 없습니다.
-                        {% endif %}
-                      </h3>
-                    </div>
-=======
-=======
->>>>>>> 9ca31ea663f4fd3e17177c9786da468d99baa8a1
-                        <button id="search" type="submit" value="검색" class="btn btn-outline-success" style="height: 35px">검색</button>
-                    </form></h2>
                 <div id="print" style="height: 60px; width: auto; background-color: #f5f5f5; padding: 10px; border-radius: 10px;">
-                    <h3 style="text-align: center; margin-top: 7px;">{% if avg_total_price %} {{ search_date }}의 {{ item }}의 평균 가격은 {{ avg_total_price }}원 입니다.</p>
+                    <h3 style="text-align: center; margin-top: 7px;">
+                        {% if avg_total_price == 0 %}
+                            거래량이 없습니다.
+                        {% elif avg_total_price %}
+                            {{ search_date }}의 {{ item }}의 평균 가격은 {{ avg_total_price }}원 입니다.
+                        {% else %}
+                            입력 해 주세요.
                         <p>{{ runtime }}</p>
-                    {% endif %}</h3>
+                        {% endif %}</h3>
                 </div>
->>>>>>> 9ca31ea663f4fd3e17177c9786da468d99baa8a1
+                </form></h2>
                 <div style=" text-align: center">
                     <img style="width: 580px; height: 350px" src=" https://hleecaster.com/wp-content/uploads/2019/08/02.png" alt="grape">
                 </div>
             </div>
             <script>
-                $('searche').on('click', function () {
+                $('search').on('click', function () {
                     $('api').load(window.location.href = 'home.html'+'api');
                 })
             </script>
@@ -302,7 +292,7 @@
         결과.forEach((doc) => {
             console.log(doc.data().이미지);
 
-            var list = `<li class=""><a href="#"><img style="width: 250px; height: 250px;" src="${doc.data().이미지}"></a></li>`;
+            var list = `<li class=""><a href="#"><img style="width: 250px; height: 250px; border-radius: 30px;" src="${doc.data().이미지}"></a></li>`;
             $('.tab ul').append(list);
         });
     });
