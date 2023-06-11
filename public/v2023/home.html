@@ -130,7 +130,7 @@
                         <input type="text" id="search_date" name="search_date" placeholder="ex)YYYYMMDD" required>
                         <label for="item">검색어:</label>
                         <input type="text" id="item" name="item" placeholder="ex)배추" required>
-                        <input id="search" type="submit" value="검색">
+                        <input id="searche" type="submit" value="검색">
                       </form>
                     </h2>
                     <div id="print" style="height: 60px; width: auto; background-color: #f5f5f5; padding: 10px; border-radius: 10px;">
@@ -140,7 +140,6 @@
                         {% else %}
                           거래량이 없습니다.
                         {% endif %}
-                        <p>{{ runtime }}</p>
                       </h3>
                     </div>
                 <div style=" text-align: center">
@@ -148,7 +147,7 @@
                 </div>
             </div>
             <script>
-                $('search').on('click', function () {
+                $('searche').on('click', function () {
                     $('api').load(window.location.href = 'home.html'+'api');
                 })
             </script>
@@ -322,18 +321,18 @@
 
 
     {#메인페이지 자유 게시판 디비에서 불러오기#}
-    db.collection('product').orderBy('date','desc').limit(1).get().then((result) => {
+    db.collection('product').orderBy('num','desc').limit(1).get().then((result) => {
         console.log(result.docs[0].data().제목);
         $('#title').html(result.docs[0].data().제목);
         {#$('#title').html(result.docs[0].data().날짜);#}
     });
 
-    db.collection('product').orderBy('date','desc').limit(2).get().then((result) => {
+    db.collection('product').orderBy('num','desc').limit(2).get().then((result) => {
         $('#title2').html(result.docs[1].data().제목);
         {#$('#title2').html(result.docs[1].data().날짜);#}
     });
 
-    db.collection('product').orderBy('date','desc').limit(3).get().then((result) => {
+    db.collection('product').orderBy('num','desc').limit(3).get().then((result) => {
         $('#title3').html(result.docs[2].data().제목);
         {#$('#title3').html(result.docs[2].data().날짜);#}
     });
