@@ -27,7 +27,8 @@ def check(search_date, item):
         total_dict = xmltodict.parse(total_content)
 
         for row in total_dict['Grid_20141119000000000012_1']['row']:
-            total_price.append(int(row['AVRG_AMT']))
+            if isinstance(row, dict):
+                total_price.append(int(row['AVRG_AMT']))
 
     avg_total_price = sum(total_price) // totalCnt
     return avg_total_price
@@ -44,5 +45,8 @@ def check_price(request):
         'item': item,
         'avg_total_price': avg_total_price,
     }
+    if avg_total_price == 0:
+        context['message'] = '거래량이 없습니다.'
+
     return render(request, 'v2023/home.html', context)
 
