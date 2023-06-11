@@ -141,38 +141,47 @@
         appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
         measurementId: "G-7NQSDSFC61"
     };
-    firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
 
 
-    const db = firebase.firestore(); // db문법 소환
 
-    db.collection('auction').get().then((결과) => {
-        결과.forEach((doc)=>{
-            console.log(doc.data());
+db.collection('auction').get().then((결과) => {
+    결과.forEach((doc) => {
+        console.log(doc.data());
 
-            var list = `                        <div class="col" style="padding:10px; width:400px; height: 100%">
-                                                    <div class="card shadow-sm" style="color:white; background-color: #4e555b"><!--그레이 테마-->
-                                                        <h3 id="clock" style="color:white; text-align: center; text-width: 100%; padding: 10px">clock</h3> <!--현재 시계로 테스트 -->
-                                                        <img width="100%" height="160px" src="${doc.data().이미지}"></svg>
-                                                        <div class="card-body">
-                                                            <h3 class="item_name" style=" height: 50px; font-weight: bold; text-align: center">${doc.data().제목}</h3>
-                                                            <div class="item_container" style="color:white; background-color: #4e555b">
-                                                                <p>바로 구매가: <span class="item_fast_cost">${doc.data().가격}</span>원</p>
-                                                                <p>입찰가: <span class="item_cost">${doc.data().가격}</span>원</p>
-                                                            </div>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <div class="btn-group"style="padding: 5px; width: 100%; height: 50px">
-                                                                <button type="button" class="btn btn btn-primary" style="width: 50%; height: auto; font-size: 1.4rem">바로 구매</button>
-                                                                <button type="button" class="btn btn btn-warning" style="width: 50%; height: auto; font-size: 1.4rem">입찰 하기</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>`;
-
-            $('.ac_b').append(list);
-
-        });
+        var list = `<div class="col" style="padding:10px; width:400px; height: 100%">
+                        <div class="card shadow-sm" style="color:white; background-color: #4e555b"><!--그레이 테마-->
+                            <h3 id="clock" style="color:white; text-align: center; text-width: 100%; padding: 10px">${doc.data().ot}</h3> <!--현재 시계로 테스트 -->
+                            <img width="100%" height="160px" src="${doc.data().이미지}"></svg>
+                            <div class="card-body">
+                                <h3 class="item_name" style="height: 50px; font-weight: bold; text-align: center">${doc.data().제목}</h3>
+                                <div class="item_container" style="color:white; background-color: #4e555b">
+                                    <p>바로 구매가: <span class="item_fast_cost">${doc.data().즉구}</span>원</p>
+                                    <p>입찰가: <span class="item_cost">${doc.data().현재가}</span>원</p>
+                                </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                 <div class="btn-group" style="padding: 5px; width: 100%; height: 50px">
+                                    <button type="button" class="btn btn-primary pr" style="width: 50%; height: auto; font-size: 1.4rem">바로 구매</button>
+                                    <button type="button" class="btn btn-warning buy" style="width: 50%; height: auto; font-size: 1.4rem" href="http://127.0.0.1:8000/buy.html?id=${doc.id}">입찰 하기</button>
+                                </div>
+                            </div>
+                    </div>`;
+        $('.ac_b').append(list);
     });
+
+    $('.ac_b').on('click', '.buy', function() {
+        var itemCostElement = $(this).closest('.card-body').find('.item_cost');
+        var itemCostValue = parseInt(itemCostElement.text());
+        var upprice = itemCostValue * 0.1; // 현재가의 10%를 계산하여 증가액으로 설정
+        var newCostValue = itemCostValue + upprice;
+
+        // 입찰가 업데이트
+        itemCostElement.text(newCostValue);
+    });
+});
+
 </script>
 
 </body>

@@ -13,19 +13,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {% load static %}
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
     <script src="{% static 'js/freeboard.js' %}"></script>
-
 </head>
 <body>
 
 <main>
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-         style="font-size: 1.4rem; background-image: url('static/img/san.png'); width : auto; height: 400px">
         <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
                 <div class="container">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -58,67 +54,30 @@
             <h1 class="display-4 fw-normal text-white" style="text-align: left">합리적인 공사</h1>
             <h1 class="display-4 fw-normal text-white" style="text-align: left">공사 진행중 입니다</h1>
             <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
-            <a class="btn btn-outline-secondary" style="text-align: left" href="#">Coming soon</a>
         </div>
     </div>
     <!-- 위는 네비 아래는 큰 이미지 예정-->
-    <div style=" z-index: 3; background: #818182">
-        <div class="sidebar">
-            <ul>
-                <h2 style="text-align: center; font-size: 2.5rem; padding : 10px;">사이드 메뉴</h2>
-                <li><a href="#">공지사항</a></li>
-                <li><a href="market.html">직거래</a></li>
-                <li><a href="auction.html">경매장</a></li>
-                <li><a href="freeboard.html">자유게시판</a></li>
-            </ul>
-        </div>
-    </div>
     <div class="container marketing" style="padding-top: 50px">
 
-        <!-- Three columns of text below the carousel -->
          <div class="row featurette" style="height: auto">
 
              <section id="main">
                  <article id="article1">
                      <div class="board_wrap">
                          <div class="board_title">
-                             <strong>자유게시판</strong>
-                             <p>자유롭게 글작성해보세요.</p>
+                             <strong id="name">의 경매현황</strong>
+                             <p id="pprice">현재 최고 입찰가: </p>
                          </div>
                          <div class="board_list_wrap">
                              <div class="board_list" id="board">
-                                 <div class="top" id="top">
-                                     <div class="num">번호</div>
-                                     <div class="title">제목</div>
-                                     <div class="writer">글쓴이</div>
-                                     <div class="date">작성일</div>
-                                     <div class="count">조회</div>
-                                 </div>
-                             </div>
-                             <div class="board_page">
-{#                                 <a href="#" class="bt first">&lt;&lt;</a>#}
-{#                                 <a href="#" class="bt prev">&lt;</a>#}
-{#                                 <a href="#" class="num on">1</a>#}
-{#                                 <a href="#" class="num">2</a>#}
-{#                                 <a href="#" class="num">3</a>#}
-{#                                 <a href="#" class="num">4</a>#}
-{#                                 <a href="#" class="num">5</a>#}
-{#                                 <a href="#" class="bt next" id="next">&gt;</a>#}
-{#                                 <a href="#" class="bt last">&gt;&gt;</a>#}
-                             </div>
-                             <div class="board_page">
-                              <div class="page_buttons"></div>
-                              <a href="#" class="bt prev" id="prev">&lt;</a>
-                              <a href="#" class="bt next" id="next">&gt;</a>
-                             </div>
-                             <div class="bt_wrap">
-                                 <button onclick="location.href='fb_write.html';" type="button" class="btn btn-dark" style="width: 60px; height: 40px; margin:5px; font-size: 1.4rem">등록</button>
-                                 <!--<a href="#">수정</a>-->
-
                              </div>
                          </div>
                      </div>
                  </article>
+                 <div class="input-group">
+                    <input class="form-control" id="chat-input">
+                    <button class="btn btn-secondary" id="send">전송</button>
+                 </div>
              </section>
          </div>
         <hr class="featurette-divider">
@@ -137,9 +96,77 @@
     </div>
 </main>
 
-
-
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+
+
+    var firebaseConfig = {
+    apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+    authDomain: "wepdo-7bed1.firebaseapp.com",
+    databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+    projectId: "wepdo-7bed1",
+    storageBucket: "wepdo-7bed1.appspot.com",
+    messagingSenderId: "204948006692",
+    appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+    measurementId: "G-7NQSDSFC61"
+};
+firebase.initializeApp(firebaseConfig);
+
+
+    const db = firebase.firestore();
+
+    var bring_id = new URLSearchParams(window.location.search);
+
+
+    db.collection('aucution').doc(bring_id).get().then((result) => {
+        console.log(result.data())
+        $('#name').val(result.data().name)
+        $('#pprice').val(result.data().현재가)
+
+        //특정 숫자 이상으로만 입력되도록
+        $('#chat-input').on('input', function() {
+            var inputValue = $(this).val();
+            var minAllowedValue = 5000; // 특정 숫자를 5000
+
+            if (inputValue !== '' && parseInt(inputValue) < minAllowedValue) {
+                $(this).val(minAllowedValue);
+            }
+        });
+
+
+        db.collection('auction').doc(bring_id).collection('bid').get().then((result)=>{
+            result.forEach((a)=>{
+                console.log(a.data())
+
+                var list = `<div>
+                               <div class="num"></div>
+                               <div class="title"><a style="text-decoration-line: none; color: black"</a></div>
+                               <div class="writer">${a.data().현재가}</div>
+                               <div class="date"></div>
+                               <div class="count"></div>
+                            </div>`;
+                $('.board_list').append(list);
+            });
+        });
+    });
+
+
+    var my_name = JSON.parse(localStorage.getItem('user')).name;
+
+    $('#send').click(function (){
+        var bid_data = {
+            현재가: $('#chat-input').val(),
+            data: new Date(),
+            uid: my_uid,
+            name: my_name
+        }
+    db.collection('chat').doc(chatroom_id).collection('message').add(bid_data)
+    })
+
+</script>
 </body>
 </html>

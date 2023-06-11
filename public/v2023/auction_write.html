@@ -90,7 +90,7 @@
                                  <div class="info">
                                      <dl style="text-align: left">
                                          <dt>바로 구매가</dt>
-                                         <dd><input type="text" placeholder="가격 입력" id="price"></dd>
+                                         <dd><input type="text" placeholder="가격 입력" id="nowprice"></dd>
                                      </dl>
                                      <dl>
                                          <dt>입찰가</dt>
@@ -100,11 +100,11 @@
                                  <div class="info">
                                      <dl>
                                          <dt>날짜 설정</dt>
-                                         <dd><input style="padding: 10px" type="date" name="dateInput"></dd>
+                                         <dd><input style="padding: 10px" type="date" name="dateInput" id="outdate"></dd>
                                      </dl>
                                      <dl>
                                          <dt>시간 설정</dt>
-                                         <dd><input style="padding: 10px" type="time" name="timeInput"></dd>
+                                         <dd><input style="padding: 10px" type="time" name="timeInput" id="outtime"></dd>
                                      </dl>
                                  </div>
                                  <div class="info">
@@ -154,6 +154,13 @@
 
     const priceInput = document.querySelector('#price');
     priceInput.addEventListener('input', function (event) {
+      const value = event.target.value.replace(/,/g, ''); // 기존에 입력된 쉼표 제거
+      const regex = /\B(?=(\d{3})+(?!\d))/g;
+      event.target.value = value.replace(regex, ','); // 3자리마다 쉼표 추가
+    });
+
+    const ipriceInput = document.querySelector('#nowprice');
+    ipriceInput.addEventListener('input', function (event) {
       const value = event.target.value.replace(/,/g, ''); // 기존에 입력된 쉼표 제거
       const regex = /\B(?=(\d{3})+(?!\d))/g;
       event.target.value = value.replace(regex, ','); // 3자리마다 쉼표 추가
@@ -218,12 +225,14 @@
 
                         var img = {
                             제목: $('#title').val(),
-                            가격: $('#price').val(),
-                            내용: $('#content').val(),
+                            즉구: $('#nowprice').val(),
+                            현재가: $('#price').val(),
                             날짜: month + "월 " + day + "일",
                             uid: user.uid,
                             이미지: url,
                             name: user_name,
+                            od: $('#outdate').val(),
+                            ot: $('#outtime').val()
                         }
                         db.collection('auction').add(img)
                             .then((result) => {
@@ -235,31 +244,8 @@
                 }
             )
         } else {
-            // 이미지가 선택되지 않은 경우에도 함수를 호출합니다.
-            saveData();
+            alert("빠진 내용이 있습니다");
         }
-
-        function saveData() {
-            var today = new Date();
-            var month = today.getMonth() + 1;
-            var day = today.getDate();
-
-            var save_txt = {
-                제목: $('#title').val(),
-                가격: $('#price').val(),
-                내용: $('#content').val(),
-                날짜: month + "월 " + day + "일",
-                uid: user.uid,
-                name: user_name
-            };
-            db.collection('auction').add(save_txt)
-                .then((result) => {
-                    console.log(result)
-                }).catch((error) => {
-                console.log(error)
-            })
-        }
-
     });
 
 </script>
