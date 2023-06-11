@@ -8,7 +8,7 @@
      float: left;
      display: flex;
      justify-content: center;
-     width: auto;
+     width: 100%;
      height: 560px; /* 화면 전체 높이로 설정 */
  }
 
@@ -37,18 +37,37 @@
  }
  .chatting-list {
      width: 350px;
-     height: auto;
+     height: 50px;
      margin: 0 auto;
+     overflow-x: hidden;
+     overflow-y: scroll; /* 세로 스크롤바 활성화 */
  }
+ .chatting-list::-webkit-scrollbar {
+    width: 8px; /* 스크롤바 너비 */
+}
+
+.chatting-list::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* 스크롤바 트랙 배경색 */
+}
+
+.chatting-list::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤바 색상 */
+    border-radius: 4px; /* 스크롤바 테두리 반경 */
+}
+
+.chatting-list::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* 스크롤바 hover 상태일 때 색상 */
+}
 
  .chatting-room {
      width: 100%;
-     height: 100%;
+     height: 70px;
      background-color: white;
      display: flex;
      align-items: center;
      padding: 10px;
      border-bottom: 1px solid #DDDDDD;
+     border-radius: 0;
  }
 
  .chatting-room img {
@@ -62,11 +81,12 @@
      flex: 1;
  }
 
- .chatting-room .details .name {
+ .chatting-room .details .room_name {
      font-weight: bold;
+     font-size: 20px;
  }
 
- .chatting-room .details .message {
+ .chatting-room .details .room_owner {
      font-size: 14px;
      color: #888888;
  }
@@ -168,4 +188,16 @@
 .chat-content::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* 스크롤바 hover 상태일 때 색상 */
 }
+
+.btn_Blue{
+    background-color:dodgerblue;
+    color: #fff;
+}
+
+.btn_Red {
+    position: absolute;
+    background-color:red;
+    color: #fff;
+}
+
 
