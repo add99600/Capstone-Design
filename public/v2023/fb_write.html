@@ -154,10 +154,11 @@
         measurementId: "G-7NQSDSFC61"
     };
     firebase.initializeApp(firebaseConfig);
-</script>
-<script>
+
+
     const db = firebase.firestore();
     const storage = firebase.storage();
+    var count
 
     var my_name = JSON.parse(localStorage.getItem('user')).displayName;
     var user_name;
@@ -171,6 +172,13 @@
       console.log('Error getting documents: ', error);
     });
 
+    //firestore 데이터 개수
+    db.collection("product").get().then((querySnapshot) => {
+      count = querySnapshot.size;
+      console.log("컬렉션 'product'의 데이터 개수: " + count);
+    }).catch((error) => {
+      console.log("데이터 개수를 가져오는 동안 에러 발생: ", error);
+    });
 
 
     $('#send').click(function () {
@@ -211,7 +219,8 @@
                             이름: user_name,
                             uid: user.uid,
                             이미지: url,
-                            date: today
+                            date: today,
+                            num: count + 1
                         }
                         db.collection('product').add(img)
                             .then((result) => {
@@ -239,7 +248,8 @@
                 날짜: month + "월 " + day + "일",
                 이름: user_name,
                 uid: user.uid,
-                date: today
+                date: today,
+                num: count + 1
             };
             db.collection('product').add(save_txt)
                 .then((result) => {
