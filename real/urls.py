@@ -44,6 +44,7 @@ urlpatterns = [
 
     path('auction.html', auction, name='auction'), #경매
     path('auction_write.html', auction_write, name='auction_write'), #경매작성
+    path('buy.html', buy, name='buy'), #경매
 
     path('check_price/', check_price, name='check_price'),
     path('check/', check, name='check'),

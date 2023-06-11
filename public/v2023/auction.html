@@ -164,7 +164,7 @@ db.collection('auction').get().then((결과) => {
                             <div class="d-flex justify-content-between align-items-center">
                                  <div class="btn-group" style="padding: 5px; width: 100%; height: 50px">
                                     <button type="button" class="btn btn-primary pr" style="width: 50%; height: auto; font-size: 1.4rem">바로 구매</button>
-                                    <button type="button" class="btn btn-warning buy" style="width: 50%; height: auto; font-size: 1.4rem" href="http://127.0.0.1:8000/buy.html?id=${doc.id}">입찰 하기</button>
+                                    <button type="button" class="btn btn-warning buy" style="width: 50%; height: auto; font-size: 1.4rem" onclick="location.href='buy.html?id=${doc.id}'">입찰 하기</button>
                                 </div>
                             </div>
                     </div>`;
