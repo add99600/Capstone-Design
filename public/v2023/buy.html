@@ -186,10 +186,6 @@ const db = firebase.firestore();
         });
     });
 
-    db.collection('user').doc(my_uid).get().then((result) => {
-        my_img = result.data().이미지;
-        email = result.data().email;
-        mmname = result.data().name;
 
     // Firebase Firestore 데이터 가져오기 및 DOM 업데이트
     db.collection('auction').doc(auctionId).get().then((result) => {
@@ -202,10 +198,10 @@ const db = firebase.firestore();
                 console.log(a.data())
                 var list = `
                                     <div class="buy-room">
-                                    <img src="${my_img}">
+                                    <img src="${a.data().my_img}">
                                     <div class="details">
-                                        <h2 class="name">${mmname}</h2>
-                                        <h3 class="user_name">${email}</h3>
+                                        <h2 class="name">${a.data().mmname}</h2>
+                                        <h3 class="user_name">${a.data().email}</h3>
                                     </div>
                                     <div class="status" style="padding-right: 150px;"><span></span><p style="margin-top: 10px">접속중</p></div>
                                     <div class="bid_price" style="padding-right: 150px;"><p style="margin-top: 10px">${a.data().money}</p></div>
@@ -214,33 +210,40 @@ const db = firebase.firestore();
                                     <div>`;
                 $('.board_list').append(list);
                 });
-            });
         });
     });
 
+    db.collection('user').doc(my_uid).get().then((result) => {
+        my_img = result.data().이미지;
+        email = result.data().email;
+        mmname = result.data().name;
 
-$(document).ready(function() {
-    $('#send').click(function() {
-        var bidValue = $('#chat-input').val();
-        if (bidValue !== "") {
-            var bid_data = {
-                money: bidValue,
-                data: formattedDateTime,
-                uid: my_uid,
-                name: my_name
-            };
-            db.collection('auction').doc(auctionId).collection('bid').add(bid_data)
-                .then(function() {
-                    console.log('입찰완료');
-                })
-                .catch(function(error) {
-                    console.error('입찰 오류:', error);
-                });
-        } else {
-            console.error('입찰값을 입력해주세요.');
-        }
+    $(document).ready(function() {
+        $('#send').click(function() {
+            var bidValue = $('#chat-input').val();
+            if (bidValue !== "") {
+                var bid_data = {
+                    money: bidValue,
+                    data: formattedDateTime,
+                    uid: my_uid,
+                    name: my_name,
+                    my_img: my_img,
+                    email: email,
+                    mmname: mmname
+                };
+                db.collection('auction').doc(auctionId).collection('bid').add(bid_data)
+                    .then(function() {
+                        console.log('입찰완료');
+                    })
+                    .catch(function(error) {
+                        console.error('입찰 오류:', error);
+                    });
+            } else {
+                console.error('입찰값을 입력해주세요.');
+            }
+        });
     });
-});
+    });
 
 </script>
 </body>
