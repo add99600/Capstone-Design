@@ -87,7 +87,7 @@
                                     <div class="card-header bg-light">
                                         <h3 class="fa fa-comment fa" style="font-size: 1.4rem">댓글</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body-1">
                                         <div clss="user_reply" style="display: flex; align-items: center; width: 100%; height: 30px; padding:10px; border-top: 1px solid gray; ">
                                             <div clss="profile" style="display: flex">
                                                 <h3 class="name" style="margin-top: 6px; padding-left: 10px; font-size: 1.4rem">이름</h3>
@@ -97,7 +97,7 @@
                                             <div class="reply_time" ><h4 style="margin-top: 6px; padding-left:610px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body-2">
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">
                                                 <div class="form-inline mb-2" style="display: flex">
@@ -196,14 +196,14 @@
     db.collection('product').doc(bring.get('id')).collection('comment').get().then((result) =>{
         result.forEach((a) => {
             var list = `          <div clss="user_reply" style="display: flex; align-items: center; width: 100%; height: 30px; padding:10px; border-top: 1px solid gray; ">
-                                       <div clss="profile" style="display: flex">
-                                           <h3 class="name" style="margin-top: 6px; padding-left: 10px; font-size: 1.4rem">${a.data().mmname}</h3>
-                                           <h3 class="name" style="margin-top: 6px; padding-left: 5px; color: rgba(162,162,162); font-size: 1.4rem">${a.data().email}</h3>
+                                       <div clss="profile" style="display: flex; margin-top: 15px; ">
+                                           <h3 class="name" style="width: 70px; height: 30px; padding-left: 10px; font-size: 1.4rem">${a.data().mmname}</h3>
+                                           <h3 class="name" style="width: 130px; height: 30px; padding-left: 5px; color: rgba(162,162,162); font-size: 1.2rem">${a.data().email}</h3>
                                        </div>
-                                       <div class="reply_text" style="margin-top: 6px; padding-left: 50px; font-size: 1rem"><h3>${a.data().comm}</h3></div>
-                                       <div class="reply_time" ><h4 style="margin-top: 6px; padding-left:610px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
+                                       <div class="reply_text" style="margin-top: 6px; width: 650px; height: 30px; padding-left: 50px; font-size: 1rem"><h3>${a.data().comm}</h3></div>
+                                       <div class="reply_time" ><h4 style="margin-top: 6px; padding-left: 25px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
                                   </div>`;
-            $('.card-body').append(list);
+            $('.card-body-1').append(list);
         });
     });
 
