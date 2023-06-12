@@ -161,7 +161,7 @@
 
     db.collection('post').doc(bring.get('id')).get().then((result) => {
       seller_uid = result.data().uid;
-      item_name = result.data().제목;
+      item_name = result.data().title;
       seller_name = result.data().name;
       img = result.data().이미지;
 
