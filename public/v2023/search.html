@@ -139,7 +139,7 @@
         sear = result.docs[0].data().search;
         console.log(sear);
 
-        db.collection('post').where('title', '==', sear).get().then((result) => {
+        db.collection('post').where('title', '>=', sear).where('title', '<=', sear + '\uf8ff').get().then((result) => {
             result.forEach((doc) => {
                 console.log(doc.data());
 
