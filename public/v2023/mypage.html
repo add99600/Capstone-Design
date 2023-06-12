@@ -81,35 +81,70 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active show" id="직거래" role="tabpanel">
-                        <p style="font-size: 1.4rem; padding: 10px">직거래 테스트 예정</p>
+                        <div class="container_m">
+                            <div class="m_line">
+
+                                <div class="m_profile">
+                                    <img src="https://blog.kakaocdn.net/dn/cAI2B2/btrXUq2renL/BTKuB0wwu2L39UKx54Jhw1/img.jpg" alt="">
+                                    <div class="m_details">
+                                        <h2 class="m_title">제목 : 도라에몽</h2>
+                                        <h4 class="m_price">가격 : ????</h4>
+                                        <h4 class="m_date">작성 날짜 : 오늘</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="경매장" role="tabpanel">
-                        <p style="font-size: 1.4rem; padding: 10px">경매장 불려올 예정</p>
+                        <div class="container_ac">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="ac_num">번호</th>
+                                    <th class="ac_title">제목</th>
+                                    <th class="ac_price">입찰 가격</th>
+                                    <th class="ac_date">날짜</th>
+                                    <th class="ac_count">입찰 목록수</th>
+                                </tr>
+                                </thead>
+                                <tbody class="ac_my_write">
+                                <tr><!-- 테스트 예시 -->
+                                    <td class="ac_num">0</td>
+                                    <td class="ac_title"><a href="#">사과</a></td>
+                                    <td class="ac_price">20,000 원</td>
+                                    <td class="ac_date">3월 6일</td>
+                                    <td class="ac_count">2</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="자유게시판" role="tabpanel">
-                        <div class="container" style="padding: 10px;">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th class="num">번호</th>
-                            <th class="title">제목</th>
-                            <th class="writer">작성자</th>
-                            <th class="date">날짜</th>
-                            <th class="count">조회수</th>
-                        </tr>
-                        </thead>
-                        <tbody class="my_write">
-                        <tr><!-- 테스트 예시 -->
-                            <td class="num">0</td>
-                            <td class="title"><a href="#">안녕하세요 테스트입니다.</a></td>
-                            <td class="writer">너의 이름은</td>
-                            <td class="date">3월 6일</td>
-                            <td class="count">알수없음</td>
-                        </tr>
+                        <div class="container_fb">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="fb_num">번호</th>
+                                    <th class="fb_title">제목</th>
+                                    <th class="fb_writer">작성자</th>
+                                    <th class="fb_date">날짜</th>
+                                    <th class="fb_count">조회수</th>
+                                </tr>
+                                </thead>
+                                <tbody class="fb_my_write">
+                                <tr><!-- 테스트 예시 -->
+                                    <td class="fb_num">0</td>
+                                    <td class="fb_title"><a href="#">안녕하세요 테스트입니다.</a></td>
+                                    <td class="fb_writer">너의 이름은</td>
+                                    <td class="fb_date">3월 6일</td>
+                                    <td class="fb_count">알수없음</td>
+                                </tr>
 
-                        </tbody>
-                    </table>
-                </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -297,13 +332,13 @@
     db.collection('product').where('uid', '==', my_uid).orderBy("date", "desc").limit(3).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             var list = `<tr>
-                            <td class="num">1</td>
-                            <td class="title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></td>
-                            <td class="writer">${doc.data().이름}</td>
-                            <td class="date">${doc.data().날짜}</td>
-                            <td class="count">조회수</td>
+                            <td class="fb_num">1</td>
+                            <td class="fb_title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></td>
+                            <td class="fb_writer">${doc.data().이름}</td>
+                            <td class="fb_date">${doc.data().날짜}</td>
+                            <td class="fb_count">조회수</td>
                         </tr>`;
-            $('.my_write').append(list);
+            $('.fb_my_write').append(list);
         });
       })
       .catch((error) => {
