@@ -96,44 +96,20 @@
                                             <div class="reply_text" style="margin-top: 6px; padding-left: 50px; font-size: 1rem"><h3>ㅋㅋㅋㅋㅋㅋㅋ</h3></div>
                                             <div class="reply_time" ><h4 style="margin-top: 6px; padding-left:610px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
                                         </div>
-                                        <div clss="user_reply" style="display: flex; align-items: center; width: 100%; height: 30px; padding:10px; border-top: 1px solid gray; ">
-                                            <div clss="profile" style="display: flex">
-                                                <h3 class="name" style="margin-top: 6px; padding-left: 10px; font-size: 1.4rem">이름</h3>
-                                                <h3 class="name" style="margin-top: 6px; padding-left: 5px; color: rgba(162,162,162); font-size: 1.4rem">(이메일)</h3>
-                                            </div>
-                                            <div class="reply_text" style="margin-top: 6px; padding-left: 50px; font-size: 1rem"><h3>ㅋㅋㅋㅋㅋㅋㅋ</h3></div>
-                                            <div class="reply_time" ><h4 style="margin-top: 6px; padding-left:610px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
-                                        </div>
-                                        <div clss="user_reply" style="display: flex; align-items: center; width: 100%; height: 30px; padding:10px; border-top: 1px solid gray; ">
-                                            <div clss="profile" style="display: flex">
-                                                <h3 class="name" style="margin-top: 6px; padding-left: 10px; font-size: 1.4rem">이름</h3>
-                                                <h3 class="name" style="margin-top: 6px; padding-left: 5px; color: rgba(162,162,162); font-size: 1.4rem">(이메일)</h3>
-                                            </div>
-                                            <div class="reply_text" style="margin-top: 6px; padding-left: 50px; font-size: 1rem"><h3>ㅋㅋㅋㅋㅋㅋㅋ</h3></div>
-                                            <div class="reply_time" ><h4 style="margin-top: 6px; padding-left:610px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
-                                        </div>
-                                        <div clss="user_reply" style="display: flex; align-items: center; width: 100%; height: 30px; padding:10px; border-top: 1px solid gray; border-bottom: 1px solid gray;">
-                                            <div clss="profile" style="display: flex">
-                                                <h3 class="name" style="margin-top: 6px; padding-left: 10px; font-size: 1.4rem">이름</h3>
-                                                <h3 class="name" style="margin-top: 6px; padding-left: 5px; color: rgba(162,162,162); font-size: 1.4rem">(이메일)</h3>
-                                            </div>
-                                            <div class="reply_text" style="margin-top: 6px; padding-left: 50px; font-size: 1rem"><h3>ㅋㅋㅋㅋㅋㅋㅋ</h3></div>
-                                            <div class="reply_time" ><h4 style="margin-top: 6px; padding-left:610px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
-                                        </div>
                                     </div>
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">
                                                 <div class="form-inline mb-2" style="display: flex">
-                                                    <label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>
-                                                    <input type="text" class="form-control ml-2" placeholder="아이디 입력" id="replyId" style="width: 200px;">
+{#                                                    <label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>#}
+{#                                                    <input type="text" class="form-control ml-2" placeholder="아이디 입력" id="replyId" style="width: 200px;">#}
 
-                                                    <label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>
-                                                    <input type="password" class="form-control ml-2" placeholder="비밀번호 입력" id="replyPassword" style="margin-left: 20px; width: 200px;">
+{#                                                    <label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>#}
+{#                                                    <input type="password" class="form-control ml-2" placeholder="비밀번호 입력" id="replyPassword" style="margin-left: 20px; width: 200px;">#}
                                                 </div>
                                                 <div style="display: flex">
-                                                    <textarea class="form-control" id="" rows="3" style="height: 50px;"></textarea>
-                                                    <button type="button" class="btn btn-outline-success" style=" margin-left: 5px; width: auto; font-size: 1.4rem" onClick="#">댓글</button>
+                                                    <textarea class="form-control" id="com" rows="3" style="height: 50px;"></textarea>
+                                                    <button id="send" type="button" class="btn btn-outline-success" style=" margin-left: 5px; width: auto; font-size: 1.4rem">댓글</button>
                                                 </div>
                                             </li>
                                         </ul>
@@ -177,44 +153,92 @@
     messagingSenderId: "204948006692",
     appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
     measurementId: "G-7NQSDSFC61"
-};
-firebase.initializeApp(firebaseConfig);
+    };
 
-const db = firebase.firestore();
-const storage = firebase.storage();
+    firebase.initializeApp(firebaseConfig);
 
-    var 가져옴 = new URLSearchParams(window.location.search)
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
-db.collection('product').doc(가져옴.get('id')).get().then((doc) => {
-  console.log(doc.data())
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+    var bring = new URLSearchParams(window.location.search)
 
-  // 게시글 내용 생성
-  var list = `<div class="title">${doc.data().제목}</div>
-              <div class="info">
-                <dl>
-                  <dt>번호</dt>
-                  <dd>5</dd>
-                </dl>
-                <dl>
-                  <dt>글쓴이</dt>
-                  <dd>${doc.data().이름}</dd>
-                </dl>
-                <dl>
-                  <dt>작성일</dt>
-                  <dd>${doc.data().날짜}</dd>
-                </dl>
-                <dl>
-                  <dt>조회</dt>
-                  <dd>67</dd>
-                </dl>
-              </div>
-              <div class="content" style="font-size: 1.6rem; line-height: 140%; padding: 10px;">${doc.data().내용}</div>`;
+    db.collection('product').doc(bring.get('id')).get().then((doc) => {
+      console.log(doc.data())
 
-  // 게시글 내용을 .board_view에 추가
-  $('.board_view').append(list);
-});
+      // 게시글 내용 생성
+      var list = `<div class="title">${doc.data().제목}</div>
+                  <div class="info">
+                    <dl>
+                      <dt>번호</dt>
+                      <dd>5</dd>
+                    </dl>
+                    <dl>
+                      <dt>글쓴이</dt>
+                      <dd>${doc.data().이름}</dd>
+                    </dl>
+                    <dl>
+                      <dt>작성일</dt>
+                      <dd>${doc.data().날짜}</dd>
+                    </dl>
+                    <dl>
+                      <dt>조회</dt>
+                      <dd>67</dd>
+                    </dl>
+                  </div>
+                  <div class="content" style="font-size: 1.6rem; line-height: 140%; padding: 10px;">${doc.data().내용}</div>`;
 
-    var bring = new URLSearchParams(window.location.search);
+      // 게시글 내용을 .board_view에 추가
+      $('.board_view').append(list);
+    });
+
+
+    db.collection('product').doc(bring.get('id')).collection('comment').get().then((result) =>{
+        result.forEach((a) => {
+            var list = `          <div clss="user_reply" style="display: flex; align-items: center; width: 100%; height: 30px; padding:10px; border-top: 1px solid gray; ">
+                                       <div clss="profile" style="display: flex">
+                                           <h3 class="name" style="margin-top: 6px; padding-left: 10px; font-size: 1.4rem">${a.data().mmname}</h3>
+                                           <h3 class="name" style="margin-top: 6px; padding-left: 5px; color: rgba(162,162,162); font-size: 1.4rem">${a.data().email}</h3>
+                                       </div>
+                                       <div class="reply_text" style="margin-top: 6px; padding-left: 50px; font-size: 1rem"><h3>${a.data().comm}</h3></div>
+                                       <div class="reply_time" ><h4 style="margin-top: 6px; padding-left:610px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
+                                  </div>`;
+            $('.card-body').append(list);
+        });
+    });
+
+    var email, mmname;
+
+    db.collection('user').doc(my_uid).get().then((result) => {
+        email = result.data().email;
+        mmname = result.data().name;
+
+    $(document).ready(function() {
+        $('#send').click(function() {
+            var commValue = $('#com').val();
+            if (commValue !== "") {
+                var comm_data = {
+                    comm: commValue,
+                    data: new Date(),
+                    uid: my_uid,
+                    email: email,
+                    mmname: mmname
+                };
+                db.collection('product').doc(bring.get('id')).collection('comment').add(comm_data)
+                    .then(function() {
+                        console.log('댓글 달음');
+                    })
+                    .catch(function(error) {
+                        console.error('댓글 오류:', error);
+                    });
+            } else {
+                console.error('댓글을 입력해 주세요');
+            }
+        });
+    });
+    });
+
+
 
     $('#ed').click(function(){
         window.location.href = 'http://127.0.0.1:8000/fb_edit.html?id=' + bring.get('id');
