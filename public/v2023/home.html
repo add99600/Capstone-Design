@@ -47,7 +47,7 @@
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                        <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
+                        <input type="search" id="insearch" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
                     </form>
 
                     <div class="text-end">
@@ -69,7 +69,7 @@
             <h1 class="display-4 fw-normal text-white" style="text-align: left">안전한 거래</h1>
             <h1 class="display-4 fw-normal text-white" style="text-align: left">쉽고 간편한 거래</h1>
             <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
-            <a class="btn btn-outline-secondary" style="text-align: left" href="#">Coming soon</a>
+            <a class="btn btn-outline-secondary" id="search" style="text-align: left" href="#">검색어 입력해주세요</a>
         </div>
     </div>
     <!-- 위는 네비 아래는 큰 이미지 예정-->
@@ -287,6 +287,9 @@
     const db = firebase.firestore(); // db문법 소환
     const storage = firebase.storage();
 
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+
+    //직거래 이미지 리스트
     db.collection('post').where("이미지", "!=", null)
         .limit(10).get().then((결과) => {
         결과.forEach((doc) => {
@@ -295,6 +298,28 @@
             var list = `<li class=""><a href="#"><img style="width: 250px; height: 250px; border-radius: 30px;" src="${doc.data().이미지}"></a></li>`;
             $('.tab ul').append(list);
         });
+    });
+
+    //검색데이터 저장
+    $('#search').click(function() {
+        var searValue = $('#insearch').val();
+        if (searValue !== "") {
+            var search_data = {
+                search: searValue,
+                data: new Date(),
+                uid: my_uid,
+            };
+            db.collection('search').add(search_data)
+                .then(function() {
+                    console.log('검색완료');
+                    location.href = 'search.html';
+                })
+                .catch(function(error) {
+                    console.error('검색 오류:', error);
+                });
+        } else {
+            console.error('검색어를 입력해주세요.');
+        }
     });
 
     firebase.auth().onAuthStateChanged((user) => {

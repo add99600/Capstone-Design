@@ -30,6 +30,7 @@ urlpatterns = [
 
     path('chat.html', chat, name='chat'),  # 임시 채팅
     path('chatting.html', chatting, name='chatting'),  # 채팅
+    path('search.html', search, name='search'), #경매
 
 
     path('freeboard.html', freeboard, name='freeboard'), #자유게시판

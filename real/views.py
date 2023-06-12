@@ -43,3 +43,5 @@ def auction_write(request):
     return render(request, 'v2023/auction_write.html', {'auction_write': 'test2'})
 def buy(request):
     return render(request, 'v2023/buy.html', {'buy': 'test2'})
+def search(request):
+    return render(request, 'v2023/search.html', {'search': 'test2'})
