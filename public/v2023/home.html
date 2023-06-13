@@ -44,7 +44,6 @@
                         <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
                         <li><a href="market.html" class="nav-link px-2 text-white">직거래</a></li>
                         <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
-                        <div id="best_search"></div>
                     </ul>
 
                     <div class="text-end">
@@ -65,12 +64,13 @@
             <!--<h1 class="display-4 fw-normal text-white" id="username" style="text-align: left"></h1>-->
             <h1 class="display-4 fw-normal text-white" style="text-align: left">안전한 거래</h1>
             <h1 class="display-4 fw-normal text-white" style="text-align: left">쉽고 간편한 거래</h1>
-            <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
-            <div class="input-group" style="width: 400px;">
+            <p class="lead fw-normal text-white" style="text-align: left; padding-left: 5px;">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
+            <div class="input-group" style="width: 400px; margin-top: 30px">
                 <input type="search" id="insearch" class="form-control form-control-dark text-bg-light" placeholder="검색어 입력해주세요" aria-label="Search"
                        style="font-size: 16px; width: 200px; height: 40px;  padding-left: 20px;">
                 <button class="btn btn-outline-success" id="search" style="text-align: center; width: 20%; height:40px; font-size: 15px" href="#">검색</button>
             </div>
+            <h3 class="display-4 fw-normal text-white" id="best_search" style="font-size: 1.6rem; width: 70%; font-weight: 400; text-align: left; padding: 5px; color: #0b2e13"></h3>
 
         </div>
     </div>
@@ -397,7 +397,7 @@
           maxCount = wordCount[word];
           }
       }
-      $('#best_search').html('인기검색어:' + mostFrequentWord + ' '  + '검색횟수:' + maxCount);
+      $('#best_search').html('#현재 인기 검색어 : ' + mostFrequentWord + ' '  + '[검색횟수 : ' + maxCount +']');
 
       console.log('가장 많이 등장한 단어:', mostFrequentWord);
       console.log('등장 횟수:', maxCount);
