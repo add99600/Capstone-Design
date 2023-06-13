@@ -47,8 +47,8 @@ urlpatterns = [
     path('auction_write.html', auction_write, name='auction_write'), #경매작성
     path('buy.html', buy, name='buy'), #경매
 
-    path('check_price/', check_price, name='check_price'),
-    path('check/', check, name='check'),
+    path('check_price', check_price, name='check_price'),
+    path('check', check, name='check'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
