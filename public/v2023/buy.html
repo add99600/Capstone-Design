@@ -100,7 +100,7 @@
                              <div style="height: 18%;">
                                  <h4> 바로 살 수 있는 가격 : </h4>
                                  <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
-                                     <h3 id=" " style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
+                                     <h3 id="buynow" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
                                  </div>
                              </div>
                              <div style="height: 25%;">
@@ -191,7 +191,8 @@ const db = firebase.firestore();
             if (money > maxMoney) {
                 maxMoney = money;
             }
-        });
+    });
+
     });
 
 
@@ -200,8 +201,9 @@ const db = firebase.firestore();
         console.log(result.data());
         $('#nname').html(`<strong>${result.data().name}의 경매현황</strong>`);
         $('#pprice').html(`${maxMoney}원`);
+        $('#buynow').html(result.data().즉구);
 
-        db.collection('auction').doc(auctionId).collection('bid').get().then((result) => {
+        db.collection('auction').doc(auctionId).collection('bid').orderBy('money', 'desc').get().then((result) => {
             result.forEach((a) => {
                 console.log(a.data())
                 var list = `
@@ -228,9 +230,9 @@ const db = firebase.firestore();
     $(document).ready(function() {
         $('#send').click(function() {
             var bidValue = $('#chat-input').val();
-            if (bidValue !== "") {
+            if (bidValue > maxMoney) {
                 var bid_data = {
-                    money: bidValue,
+                    money: Number(bidValue),
                     data: formattedDateTime,
                     uid: my_uid,
                     name: my_name,
