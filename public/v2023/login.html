@@ -101,25 +101,25 @@
     const analytics = getAnalytics(app);
     const auth = getAuth();
 
-    document.getElementById('signInButton').addEventListener('click',(event) => {
-        event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
-        const email = document.getElementById('signInEmail').value
-        const password = document.getElementById('signInPassword').value
-        //auth라는 변수를 만들어 getAuth 실행
-        signInWithEmailAndPassword(auth, email, password) //email과 password 전달
+    document.getElementById('signInButton').addEventListener('click', (event) => {
+        event.preventDefault();
+        const email = document.getElementById('signInEmail').value;
+        const password = document.getElementById('signInPassword').value;
+
+        signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential)
-                // Signed in
                 const user = userCredential.user;
-                // ...
+                // Handle signed-in user...
             })
             .catch((error) => {
-                console.log(error)
-                // ..
+                console.log(error);
+                // Handle sign-in error...
             });
-    })
+    });
+
     document.getElementById('logout').addEventListener('click', (event) => {
-        console.log('logout test1');
+        event.preventDefault();
+
         signOut(auth)
             .then(() => {
                 console.log('User signed out successfully');
@@ -129,6 +129,15 @@
             });
     });
 
+
+    //로컬 스토리지에 유저 정보 저장
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log(user.uid);
+            console.log(user.email);
+            localStorage.setItem('user', JSON.stringify(user));
+        }
+    });
 
 
 </script>
