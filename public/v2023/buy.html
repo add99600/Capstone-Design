@@ -61,7 +61,7 @@
              <section id="main">
                  <article id="article1">
                      <div class="board_wrap" >
-                         <div class="board_list_wrap" style="width: 64%; padding: 20px">
+                         <div class="board_list_wrap" style="width: 64%; height: 850px; padding: 20px">
                              <div class="board_list" id="board">
 
                                  <div class="buy-room"> <!-- 형식 시작-->
@@ -89,35 +89,35 @@
                              </div>
 
                          </div>
-                         <div class="board_title" style="width: 30%; padding: 20px; height: 850px">
+                         <div class="board_title" style="width: 30%; padding: 20px; height: 800px">
                              <div id="nname" style="margin-bottom: 10px; height: 10%"><strong> </strong></div>
-                             <div style="height: 18%;">
-                                 <h4> 입찰 최고가 : </h4>
-                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid black">
-                                     <h3 id="pprice" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
-                                 </div>
-                             </div>
-                             <div style="height: 18%;">
-                                 <h4> 즉시 구매가 : </h4>
-                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
-                                     <h3 id="buynow" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
-                                 </div>
-                             </div>
-                             <div style="height: 18%;">
+                             <div style="height: 15%;"> <!--상품명-->
                                  <h4> 상품명 </h4>
                                  <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
                                      <h3 id="yesterday" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
                                  </div>
                              </div>
-                             <form method="GET" action="/check_price_1/">
-                             <div style="height: 18%;">
+                             <div style="height: 15%;"> <!--즉시 구매가-->
+                                 <h4> 즉시 구매가 : </h4>
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid orange">
+                                     <h3 id="buynow" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
+                                 </div>
+                             </div>
+                             <div style="height: 15%;"> <!--어제 가격-->
                                  <h4> 어제 가격 : </h4>
-                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid gray">
                                      <h3 id="resultt"  style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
                                  </div>
                              </div>
+                             <div style="height: 15%;"> <!--입찰 최고가-->
+                                 <h4> 입찰 최고가 : </h4>
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid black">
+                                     <h3 id="pprice" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
+                                 </div>
+                             </div>
+                             <form method="GET" action="/check_price_1/">
                              </form>
-                             <div style="height: 25%;">
+                             <div style="height: 15%;">
                                  <h4> 입찰 할 가격 입력 : </h4>
                                  <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid blue">
                                      <div class="input-group" style="width: 100%; height: 100%">
@@ -126,7 +126,7 @@
                                      </div>
                                  </div>
                              </div>
-                             <div style="height: 15%">
+                             <div style="height: 10%">
                                  <button onclick="location.href='auction.html';" type="button" class="btn btn-dark" style="width: 100%; height: 40px; margin:5px; font-size: 1.6rem">목록</button>
                             </div>
                          </div>
@@ -259,7 +259,7 @@ const db = firebase.firestore();
 
         $('#nname').html(`<strong>${result.data().name}의 경매현황</strong>`);
         $('#pprice').html(`${maxMoney}원`);
-        $('#buynow').html(result.data().즉구);
+        $('#buynow').html(result.data().즉구+'원');
         $('#yesterday').html(result.data().제목);
 
         db.collection('auction').doc(auctionId).collection('bid').orderBy('money', 'desc').get().then((result) => {
