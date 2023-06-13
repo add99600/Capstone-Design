@@ -55,27 +55,13 @@
         </div>
     </div>
     <!-- 위는 네비 아래는 큰 이미지 예정-->
-    <div style=" z-index: 3; background: #818182">
-        <div class="sidebar">
-            <ul>
-                <h2 style="text-align: center; font-size: 2.5rem; padding : 10px;">사이드 메뉴</h2>
-                <li><a href="#">공지사항</a></li>
-                <li><a href="market.html">직거래</a></li>
-                <li><a href="auction.html">경매장</a></li>
-                <li><a href="freeboard.html">자유게시판</a></li>
-            </ul>
-        </div>
-    </div>
+
     <div class="container marketing" style="padding-top: 50px">
          <div class="row featurette" style="height: auto">
              <section id="main">
                  <article id="article1">
-                     <div class="board_wrap">
-                         <div class="board_title">
-                             <div  id="nname"><strong>의 경매현황</strong></div>
-                             <p id="pprice">현재 최고 입찰가 : </p>
-                         </div>
-                         <div class="board_list_wrap">
+                     <div class="board_wrap" >
+                         <div class="board_list_wrap" style="width: 64%; padding: 20px">
                              <div class="board_list" id="board">
 
                                  <div class="buy-room"> <!-- 형식 시작-->
@@ -84,9 +70,8 @@
                                          <h2 class="name">XVX-016RN</h2>
                                          <h3 class="user_name">Aerial Rebuild@NBD</h3>
                                      </div>
-                                     <div class="status" style="padding-right: 150px;"><span></span><p style="margin-top: 10px">접속중</p></div>
                                      <div class="bid_price" style="padding-right: 150px;"><p style="margin-top: 10px">65,000원</p></div>
-                                     <div clss="time" style="padding-right: 150px;"><p style="margin-top: 10px">2023년 06월 11일</p></div>
+                                     <div clss="time" style="padding-right: 100px;"><p style="margin-top: 10px;width: 170px;">03월 02일 9시 52분 10초</p></div>
                                      <button class="btn btn-success">버튼</button>
                                  </div> <!-- 형식 끝-->
 
@@ -96,17 +81,40 @@
                                          <h2 class="name">Test</h2>
                                          <h3 class="user_name">Schwarzette@Zetaq</h3>
                                      </div>
-                                     <div class="status" style="padding-right: 150px;"><span class="inactive"></span><p style="margin-top: 10px">비접속</p></div>
                                      <div class="bid_price" style="padding-right: 150px;"><p style="margin-top: 10px">65,000원</p></div>
-                                     <div clss="time" style="padding-right: 150px;"><p style="margin-top: 10px">2023년 06월 11일</p></div>
+                                     <div clss="time" style="padding-right: 100px;"><p style="margin-top: 10px;width: 170px;">06월 13일 14시 29분 59초</p></div>
                                      <button class="btn btn-success">버튼</button>
                                  </div> <!-- 형식 끝-->
 
                              </div>
-                             <div class="input-group">
-                                 <input class="form-control" id="chat-input">
-                                 <button class="btn btn-primary" id="send">전송</button>
+
+                         </div>
+                         <div class="board_title" style="width: 30%; padding: 20px; height: 850px">
+                             <div id="nname" style="margin-bottom: 10px; height: 10%"><strong> </strong></div>
+                             <div style="height: 18%;">
+                                 <h4> 현재 입찰 최고 가격 : </h4>
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid black">
+                                     <h3 id="pprice" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
+                                 </div>
                              </div>
+                             <div style="height: 18%;">
+                                 <h4> 바로 살 수 있는 가격 : </h4>
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
+                                     <h3 id="buynow" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
+                                 </div>
+                             </div>
+                             <div style="height: 25%;">
+                                 <h4> 입찰 할 가격 입력 : </h4>
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid blue">
+                                     <div class="input-group" style="width: 100%; height: 100%">
+                                         <input class="form-control" id="chat-input" style="font-size: 18px; text-align: right;">
+                                         <button class="btn btn-primary" id="send" style="width: 50px; font-size: 1.6rem;">전송</button>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div style="height: 15%">
+                                 <button onclick="location.href='auction.html';" type="button" class="btn btn-dark" style="width: 100%; height: 40px; margin:5px; font-size: 1.6rem">목록</button>
+                            </div>
                          </div>
                      </div>
                  </article>
@@ -183,17 +191,19 @@ const db = firebase.firestore();
             if (money > maxMoney) {
                 maxMoney = money;
             }
-        });
+    });
+
     });
 
 
     // Firebase Firestore 데이터 가져오기 및 DOM 업데이트
     db.collection('auction').doc(auctionId).get().then((result) => {
         console.log(result.data());
-        $('#nname').html(`<strong>${result.data().name}</strong>`);
-        $('#pprice').html(`현재 최고 입찰가: ${maxMoney}`);
+        $('#nname').html(`<strong>${result.data().name}의 경매현황</strong>`);
+        $('#pprice').html(`${maxMoney}원`);
+        $('#buynow').html(result.data().즉구);
 
-        db.collection('auction').doc(auctionId).collection('bid').get().then((result) => {
+        db.collection('auction').doc(auctionId).collection('bid').orderBy('money', 'desc').get().then((result) => {
             result.forEach((a) => {
                 console.log(a.data())
                 var list = `
@@ -203,9 +213,8 @@ const db = firebase.firestore();
                                         <h2 class="name">${a.data().mmname}</h2>
                                         <h3 class="user_name">${a.data().email}</h3>
                                     </div>
-                                    <div class="status" style="padding-right: 150px;"><span></span><p style="margin-top: 10px">접속중</p></div>
-                                    <div class="bid_price" style="padding-right: 150px;"><p style="margin-top: 10px">${a.data().money}</p></div>
-                                    <div clss="time" style="padding-right: 150px;"><p style="margin-top: 10px">${a.data().data}</p></div>
+                                    <div class="bid_price" style="padding-right: 150px;"><p style="margin-top: 10px;">${a.data().money}원</p></div>
+                                    <div clss="time" style="padding-right: 100px;"><p style="margin-top: 10px;width: 170px;">${a.data().data}</p></div>
                                     <button class="btn btn-success">버튼</button>
                                     <div>`;
                 $('.board_list').append(list);
@@ -221,9 +230,9 @@ const db = firebase.firestore();
     $(document).ready(function() {
         $('#send').click(function() {
             var bidValue = $('#chat-input').val();
-            if (bidValue !== "") {
+            if (bidValue > maxMoney) {
                 var bid_data = {
-                    money: bidValue,
+                    money: Number(bidValue),
                     data: formattedDateTime,
                     uid: my_uid,
                     name: my_name,

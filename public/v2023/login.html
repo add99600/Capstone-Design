@@ -40,41 +40,29 @@
         </div>
     </div>
 </header>
-    <div class="header">
-            <a href="http://127.0.0.1:8000">
-                <img style="height: 100%; object-fit: contain" src="https://cdn.discordapp.com/attachments/1071025296582639641/1081551347792482384/bf99e6e3f7c1ff7d.PNG">
-            </a> </div>
-    <div class="login">
-        <form action="#">
-            <fieldset>
-                <legend>로그인 구역</legend>
+<div class="header">
+    <a href="http://127.0.0.1:8000">
+        <img style="height: 100%; object-fit: contain; margin-top: 5px" src="https://cdn.discordapp.com/attachments/1071025296582639641/1081551347792482384/bf99e6e3f7c1ff7d.PNG">
+    </a></div>
+<div class="login">
+    <form action="#">
+        <fieldset>
+            <legend>로그인 구역</legend>
 
-                <input type="text" id="signInEmail" placeholder="아이디(E-mail)을 입력해 주세요">
-                <input type="password" id="signInPassword" placeholder="비밀번호를 입력해 주세요">
-                <ul>
-                    <li><a href="#">아이디/비밀번호찾기</a></li>
-                    <li><a href="jtm.html">회원가입</a></li>
-                </ul>
-                <div style="text-align: center">
-                    <div style="display: inline-block" onclick="login()"><button style="border-radius: 10px;" type="submit" id="signInButton">로그인</button></div>
-                    <div style="display: inline-block" onclick="alert('로그아웃 되었습니다.')"><button style="border-radius: 10px;" type="submit" id="logout">로그아웃</button></div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+            <input type="text" id="signInEmail" placeholder="아이디(E-mail)을 입력해 주세요">
+            <input type="password" id="signInPassword" placeholder="비밀번호를 입력해 주세요">
+            <ul>
+                <li><a href="#">아이디/비밀번호찾기</a></li>
+                <li><a href="jtm.html">회원가입</a></li>
+            </ul>
+            <div style="text-align: center">
+                <div style="display: inline-block" onclick="login()"><button class="button_B" type="submit" id="signInButton">로그인</button></div>
+                <div style="display: inline-block" onclick="alert('로그아웃 되었습니다.')"><button class="button_R" type="submit" id="logout">로그아웃</button></div>
+            </div>
+        </fieldset>
+    </form>
+</div>
 
-
-
-    <div class="footer">
-        <h3>&nbsp;&nbsp;&nbsp;프로젝트 이름</h3>
-        <p>
-            &nbsp;호서 대학교
-            &nbsp;컴퓨터 공학부&nbsp;
-            &nbsp;웹 하자(WebDo) 팀: ㅇㅎㅈ, ㅅㅎㅈ&nbsp;
-            &nbsp;이메일 : 추가@바람.com&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&Copyright 2023, All Right Reserved.&nbsp;</spam>
-        </p>
-    </div>
 <script>
     function login() {
         alert("로그인 되었습니다.");
@@ -86,59 +74,59 @@
 
 </script>
 <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
-  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  // Initialize Firebase
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    // Initialize Firebase
     const firebaseConfig = {
-      apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-      authDomain: "wepdo-7bed1.firebaseapp.com",
-      databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-      projectId: "wepdo-7bed1",
-      storageBucket: "wepdo-7bed1.appspot.com",
-      messagingSenderId: "204948006692",
-      appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-      measurementId: "G-7NQSDSFC61"
+        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
+        authDomain: "wepdo-7bed1.firebaseapp.com",
+        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
+        projectId: "wepdo-7bed1",
+        storageBucket: "wepdo-7bed1.appspot.com",
+        messagingSenderId: "204948006692",
+        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
+        measurementId: "G-7NQSDSFC61"
     };
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
 
 
-  const analytics = getAnalytics(app);
-  const auth = getAuth();
+    const analytics = getAnalytics(app);
+    const auth = getAuth();
 
-  document.getElementById('signInButton').addEventListener('click',(event) => {
-      event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
-      const email = document.getElementById('signInEmail').value
-      const password = document.getElementById('signInPassword').value
-      //auth라는 변수를 만들어 getAuth 실행
-      signInWithEmailAndPassword(auth, email, password) //email과 password 전달
-        .then((userCredential) => {
-            console.log(userCredential)
-            // Signed in
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            console.log(error)
-            // ..
-        });
-  })
-  document.getElementById('logout').addEventListener('click', (event) => {
-      console.log('logout test1');
-      signOut(auth)
-        .then(() => {
-          console.log('User signed out successfully');
-        })
-        .catch((error) => {
-          console.log('Error signing out:', error);
-        });
+    document.getElementById('signInButton').addEventListener('click',(event) => {
+        event.preventDefault() //어떤 이벤트가 발생하던지 일단 막아줌
+        const email = document.getElementById('signInEmail').value
+        const password = document.getElementById('signInPassword').value
+        //auth라는 변수를 만들어 getAuth 실행
+        signInWithEmailAndPassword(auth, email, password) //email과 password 전달
+            .then((userCredential) => {
+                console.log(userCredential)
+                // Signed in
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                console.log(error)
+                // ..
+            });
+    })
+    document.getElementById('logout').addEventListener('click', (event) => {
+        console.log('logout test1');
+        signOut(auth)
+            .then(() => {
+                console.log('User signed out successfully');
+            })
+            .catch((error) => {
+                console.log('Error signing out:', error);
+            });
     });
 
 
