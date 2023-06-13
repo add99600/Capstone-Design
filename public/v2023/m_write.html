@@ -215,7 +215,8 @@
                             날짜: month + "월 " + day + "일",
                             uid: user.uid,
                             이미지: url,
-                            name: user_name
+                            name: user_name,
+                            date: new Date()
                         }
                         db.collection('post').add(img)
                             .then((result) => {

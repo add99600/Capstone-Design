@@ -232,7 +232,8 @@
                             이미지: url,
                             name: user_name,
                             od: $('#outdate').val(),
-                            ot: $('#outtime').val()
+                            ot: $('#outtime').val(),
+                            date: new Date()
                         }
                         db.collection('auction').add(img)
                             .then((result) => {

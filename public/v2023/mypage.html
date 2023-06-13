@@ -84,14 +84,14 @@
                         <div class="container_m">
                             <div class="m_line">
 
-                                <div class="m_profile">
-                                    <img src="https://blog.kakaocdn.net/dn/cAI2B2/btrXUq2renL/BTKuB0wwu2L39UKx54Jhw1/img.jpg" alt="">
-                                    <div class="m_details">
-                                        <h2 class="m_title">제목 : 도라에몽</h2>
-                                        <h4 class="m_price">가격 : ????</h4>
-                                        <h4 class="m_date">작성 날짜 : 오늘</h4>
-                                    </div>
-                                </div>
+{#                                <div class="m_profile">#}
+{#                                    <img src="https://blog.kakaocdn.net/dn/cAI2B2/btrXUq2renL/BTKuB0wwu2L39UKx54Jhw1/img.jpg" alt="">#}
+{#                                    <div class="m_details">#}
+{#                                        <h2 class="m_title">제목 : 도라에몽</h2>#}
+{#                                        <h4 class="m_price">가격 : ????</h4>#}
+{#                                        <h4 class="m_date">작성 날짜 : 오늘</h4>#}
+{#                                    </div>#}
+{#                                </div>#}
 
                             </div>
                         </div>
@@ -328,11 +328,11 @@
         }
     });
 
-
-    db.collection('product').where('uid', '==', my_uid).orderBy("date", "desc").limit(3).get().then((querySnapshot) => {
+    // 자유게시판 본인이 작성한 글만 불러옴
+    db.collection('product').where('uid', '==', my_uid).orderBy("date", "desc").limit(5).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             var list = `<tr>
-                            <td class="fb_num">1</td>
+                            <td class="fb_num">${doc.data().num}</td>
                             <td class="fb_title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></td>
                             <td class="fb_writer">${doc.data().이름}</td>
                             <td class="fb_date">${doc.data().날짜}</td>
@@ -344,6 +344,38 @@
       .catch((error) => {
         console.log(error);
       });
+
+
+    db.collection('post').where('uid', '==', my_uid).orderBy("date", "desc").limit(5).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            var list = `        <div class="m_profile">
+                                    <img src="${doc.data().이미지}">
+                                    <div class="m_details">
+                                        <h2 class="m_title">${doc.data().title}</h2>
+                                        <h4 class="m_price">${doc.data().가격}</h4>
+                                        <h4 class="m_date">작성 날짜 : ${doc.data().날짜}</h4>
+                                    </div>
+                                </div>`;
+            $('.m_line').append(list);
+        });
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    db.collection('auction').where('uid', '==', my_uid).orderBy("date", "desc").limit(5).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            var list = `        <tr><!-- 테스트 예시 -->
+                                    <td class="ac_num">0</td>
+                                    <td class="ac_title"><a href="#">${doc.data().제목}</a></td>
+                                    <td class="ac_price">${doc.data().현재가}</td>
+                                    <td class="ac_date">${doc.data().날짜}</td>
+                                    <td class="ac_count">2</td>
+                                </tr>`;
+            $('.ac_my_write').append(list);
+        });
+    }).catch((error) => {
+        console.log(error);
+    });
 
 
     // 마이페이지 본인이름 뜨게함
