@@ -46,14 +46,10 @@
                         <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
                     </ul>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                        <input type="search" id="insearch" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
-                    </form>
-
                     <div class="text-end">
                         {% if user %}
                             <a id="username" style="text-align: left; font-weight: bold; color: white"></a>
-                            <a style="font-weight: bold; color: white">님 환영합니다.</a>
+                            <a style="font-weight: bold; color: white;">님 환영합니다.</a>
                             <button id="mypage" type="button" class="btn btn-primary">마이페이지</button>
                             <button type="button" class="btn btn-warning" onclick="location.href='login.html'">로그아웃</button>
                         {% else %}
@@ -69,7 +65,12 @@
             <h1 class="display-4 fw-normal text-white" style="text-align: left">안전한 거래</h1>
             <h1 class="display-4 fw-normal text-white" style="text-align: left">쉽고 간편한 거래</h1>
             <p class="lead fw-normal text-white" style="text-align: left">현재 여기는 새로운 ui를 위해 공사중 입니다.</p>
-            <a class="btn btn-outline-secondary" id="search" style="text-align: left" href="#">검색어 입력해주세요</a>
+            <div class="input-group" style="width: 400px;">
+                <input type="search" id="insearch" class="form-control form-control-dark text-bg-light" placeholder="검색어 입력해주세요" aria-label="Search"
+                       style="font-size: 16px; width: 200px; height: 40px;  padding-left: 20px;">
+                <button class="btn btn-outline-success" id="search" style="text-align: center; width: 20%; height:40px; font-size: 15px" href="#">검색</button>
+            </div>
+
         </div>
     </div>
     <!-- 위는 네비 아래는 큰 이미지 예정-->
