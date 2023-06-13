@@ -129,39 +129,40 @@
         }
         .container_m .m_line{
             width: 100%;
-            height: 250px;
+            height: 220px;
             display: flex;
             flex-wrap: wrap;
         }
         .container_m .m_line .m_profile{
-            width: 30%;
-            height: 250px;
+            width: 180px;
+            height: 220px;
             border: 1px solid slategrey;
             border-radius: 10px;
             text-align: center;
             margin: 10px;
             justify-content: space-around;
+            padding: 5px;
         }
-        .container_m .m_line .m_profile img{
-            height: 130px;
-            width: 130px;
+        .m_profile img{
+            max-height: 130px;
+            width: 100%;
             /*border: 1px solid black;*/
             border-radius: 6px;
             transition: transfrom 0.2s linear;
             margin-top: 15px;
             margin-bottom: 20px;
         }
-        .container_m .m_line .m_profile:hover img{
+        .m_profile:hover img{
             transform: scale(1.05);
         }
-        .container_m .m_line .m_profile details{
-            text-align: left;
+        .m_profile m_details{
+            position: center;
         }
-        .container_m .m_line .m_details .m_title, .m_price, .m_date{
+        .m_details .m_title, .m_price, .m_date{
             text-align: left;
-            padding-bottom: 5px;
-            padding-left: 20px;
+            padding: 5px;
             margin: 0;
+            width: 180px;
         }
         .m_title { font-size: 1.8rem; font-weight: 700;}
         .m_price { font-size: 1.2rem;}
