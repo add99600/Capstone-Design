@@ -49,6 +49,7 @@ urlpatterns = [
 
     path('check_price', check_price, name='check_price'),
     path('check', check, name='check'),
+    path('check_price_1/', check_price_1, name='check_price_1'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

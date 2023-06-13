@@ -92,17 +92,31 @@
                          <div class="board_title" style="width: 30%; padding: 20px; height: 850px">
                              <div id="nname" style="margin-bottom: 10px; height: 10%"><strong> </strong></div>
                              <div style="height: 18%;">
-                                 <h4> 현재 입찰 최고 가격 : </h4>
+                                 <h4> 입찰 최고가 : </h4>
                                  <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid black">
                                      <h3 id="pprice" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
                                  </div>
                              </div>
                              <div style="height: 18%;">
-                                 <h4> 바로 살 수 있는 가격 : </h4>
+                                 <h4> 즉시 구매가 : </h4>
                                  <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
                                      <h3 id="buynow" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
                                  </div>
                              </div>
+                             <div style="height: 18%;">
+                                 <h4> 상품명 </h4>
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
+                                     <h3 id="yesterday" style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
+                                 </div>
+                             </div>
+                             <form method="GET" action="/check_price_1/">
+                             <div style="height: 18%;">
+                                 <h4> 어제 가격 : </h4>
+                                 <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid red">
+                                     <h3 id="resultt"  style="transform: translateY(50%); float: right; padding-right: 10px;"></h3>
+                                 </div>
+                             </div>
+                             </form>
                              <div style="height: 25%;">
                                  <h4> 입찰 할 가격 입력 : </h4>
                                  <div style="width: 250px; height: 50px; border-radius: 10px; border:2px solid blue">
@@ -182,6 +196,24 @@ const db = firebase.firestore();
     var mmname;
     var maxMoney;
 
+    let item;
+    // 하루를 밀리초 단위로 나타내는 값
+    var oneDay = 24 * 60 * 60 * 1000;
+
+    // 오늘 날짜에서 하루를 뺀 날짜 계산
+    var previousDay = new Date(today.getTime() - oneDay);
+
+    // 연, 월, 일 정보 가져오기
+    var previousYear = previousDay.getFullYear();
+    var previousMonth = previousDay.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+    var previousDate = previousDay.getDate();
+
+    // 날짜를 두 자리 숫자로 표현하기 위해 필요한 처리
+    previousMonth = previousMonth < 10 ? '0' + previousMonth : previousMonth;
+    previousDate = previousDate < 10 ? '0' + previousDate : previousDate;
+    console.log(previousYear + previousMonth + previousDate);
+    let search_date = previousYear + previousMonth + previousDate;
+
     // 입찰 최대가 가져오기
     db.collection('auction').doc(auctionId).collection('bid').get().then((result) => {
         maxMoney = 0;
@@ -191,17 +223,44 @@ const db = firebase.firestore();
             if (money > maxMoney) {
                 maxMoney = money;
             }
+        });
     });
-
-    });
-
 
     // Firebase Firestore 데이터 가져오기 및 DOM 업데이트
     db.collection('auction').doc(auctionId).get().then((result) => {
-        console.log(result.data());
+        item = result.data().제목;
+        console.log(item)
+        console.log(search_date)
+            // AJAX 요청을 보냅니다.
+            $.ajax({
+                url: '/check_price_1/',
+                method: 'GET',
+                data: {
+                    search_date: search_date,
+                    item: item,
+                },
+                success: function(response) {
+                    if (response.avg_total_price === 0) {
+                        // 거래량이 없는 경우
+                        $('#resultt').html('거래량이 없습니다.');
+                    } else if (response.avg_total_price) {
+                        // 평균 가격이 있는 경우
+                        var resultText = `${response.avg_total_price}원`;
+                        $('#resultt').html(resultText);
+                    } else {
+                        // 입력이 필요한 경우
+                        $('#resultt').html('입력 해 주세요.');
+                    }
+                },
+                error: function(error) {
+                    $('#resultt').html('요청실패');
+                }
+            });
+
         $('#nname').html(`<strong>${result.data().name}의 경매현황</strong>`);
         $('#pprice').html(`${maxMoney}원`);
         $('#buynow').html(result.data().즉구);
+        $('#yesterday').html(result.data().제목);
 
         db.collection('auction').doc(auctionId).collection('bid').orderBy('money', 'desc').get().then((result) => {
             result.forEach((a) => {
@@ -227,6 +286,8 @@ const db = firebase.firestore();
         email = result.data().email;
         mmname = result.data().name;
 
+
+
     $(document).ready(function() {
         $('#send').click(function() {
             var bidValue = $('#chat-input').val();
@@ -243,16 +304,19 @@ const db = firebase.firestore();
                 db.collection('auction').doc(auctionId).collection('bid').add(bid_data)
                     .then(function() {
                         console.log('입찰완료');
+                        location.reload(); // 페이지 새로고침
                     })
                     .catch(function(error) {
                         console.error('입찰 오류:', error);
                     });
             } else {
                 console.error('입찰값을 입력해주세요.');
+                alert("입력형식이 잘못되었습니다.");
             }
         });
     });
     });
+
 
 </script>
 </body>
