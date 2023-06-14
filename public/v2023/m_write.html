@@ -193,6 +193,7 @@
                         db.collection('post').add(img)
                             .then((result) => {
                                 console.log(result)
+                                location.href = 'market.html';
                             }).catch((error) => {
                             console.log(error)
                         })
@@ -200,8 +201,9 @@
                 }
             )
         } else {
+            alert("이미지를 등록해 주세요");
             // 이미지가 선택되지 않은 경우에도 함수를 호출합니다.
-            saveData();
+            // saveData();
         }
 
         function saveData() {
