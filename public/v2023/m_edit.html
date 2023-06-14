@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="bt_wrap">
-                                <button onclick="location.href='m_view.html';" type="button" class="btn btn-primary" id="send" style="width: 60px; height: 40px; margin:5px; font-size: 1.4rem">수정</button>
+                                <button type="button" class="btn btn-primary" id="send" style="width: 60px; height: 40px; margin:5px; font-size: 1.4rem">수정</button>
                                 <button onclick="location.href='market.html';" type="button" class="btn btn-danger" style="width: 60px; height: 40px; margin:5px; font-size: 1.4rem">취소</button>
                             </div>
                         </div>
@@ -149,6 +149,23 @@
       const value = event.target.value.replace(/,/g, ''); // 기존에 입력된 쉼표 제거
       const regex = /\B(?=(\d{3})+(?!\d))/g;
       event.target.value = value.replace(regex, ','); // 3자리마다 쉼표 추가
+    });
+
+    var bring_id = new URLSearchParams(window.location.search);
+
+    $('#send').click(function () {
+        var change = {
+            title: $('#title').val(),
+            가격: $('#price').val(),
+            내용: $('#content').val(),
+        }
+        db.collection('post').doc(bring_id.get('id')).update(change)
+            .then(() => {
+                window.location.href = 'http://127.0.0.1:8000/m_view.html?id=' + bring_id.get('id');
+            })
+            .catch((error) => {
+                console.error("Error updating document: ", error);
+            });
     });
 </script>
 </body>

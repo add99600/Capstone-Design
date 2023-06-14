@@ -14,11 +14,3 @@
     });
 
 
-    $('#send').click(function (){
-        var change = {
-            title: $('#title').val(),
-            가격: $('#price').val(),
-            내용: $('#content').val(),
-        }
-        db.collection('post').doc(bring_id.get('id')).update(change)
-    })

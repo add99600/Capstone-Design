@@ -75,7 +75,3 @@ $('#chat').click(function(){
             console.error(error);
         });
 });
-
-    $('#ed').click(function(){ // 수정 게시판으로 가기
-        window.location.href = 'http://127.0.0.1:8000/m_edit.html?id=' + bring.get('id');
-    });
