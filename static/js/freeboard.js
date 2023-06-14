@@ -6,6 +6,11 @@ const db = firebase.firestore();
 var firstVisible;
 var lastVisible;
 
+var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+db.collection('user').doc(my_uid).get().then((result) => {
+        console.log(result.data().nickname);
+        $('#username').html(result.data().nickname)
+    });
 // 첫 페이지 데이터 로드
 db.collection('product').orderBy('num', 'desc').limit(5).get().then((documentSnapshots) => {
   const docs = documentSnapshots.docs;

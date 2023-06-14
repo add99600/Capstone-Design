@@ -17,25 +17,23 @@
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-            <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+            <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-white">홈</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
                 <li><a href="market.html" class="nav-link px-2 text-white">직거래</a></li>
+                <li><a href="auction.html" class="nav-link px-2 text-white">경매장</a></li>
                 <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-            </form>
-
-            <div class="text-end" style="font-size: 1.4rem;">
-                <button type="button" class="btn btn-outline-light me-2" onClick="location.href='login.html'">로그인</button>
-                <button type="button" class="btn btn-warning" onClick="location.href='jtm.html'">회원가입</button>
+            <div class="text-end">
+                <!--<a id="username" style="text-align: left; font-weight: bold; color: white"></a>   -->
+                <!--<a style="font-weight: bold; color: white;"> </a>   -->
+                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
+                <button id="logout" type="button" class="btn btn-warning">로그아웃</button>
             </div>
         </div>
     </div>
@@ -71,6 +69,7 @@
         alert("로그아웃 되었습니다.");
         window.location.href = "http://127.0.0.1:8000/";
     }
+
 
 </script>
 <script type="module">

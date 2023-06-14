@@ -4,6 +4,11 @@ const db = firebase.firestore();
 var my_uid = JSON.parse(localStorage.getItem('user')).uid;
 var sear;
 
+db.collection('user').doc(my_uid).get().then((result) => {
+        console.log(result.data().nickname);
+        $('#username').html(result.data().nickname)
+    });
+
 // 본인이 검색한 데이터를 가져오고, 시간 역순으로 나열한 값 중에 1번째 값만 가져옴
 db.collection('search').where('uid', '==', my_uid).orderBy("data", "desc").limit(1).get().then((result) => {
     sear = result.docs[0].data().search;

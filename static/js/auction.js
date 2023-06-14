@@ -2,6 +2,12 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
+var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+db.collection('user').doc(my_uid).get().then((result) => {
+    console.log(result.data().nickname);
+    $('#username').html(result.data().nickname)
+    });
+
 db.collection('auction').get().then((결과) => {
     결과.forEach((doc) => {
         console.log(doc.data());
