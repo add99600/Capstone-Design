@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="bt_wrap">
-                                <button onclick="location.href='fb_view.html';" type="button" class="btn btn-primary" id="send" style="width: 60px; height: 40px; margin:5px; font-size: 1.4rem">수정</button>
+                                <button type="button" class="btn btn-primary" id="send" style="width: 60px; height: 40px; margin:5px; font-size: 1.4rem">수정</button>
                                 <button onclick="location.href='freeboard.html';" type="button" class="btn btn-danger" style="width: 60px; height: 40px; margin:5px; font-size: 1.4rem">취소</button>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                 window.location.href = 'http://127.0.0.1:8000/fb_view.html?id=' + bring_id.get('id');
             })
             .catch((error) => {
-                console.error("Error updating document: ", error);
+                console.error("Error : ", error);
             });
     });
 
