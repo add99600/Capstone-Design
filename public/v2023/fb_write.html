@@ -93,25 +93,25 @@
                                         <dd><input type="text" placeholder="제목 입력" id="title"></dd>
                                     </dl>
                                 </div>
-                                <div class="info">
-                                    <dl>
-                                        <dt>가격</dt>
-                                        <dd><input type="text" placeholder="가격 입력" id="price"></dd>
-                                    </dl>
-                                </div>
-                                <div class="info">
-                                    <dl>
-                                        <form>
-                                            <dt>사진 선택</dt>
-                                            <dd>
-                                                <input class="form-control" style="font-size: 1.4rem" type="file" id="image" onchange="previewImage(event)"></dd>
-                                            <br>
-                                            <dl style="padding-top: 10px">
-                                                <img width="200px" height="100px" id="preview" src="#" alt="이미지 미리보기">
-                                            </dl>
-                                        </form>
-                                    </dl>
-                                </div>
+{#                                <div class="info">#}
+{#                                    <dl>#}
+{#                                        <dt>가격</dt>#}
+{#                                        <dd><input type="text" placeholder="가격 입력" id="price"></dd>#}
+{#                                    </dl>#}
+{#                                </div>#}
+{#                                <div class="info">#}
+{#                                    <dl>#}
+{#                                        <form>#}
+{#                                            <dt>사진 선택</dt>#}
+{#                                            <dd>#}
+{#                                                <input class="form-control" style="font-size: 1.4rem" type="file" id="image" onchange="previewImage(event)"></dd>#}
+{#                                            <br>#}
+{#                                            <dl style="padding-top: 10px">#}
+{#                                                <img width="200px" height="100px" id="preview" src="#" alt="이미지 미리보기">#}
+{#                                            </dl>#}
+{#                                        </form>#}
+{#                                    </dl>#}
+{#                                </div>#}
                                 <div class="cont">
                                     <textarea placeholder="내용 입력" id="content"></textarea>
                                 </div>
@@ -139,61 +139,10 @@
     </div>
 </main>
 <script>
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid;
 
     $('#send').click(function () {
-
-        var file = document.querySelector('#image').files[0];
-        var storageRef = storage.ref();
-        var save_img = null;
-        var upload_img = null;
-        var url = null;
-
-        const auth = firebase.auth();
-        const user = auth.currentUser;
-
-
-        if (file) {
-            save_img = storageRef.child('/image/' + file.name);
-            upload_img = save_img.put(file)
-            upload_img.on('state_change',
-                null,
-                (error) => {
-                    console.error('실패',error);
-                },
-                () => {
-                    upload_img.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        url = downloadURL;
-                        console.log('업로드된 경로',url)
-
-                        var today = new Date();
-                        var month = today.getMonth() + 1;
-                        var day = today.getDate();
-
-
-                        var img = {
-                            제목: $('#title').val(),
-                            가격: $('#price').val(),
-                            내용: $('#content').val(),
-                            날짜: month + "월 " + day + "일",
-                            이름: user_name,
-                            uid: user.uid,
-                            이미지: url,
-                            date: today,
-                            num: (count + 1).toString()
-                        }
-                        db.collection('product').add(img)
-                            .then((result) => {
-                                console.log(result)
-                            }).catch((error) => {
-                            console.log(error)
-                        })
-                    });
-                }
-            )
-        } else {
-            // 이미지가 선택되지 않은 경우에도 함수를 호출합니다.
-            saveData();
-        }
+        saveData();
 
         function saveData() {
             var today = new Date();
@@ -202,20 +151,21 @@
 
             var save_txt = {
                 제목: $('#title').val(),
-                가격: $('#price').val(),
                 내용: $('#content').val(),
                 날짜: month + "월 " + day + "일",
                 이름: user_name,
-                uid: user.uid,
+                uid: my_uid,
                 date: today,
                 num: (count + 1).toString()
             };
+
             db.collection('product').add(save_txt)
                 .then((result) => {
-                    console.log(result)
-                }).catch((error) => {
-                console.log(error)
-            })
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     });
 </script>
