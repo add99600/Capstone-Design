@@ -50,7 +50,4 @@
         });
     });
 
-    $('#ed').click(function(){
-        window.location.href = 'http://127.0.0.1:8000/fb_edit.html?id=' + bring.get('id');
-    });
 

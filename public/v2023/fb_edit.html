@@ -26,7 +26,7 @@
 
 <main>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-         style="font-size: 1.4rem; background-image: url('/img/san.png'); width : auto; height: 400px">
+         style="font-size: 1.4rem; background-image: url('static/img/san.png'); width : auto; height: 400px">
         <header class="p-3 text" style="font-size: 1.4rem; background-color:transparent;">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -94,25 +94,6 @@
                                         <dd><input type="text" placeholder="제목 입력" id="title"></dd>
                                     </dl>
                                 </div>
-                                <div class="info">
-                                    <dl>
-                                        <dt>가격</dt>
-                                        <dd><input type="text" placeholder="가격 입력" id="price"></dd>
-                                    </dl>
-                                </div>
-                                <div class="info">
-                                    <dl>
-                                        <form>
-                                            <dt>사진 선택</dt>
-                                            <dd>
-                                                <input class="form-control" style="font-size: 1.4rem" type="file" id="image" onchange="previewImage(event)"></dd>
-                                            <br>
-                                            <dl style="padding-top: 10px">
-                                                <img width="200px" height="100px" id="preview" src="#" alt="이미지 미리보기">
-                                            </dl>
-                                        </form>
-                                    </dl>
-                                </div>
                                 <div class="cont">
                                     <textarea placeholder="내용 입력" id="content"></textarea>
                                 </div>
@@ -140,13 +121,23 @@
     </div>
 </main>
 
-
-
 <script>
-    function previewImage(event) { /*이미지 미리보기?*/
-        var preview = document.getElementById('preview');
-        preview.src = URL.createObjectURL(event.target.files[0]);
-    }
+    var bring_id = new URLSearchParams(window.location.search);
+
+    $('#send').click(function () {
+        var change = {
+            제목: $('#title').val(),
+            내용: $('#content').val(),
+        }
+        db.collection('product').doc(bring_id.get('id')).update(change)
+            .then(() => {
+                window.location.href = 'http://127.0.0.1:8000/fb_view.html?id=' + bring_id.get('id');
+            })
+            .catch((error) => {
+                console.error("Error updating document: ", error);
+            });
+    });
+
 </script>
 </body>
 </html>
