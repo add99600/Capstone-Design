@@ -64,28 +64,4 @@
             });
         });
 
-    $('#send').click(function () {
-      if (chatroom_id) {
-        var chat_data = {
-          content: $('#chat-input').val(),
-          data: new Date(),
-          uid: my_uid,
-        };
-        db.collection('chat').doc(chatroom_id).collection('message').add(chat_data);
 
-        $('#chat-input').val('');
-      }
-    });
-
-    $('#mypage').click(function(){
-        const auth = firebase.auth();
-        const user = auth.currentUser;
-
-        if (user) {
-            var uid = user.uid;
-            window.location.href = 'http://127.0.0.1:8000/mypage.html?id=' + uid;
-        } else {
-            // 로그인이 되어 있지 않은 경우, 로그인 페이지로 이동하도록 설정할 수 있습니다.
-            window.location.href = 'http://127.0.0.1:8000/login.html';
-        }
-    });
