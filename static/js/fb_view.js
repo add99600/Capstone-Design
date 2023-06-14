@@ -36,7 +36,7 @@
     });
 
 
-    db.collection('product').doc(bring.get('id')).collection('comment').get().then((result) =>{
+    db.collection('product').doc(bring.get('id')).collection('comment').orderBy('data').get().then((result) =>{
         result.forEach((a) => {
             var list = `          <div clss="user_reply" style="display: flex; align-items: center; width: 100%; height: auto; padding:10px; justify-content: space-around">
                                        <div clss="profile" style="display: flex; margin-top: 15px; ">
@@ -44,7 +44,7 @@
                                            <h3 class="name" style="width: 150px; height: 30px; color: rgba(162,162,162); font-size: 1.2rem">${a.data().email}</h3>
                                        </div>
                                        <div class="reply_text" style="margin-top: 6px; width: 580px; height: auto; padding-left: 50px; font-size: 1rem"><h3>${a.data().comm}</h3></div>
-                                       <div class="reply_time" ><h4 style="margin-top: 6px; padding-left: 15px; color: rgba(162,162,162); font-size: 1rem">2023년 06월 12일</h4></div>
+                                       <div class="reply_time" ><h4 style="margin-top: 6px; padding-left: 15px; color: rgba(162,162,162); font-size: 1rem">${a.data().날짜}</h4></div>
                                   </div>`
 
             $('.card-body-1').append(list);

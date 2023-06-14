@@ -143,6 +143,10 @@
 </main>
 <script>
 
+    var today = new Date();
+    var month = today.getMonth() + 1;
+    var day = today.getDate();
+
     var email, mmname;
 
     db.collection('user').doc(my_uid).get().then((result) => {
@@ -158,7 +162,8 @@
                     data: new Date(),
                     uid: my_uid,
                     email: email,
-                    mmname: mmname
+                    mmname: mmname,
+                    날짜: month + "월" + day + "일",
                 };
                 db.collection('product').doc(bring.get('id')).collection('comment').add(comm_data)
                     .then(function() {
@@ -193,17 +198,17 @@
     });
     // 로그아웃
     document.getElementById('logout').addEventListener('click', (event) => {
-      event.preventDefault();
+        event.preventDefault();
 
-      firebase.auth().signOut()
-        .then(() => {
-          console.log('User signed out successfully');
-          localStorage.removeItem('user');
-          location.replace(location.href);
-        })
-        .catch((error) => {
-          console.log('Error signing out:', error);
-        });
+        firebase.auth().signOut()
+            .then(() => {
+                console.log('User signed out successfully');
+                localStorage.removeItem('user');
+                location.replace(location.href);
+            })
+            .catch((error) => {
+                console.log('Error signing out:', error);
+            });
     });
 </script>
 </body>
