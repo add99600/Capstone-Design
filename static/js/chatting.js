@@ -1,13 +1,3 @@
-    var firebaseConfig = {
-        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-        authDomain: "wepdo-7bed1.firebaseapp.com",
-        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-        projectId: "wepdo-7bed1",
-        storageBucket: "wepdo-7bed1.appspot.com",
-        messagingSenderId: "204948006692",
-        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-        measurementId: "G-7NQSDSFC61"
-    };
     firebase.initializeApp(firebaseConfig);
 
     const db = firebase.firestore();
@@ -15,16 +5,25 @@
     var my_uid = JSON.parse(localStorage.getItem('user')).uid;
     var chatroom_id
     var bring = new URLSearchParams(window.location.search);
+    var my_img
+    var whoValue
+
+    db.collection('chat').where('who', 'array-contains', my_uid).get().then((result) => {
+      result.docs.forEach((doc) => {
+        whoValue = doc.data().who;
+        console.log(whoValue);
+      });
+    });
+
 
     db.collection('chat').where('who', 'array-contains', bring.get('id')).get().then((result) => {
         result.forEach((doc) => {
-        console.log(doc.data());
         var chatroom = `
                         <div class="chatting-room" data-chat-id="${doc.id}">
                            <img src="${doc.data().img}">
                             <div class="details">
-                              <a href="#" class="name">${doc.data().product}</a>
-                              <div class="message">${doc.data().name}</div>
+                              <a href="#" class="room_name">${doc.data().product}</a>
+                              <div class="room_owner">${doc.data().name}</div>
                            </div>
                         </div>`;
         $('.chatting-list').append(chatroom);
@@ -34,19 +33,33 @@
           chatroom_id = $(this).data('chat-id');
 
           e.stopImmediatePropagation();
-          $('.chat-content').html('');
 
           console.log('Chatroom ID:', chatroom_id);
 
-          db.collection('chat').doc(chatroom_id).collection('message').get().then((result)=>{
+          db.collection('chat').doc(chatroom_id).collection('message').orderBy('data').onSnapshot((result)=>{
+              $('.chat-content').html('');
               result.forEach((a)=>{
-                  console.log(a.data())
-                  var message = `   <div class="chat ch2">
-                                        <div class="icon"><i class="fa-solid fa-user"></i></div>
-                                        <div class="textbox">${a.data().content}</div>
-                                    </div>`;
-                          $('.chat-content').append(message)
+                    var message = '';
+                    if (a.data().uid === my_uid) {
+                        db.collection('user').doc(my_uid).get().then((result)=>{
+                            my_img = result.data().이미지;
+                        });
+                        message = `
+                            <div class="chat ch2">
+                                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                <div class="textbox">${a.data().content}</div>
+                            </div>`;
+                    } else {
+                        message = `
+                            <div class="chat ch1">
+                                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                <div class="textbox">${a.data().content}</div>
+                            </div>`;
+                    }
+                $('.chat-content').append(message)
                     })
+                    var chatContent = $('.chat-content');
+                    chatContent.scrollTop(chatContent.prop("scrollHeight"));
                 })
             });
         });
@@ -59,7 +72,20 @@
           uid: my_uid,
         };
         db.collection('chat').doc(chatroom_id).collection('message').add(chat_data);
+
+        $('#chat-input').val('');
       }
     });
 
+    $('#mypage').click(function(){
+        const auth = firebase.auth();
+        const user = auth.currentUser;
 
+        if (user) {
+            var uid = user.uid;
+            window.location.href = 'http://127.0.0.1:8000/mypage.html?id=' + uid;
+        } else {
+            // 로그인이 되어 있지 않은 경우, 로그인 페이지로 이동하도록 설정할 수 있습니다.
+            window.location.href = 'http://127.0.0.1:8000/login.html';
+        }
+    });

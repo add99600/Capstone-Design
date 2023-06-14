@@ -14,6 +14,13 @@
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer&amp;id=G-7NQSDSFC61" async=""></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% load static %}
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script src="{% static 'js/firebaseConfig.js' %}"></script>
+    <script src="{% static 'js/mypage.js' %}"></script>
 </head>
 
 <body>
@@ -236,10 +243,7 @@
 </body>
 
 
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
 <script type='text/javascript'> //random background-color
     var sum = Math.random();
     var result = sum * 10;
@@ -267,8 +271,7 @@
         default : f.style.background = "#FFD700";
             break;
     }
-</script>
-<script>
+
     function previewImage(event) { //이미지
         var reader = new FileReader();
         reader.onload = function() {
@@ -303,92 +306,13 @@
         contentB.style.width = '0';
     }
 
-
-    var firebaseConfig = {
-        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-        authDomain: "wepdo-7bed1.firebaseapp.com",
-        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-        projectId: "wepdo-7bed1",
-        storageBucket: "wepdo-7bed1.appspot.com",
-        messagingSenderId: "204948006692",
-        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-        measurementId: "G-7NQSDSFC61"
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    const storage = firebase.storage();
-    var my_uid = JSON.parse(localStorage.getItem('user')).uid
-    var bring = new URLSearchParams(window.location.search);
-
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            console.log(user.uid);
-        }
-    });
-
-    // 자유게시판 본인이 작성한 글만 불러옴
-    db.collection('product').where('uid', '==', my_uid).orderBy("date", "desc").limit(5).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            var list = `<tr>
-                            <td class="fb_num">${doc.data().num}</td>
-                            <td class="fb_title"><a href="http://127.0.0.1:8000/fb_view.html?id=${doc.id}">${doc.data().제목}</a></td>
-                            <td class="fb_writer">${doc.data().이름}</td>
-                            <td class="fb_date">${doc.data().날짜}</td>
-                            <td class="fb_count">조회수</td>
-                        </tr>`;
-            $('.fb_my_write').append(list);
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-
-    db.collection('post').where('uid', '==', my_uid).orderBy("date", "desc").limit(5).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            var list = `        <div class="m_profile">
-                                    <img src="${doc.data().이미지}">
-                                    <div class="m_details">
-                                        <h2 class="m_title">${doc.data().title}</h2>
-                                        <h4 class="m_price">${doc.data().가격}</h4>
-                                        <h4 class="m_date">작성 날짜 : ${doc.data().날짜}</h4>
-                                    </div>
-                                </div>`;
-            $('.m_line').append(list);
-        });
-    }).catch((error) => {
-        console.log(error);
-    });
-
-    db.collection('auction').where('uid', '==', my_uid).orderBy("date", "desc").limit(5).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            var list = `        <tr><!-- 테스트 예시 -->
-                                    <td class="ac_num">0</td>
-                                    <td class="ac_title"><a href="#">${doc.data().제목}</a></td>
-                                    <td class="ac_price">${doc.data().현재가}</td>
-                                    <td class="ac_date">${doc.data().날짜}</td>
-                                    <td class="ac_count">2</td>
-                                </tr>`;
-            $('.ac_my_write').append(list);
-        });
-    }).catch((error) => {
-        console.log(error);
-    });
-
-
-    // 마이페이지 본인이름 뜨게함
-    db.collection('user').doc(bring.get('id')).get().then((result) => {
-        $('#name').html(result.data().nickname)
-    });
-
+    // 채팅방 이동
     $('.button').click(function() {
         window.location.href = 'http://127.0.0.1:8000/chatting.html?id=' + my_uid;
     });
 
 
-    // 클릭시 개인정보 변경
+    // 프로필 및 개인정보 변경
     $('#save').click(function () {
         var file = document.querySelector('#upload-image').files[0];
         var storageRef = storage.ref();
@@ -457,22 +381,6 @@
                     console.log(error)
                 });
         }
-    });
-
-    //변경된 나의 정보
-    db.collection('user').doc(my_uid).get().then((result) => {
-        $('#myname').html(result.data().nickname);
-        $('#myage').html(result.data().age);
-        $('#myjob').html(result.data().job);
-        $('#mybaN').html(result.data().ban);
-        $('#myhmA').html(result.data().hma);
-        $('#circle-img').attr('src', result.data().이미지);
-
-        $('#username').val(result.data().nickname);
-        $('#age').val(result.data().age);
-        $('#job').val(result.data().job);
-        $('#baN').val(result.data().ban);
-        $('#hmA').val(result.data().hma);
     });
 
 </script>

@@ -122,10 +122,11 @@
 
         signOut(auth)
             .then(() => {
-                console.log('User signed out successfully');
+                console.log('로그아웃 성공');
+                localStorage.removeItem('user');
             })
             .catch((error) => {
-                console.log('Error signing out:', error);
+                console.log('로그아웃 오류:', error);
             });
     });
 

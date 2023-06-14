@@ -15,6 +15,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% load static %}
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script src="{% static 'js/firebaseConfig.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
 </head>
 <body>
 <style>
@@ -47,15 +54,11 @@
                     </ul>
 
                     <div class="text-end">
-                        {% if user %}
                             <a id="username" style="text-align: left; font-weight: bold; color: white"></a>
                             <a style="font-weight: bold; color: white;">님 환영합니다.</a>
                             <button id="mypage" type="button" class="btn btn-primary">마이페이지</button>
-                            <button type="button" class="btn btn-warning" onclick="location.href='login.html'">로그아웃</button>
-                        {% else %}
                             <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
-                            <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
-                        {% endif %}
+                            <button id="logout" type="button" class="btn btn-warning">로그아웃</button>
                     </div>
                 </div>
             </div>
@@ -263,44 +266,9 @@
     </div>
 </main>
 
-
-<!-- Firebase SDK 스크립트 태그 -->
-<!-- Firebase SDK 스크립트 태그 -->
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
-
 <script>
-    var firebaseConfig = {
-        apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-        authDomain: "wepdo-7bed1.firebaseapp.com",
-        databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-        projectId: "wepdo-7bed1",
-        storageBucket: "wepdo-7bed1.appspot.com",
-        messagingSenderId: "204948006692",
-        appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-        measurementId: "G-7NQSDSFC61"
-    };
-    firebase.initializeApp(firebaseConfig);
 
-    const db = firebase.firestore(); // db문법 소환
-    const storage = firebase.storage();
-
-    var my_uid = JSON.parse(localStorage.getItem('user')).uid;
-
-    //직거래 이미지 리스트
-    db.collection('post').where("이미지", "!=", null)
-        .limit(10).get().then((결과) => {
-        결과.forEach((doc) => {
-            console.log(doc.data().이미지);
-
-            var list = `<li class=""><a href="#"><img style="width: 250px; height: 250px; border-radius: 30px;" src="${doc.data().이미지}"></a></li>`;
-            $('.tab ul').append(list);
-        });
-    });
-
-    //검색데이터 저장
+    //검색데이터 저장 및 페이지 이동
     $('#search').click(function() {
         var searValue = $('#insearch').val();
         if (searValue !== "") {
@@ -321,19 +289,7 @@
             console.error('검색어를 입력해주세요.');
         }
     });
-
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            console.log(user.uid);
-            console.log(user.email);
-            localStorage.setItem('user', JSON.stringify(user))
-        }
-    });
-    var getout =localStorage.getItem('user')
-    $('#username').html(JSON.parse(getout).email)
-
-
-
+    // 마이페이지 이동
     $('#mypage').click(function(){
         const auth = firebase.auth();
         const user = auth.currentUser;
@@ -347,65 +303,19 @@
         }
     });
 
+    // 로그아웃
+    document.getElementById('logout').addEventListener('click', (event) => {
+      event.preventDefault();
 
-    {#메인페이지 자유 게시판 디비에서 불러오기#}
-    db.collection('product').orderBy('num','desc').limit(1).get().then((result) => {
-        console.log(result.docs[0].data().제목);
-        $('#title').html(result.docs[0].data().제목);
-        {#$('#title').html(result.docs[0].data().날짜);#}
-    });
-
-    db.collection('product').orderBy('num','desc').limit(2).get().then((result) => {
-        $('#title2').html(result.docs[1].data().제목);
-        {#$('#title2').html(result.docs[1].data().날짜);#}
-    });
-
-    db.collection('product').orderBy('num','desc').limit(3).get().then((result) => {
-        $('#title3').html(result.docs[2].data().제목);
-        {#$('#title3').html(result.docs[2].data().날짜);#}
-    });
-
-
-    let mostFrequentWord, maxCount;
-
-    db.collection('search').get().then((result) => {
-        var wordCount = {};
-
-        result.forEach((doc) => {
-
-        var data = doc.data();
-        var searchField = data.search;
-
-        if (searchField && typeof searchField === 'string') {
-            var words = searchField.split(' ');
-
-            words.forEach((word) => {
-            if (wordCount[word]) {
-                wordCount[word]++;
-            } else {
-                wordCount[word] = 1;
-            }
-            });
-        }
+      firebase.auth().signOut()
+        .then(() => {
+          console.log('User signed out successfully');
+          localStorage.removeItem('user'); // Remove user information from localStorage
+        })
+        .catch((error) => {
+          console.log('Error signing out:', error);
         });
-
-      maxCount = 0;
-
-      for (var word in wordCount) {
-          if (wordCount[word] > maxCount) {
-          mostFrequentWord = word;
-          maxCount = wordCount[word];
-          }
-      }
-      $('#best_search').html('#현재 인기 검색어 : ' + mostFrequentWord + ' '  + '[검색횟수 : ' + maxCount +']');
-
-      console.log('가장 많이 등장한 단어:', mostFrequentWord);
-      console.log('등장 횟수:', maxCount);
     });
-
-
-
-
 
 </script>
 </body>

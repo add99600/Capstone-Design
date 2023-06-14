@@ -13,6 +13,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% load static %}
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script src="{% static 'js/firebaseConfig.js' %}"></script>
+    <script src="{% static 'js/market.js' %}"></script>
 </head>
 <body>
 
@@ -135,49 +142,8 @@
     </div>
 </main>
 
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
-
 <script>
-    var firebaseConfig = {
-    apiKey: "AIzaSyCunQjLi23bBAybA97IFMaIrXUwuJSV8mM",
-    authDomain: "wepdo-7bed1.firebaseapp.com",
-    databaseURL: "https://wepdo-7bed1-default-rtdb.firebaseio.com",
-    projectId: "wepdo-7bed1",
-    storageBucket: "wepdo-7bed1.appspot.com",
-    messagingSenderId: "204948006692",
-    appId: "1:204948006692:web:bbb863d7032ddbbf64b5b1",
-    measurementId: "G-7NQSDSFC61"
-};
-firebase.initializeApp(firebaseConfig);
 
-
-const db = firebase.firestore(); // db문법 소환
-
-db.collection('post').get().then((결과) => {
-        결과.forEach((doc)=>{
-            console.log(doc.data());
-
-        var list = `
-                    <div class="item">
-                      <img src="${doc.data().이미지}" style="border-radius: 12px; height: 200px; width:200px">
-                      <h2 class="item_name"><a style="text-decoration-line: none; color: black" href="http://127.0.0.1:8000/m_view.html?id=${doc.id}">${doc.data().title}</a></h2>
-                      <h2 class="item_cost">${doc.data().가격}원</h2>
-                      <h1 class="item_place"></h1>
-                      <div class="like_chating">
-                        <span class="like">관심 15</span>
-                        <span>&nbsp;&nbsp;・&nbsp;&nbsp;</span>
-                        <span class="chat">채팅 48</span>
-                      </div>
-                    </div>`;
-
-
-        $('.item_row').append(list);
-
-    });
-});
 </script>
 
 </body>
