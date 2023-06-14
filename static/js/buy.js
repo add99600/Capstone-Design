@@ -24,7 +24,7 @@ const db = firebase.firestore();
     var mmname;
     var maxMoney;
 
-    let item;
+    let kind;
     // 하루를 밀리초 단위로 나타내는 값
     var oneDay = 24 * 60 * 60 * 1000;
 
@@ -56,16 +56,15 @@ const db = firebase.firestore();
 
     // Firebase Firestore 데이터 가져오기 및 DOM 업데이트
     db.collection('auction').doc(auctionId).get().then((result) => {
-        item = result.data().제목;
-        console.log(item)
-        console.log(search_date)
+        kind = result.data().kind;
+        console.log(kind)
             // AJAX 요청을 보냅니다.
             $.ajax({
                 url: '/check_price_1/',
                 method: 'GET',
                 data: {
                     search_date: search_date,
-                    item: item,
+                    item: kind,
                 },
                 success: function(response) {
                     if (response.avg_total_price === 0) {
@@ -85,25 +84,24 @@ const db = firebase.firestore();
                 }
             });
 
-        $('#nname').html(`<strong>${result.data().name}의 경매현황</strong>`);
+        $('#nname').html(`<strong>${result.data().제목}</strong>`);
         $('#pprice').html(`${maxMoney}원`);
         $('#buynow').html(result.data().즉구+'원');
-        $('#yesterday').html(result.data().제목);
+        $('#yesterday').html(result.data().kind);
 
         db.collection('auction').doc(auctionId).collection('bid').orderBy('money', 'desc').get().then((result) => {
             result.forEach((a) => {
                 console.log(a.data())
-                var list = `
-                                    <div class="buy-room">
-                                    <img src="${a.data().my_img}">
-                                    <div class="details">
-                                        <h2 class="name">${a.data().mmname}</h2>
-                                        <h3 class="user_name">${a.data().email}</h3>
-                                    </div>
-                                    <div class="bid_price" style="padding-right: 150px;"><p style="margin-top: 10px;">${a.data().money}원</p></div>
-                                    <div clss="time" style="padding-right: 100px;"><p style="margin-top: 10px;width: 170px;">${a.data().data}</p></div>
-                                    <button class="btn btn-success">버튼</button>
-                                    <div>`;
+                var list = `<div class="buy-room">
+                                <img src="${a.data().my_img}">
+                                <div class="details">
+                                    <h2 class="name">${a.data().mmname}</h2>
+                                    <h3 class="user_name">${a.data().email}</h3>
+                                </div>
+                                <div class="bid_price" style="padding-right: 150px;"><p style="margin-top: 10px;">${a.data().money}원</p></div>
+                                <div clss="time" style="padding-right: 100px;"><p style="margin-top: 10px;width: 170px;">${a.data().data}</p></div>
+                                <button class="btn btn-success">버튼</button>
+                             <div>`;
                 $('.board_list').append(list);
                 });
         });
@@ -143,5 +141,10 @@ const db = firebase.firestore();
             }
         });
     });
+    });
+
+    // 어제 도매가 text
+    db.collection('auction').doc(auctionId).get().then((result) => {
+        $('#yesterday_sell').html(`어제 ${kind} 도매가`);
     });
 
