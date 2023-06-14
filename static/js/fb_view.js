@@ -50,39 +50,6 @@
         });
     });
 
-    var email, mmname;
-
-    db.collection('user').doc(my_uid).get().then((result) => {
-        email = result.data().email;
-        mmname = result.data().name;
-
-    $(document).ready(function() {
-        $('#send').click(function() {
-            var commValue = $('#com').val();
-            if (commValue !== "") {
-                var comm_data = {
-                    comm: commValue,
-                    data: new Date(),
-                    uid: my_uid,
-                    email: email,
-                    mmname: mmname
-                };
-                db.collection('product').doc(bring.get('id')).collection('comment').add(comm_data)
-                    .then(function() {
-                        console.log('댓글 달음');
-                    })
-                    .catch(function(error) {
-                        console.error('댓글 오류:', error);
-                    });
-            } else {
-                console.error('댓글을 입력해 주세요');
-            }
-        });
-    });
-    });
-
-
-
     $('#ed').click(function(){
         window.location.href = 'http://127.0.0.1:8000/fb_edit.html?id=' + bring.get('id');
     });
