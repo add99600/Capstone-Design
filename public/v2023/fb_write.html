@@ -162,6 +162,7 @@
             db.collection('product').add(save_txt)
                 .then((result) => {
                     console.log(result);
+                    location.href = 'freeboard.html';
                 })
                 .catch((error) => {
                     console.log(error);
