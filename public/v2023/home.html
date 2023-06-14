@@ -310,7 +310,8 @@
       firebase.auth().signOut()
         .then(() => {
           console.log('User signed out successfully');
-          localStorage.removeItem('user'); // Remove user information from localStorage
+          localStorage.removeItem('user');
+          location.replace(location.href);
         })
         .catch((error) => {
           console.log('Error signing out:', error);
