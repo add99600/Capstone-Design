@@ -50,7 +50,7 @@
         querySnapshot.forEach((doc) => {
             var list = `        <tr><!-- 테스트 예시 -->
                                     <td class="ac_num">0</td>
-                                    <td class="ac_title"><a href="#">${doc.data().제목}</a></td>
+                                    <td class="ac_title" ><a href="http://127.0.0.1:8000/auction.html">${doc.data().제목}</a></td>
                                     <td class="ac_price">${doc.data().현재가}</td>
                                     <td class="ac_date">${doc.data().날짜}</td>
                                     <td class="ac_count">2</td>
