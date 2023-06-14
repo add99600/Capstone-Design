@@ -27,26 +27,25 @@
 <header class="p-3 text-bg-dark" style="font-size: 1.4rem;">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+
+            <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use href="#bootstrap"></use></svg>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="http://127.0.0.1:8000" class="nav-link px-2 text-white">홈</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">안내</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
                 <li><a href="market.html" class="nav-link px-2 text-white">직거래</a></li>
+                <li><a href="auction.html" class="nav-link px-2 text-white">경매장</a></li>
                 <li><a href="freeboard.html" class="nav-link px-2 text-white">커뮤니티</a></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-            </form>
-
-            <div class="text-end" style="font-size: 1.4rem;">
+            <div class="text-end">
+                <a id="username" style="text-align: left; font-weight: bold; color: white"></a>
+                <a style="font-weight: bold; color: white;">님 환영합니다.</a>
+                <button id="mypage" type="button" class="btn btn-primary">마이페이지</button>
                 <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.html'">로그인</button>
-                <button type="button" class="btn btn-warning" onclick="location.href='jtm.html'">회원가입</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='mypage.html'">마이페이지</button>
+                <button id="logout" type="button" class="btn btn-warning">로그아웃</button>
             </div>
         </div>
     </div>
@@ -116,13 +115,6 @@
                                 </tr>
                                 </thead>
                                 <tbody class="ac_my_write">
-                                <tr><!-- 테스트 예시 -->
-                                    <td class="ac_num">0</td>
-                                    <td class="ac_title"><a href="#">사과</a></td>
-                                    <td class="ac_price">20,000 원</td>
-                                    <td class="ac_date">3월 6일</td>
-                                    <td class="ac_count">2</td>
-                                </tr>
 
                                 </tbody>
                             </table>
@@ -141,13 +133,6 @@
                                 </tr>
                                 </thead>
                                 <tbody class="fb_my_write">
-                                <tr><!-- 테스트 예시 -->
-                                    <td class="fb_num">0</td>
-                                    <td class="fb_title"><a href="#">안녕하세요 테스트입니다.</a></td>
-                                    <td class="fb_writer">너의 이름은</td>
-                                    <td class="fb_date">3월 6일</td>
-                                    <td class="fb_count">알수없음</td>
-                                </tr>
 
                                 </tbody>
                             </table>
@@ -271,6 +256,33 @@
         default : f.style.background = "#FFD700";
             break;
     }
+    // 마이페이지 이동
+    $('#mypage').click(function(){
+        const auth = firebase.auth();
+        const user = auth.currentUser;
+
+        if (user) {
+            var uid = user.uid;
+            window.location.href = 'http://127.0.0.1:8000/mypage.html?id=' + uid;
+        } else {
+            // 로그인이 되어 있지 않은 경우, 로그인 페이지로 이동하도록 설정할 수 있습니다.
+            window.location.href = 'http://127.0.0.1:8000/login.html';
+        }
+    });
+    // 로그아웃
+    document.getElementById('logout').addEventListener('click', (event) => {
+      event.preventDefault();
+
+      firebase.auth().signOut()
+        .then(() => {
+          console.log('User signed out successfully');
+          localStorage.removeItem('user');
+          location.replace(location.href);
+        })
+        .catch((error) => {
+          console.log('Error signing out:', error);
+        });
+    });
 
     function previewImage(event) { //이미지
         var reader = new FileReader();

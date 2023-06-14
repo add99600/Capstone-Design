@@ -42,6 +42,12 @@ const db = firebase.firestore();
     console.log(previousYear + previousMonth + previousDate);
     let search_date = previousYear + previousMonth + previousDate;
 
+    // 유저이름
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+    db.collection('user').doc(my_uid).get().then((result) => {
+        console.log(result.data().nickname);
+        $('#username').html(result.data().nickname)
+    });
     // 입찰 최대가 가져오기
     db.collection('auction').doc(auctionId).collection('bid').get().then((result) => {
         maxMoney = 0;

@@ -2,6 +2,11 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore(); // db문법 소환
 
+var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+db.collection('user').doc(my_uid).get().then((result) => {
+        console.log(result.data().nickname);
+        $('#username').html(result.data().nickname)
+    });
 db.collection('post').get().then((결과) => {
         결과.forEach((doc)=>{
             console.log(doc.data());

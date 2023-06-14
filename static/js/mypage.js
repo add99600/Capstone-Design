@@ -6,6 +6,12 @@
     var my_uid = JSON.parse(localStorage.getItem('user')).uid
     var bring = new URLSearchParams(window.location.search);
 
+    var my_uid = JSON.parse(localStorage.getItem('user')).uid;
+    db.collection('user').doc(my_uid).get().then((result) => {
+        console.log(result.data().nickname);
+        $('#username').html(result.data().nickname)
+    });
+
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             console.log(user.uid);
